@@ -126,12 +126,12 @@ a {
 .page-title__goback {
   background-color: transparent;
   margin-right: 30px;
-  color: #d9d9d9;
   border: 0px;
   cursor: pointer;
+  color: #7daaf1;
 }
 .page-title__goback:hover svg {
-  color: #7daaf1;
+  color: #d9d9d9;
 }
 .page-title__goback svg {
   font-size: 3em;

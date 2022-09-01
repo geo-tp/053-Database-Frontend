@@ -22,13 +22,13 @@
   &__goback {
     background-color: transparent;
     margin-right: 30px;
-    color: $color6;
     border: 0px;
     cursor: pointer;
+    color: $color7;
 
     &:hover {
       & svg {
-        color: $color7;
+        color: $color6;
       }
     }
 
