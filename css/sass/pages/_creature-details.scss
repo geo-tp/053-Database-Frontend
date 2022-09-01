@@ -4,6 +4,7 @@
   &__informations {
     display: flex;
     padding: 20px;
+    padding-top: 30px;
     justify-content: space-between;
     max-height: 650px;
     flex-wrap: wrap;
@@ -86,6 +87,11 @@
         flex-basis: 25%;
       }
     }
+    & aside {
+      & img {
+        border-radius: 0px 20px 0px 20px;
+      }
+    }
   }
 
   @include tablet-design {
@@ -96,17 +102,22 @@
       justify-content: center;
 
       &__details1 {
+        flex-direction: row;
+        justify-content: space-evenly;
+        margin-top: 15px;
         flex-basis: 90%;
         margin-bottom: 10px;
-        border-radius: 20px 20px 20px 20px;
+        border-radius: 0px 20px 0px 20px;
+        padding-top: 20px;
         padding-bottom: 20px;
       }
 
       &__details2 {
         flex-basis: 90%;
-        border-radius: 20px 20px 20px 20px;
+        border-radius: 0px 20px 0px 20px;
         padding-bottom: 20px;
         margin-bottom: 20px;
+        margin-top: 15px;
       }
     }
   }

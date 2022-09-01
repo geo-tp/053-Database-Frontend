@@ -7,7 +7,7 @@
   height: 119.5px;
   width: 100%;
   padding-left: 30px;
-  padding-right: 30px;
+  padding-right: 50px;
   border-bottom: 1px solid $color4;
 
   & div {
@@ -41,6 +41,16 @@
   }
 
   &__table {
-    font-size: 1.5em;
+    font-size: 1.3em;
+  }
+
+  @include tablet-design {
+    h1 {
+      font-size: 1.5em;
+    }
+
+    &__table {
+      font-size: 1.2em;
+    }
   }
 }
