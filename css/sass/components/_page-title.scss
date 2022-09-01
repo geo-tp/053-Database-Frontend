@@ -24,6 +24,13 @@
     margin-right: 30px;
     color: $color6;
     border: 0px;
+    cursor: pointer;
+
+    &:hover {
+      & svg {
+        color: $color7;
+      }
+    }
 
     & svg {
       font-size: 3em;
