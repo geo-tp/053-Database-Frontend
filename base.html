@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="title" content="WoW 0.5.3 Database" />
     <meta name="description" content="Database browser for Alpha core 0.5.3" />
-    <title>WoW 0.5.3 Database</title>
-    <link rel="stylesheet" href="style/normalize.css" />
+    <title>WoW 0.5.3 - Database Browser</title>
+    <link rel="stylesheet" href="./css/style/normalize.css" />
     <link rel="stylesheet" href="./css/styles.css" />
     <link rel="icon" href="./assets/img/favicon.png" />
     <script
@@ -19,18 +19,20 @@
   <body>
     <!-- MAIN -->
     <main class="main-container">
-      <!-- HEADER, MENU-BAR -->
+      <!-- MENU NAV -->
       <header>
         <div class="menu-bar-main-container">
           <div class="menu-bar-header-container">
-            <img
-              class="menu-bar-logo"
-              src="./assets/img/logo-small.png"
-              alt="Alpha Core"
-            />
+            <a href="">
+              <img
+                class="menu-bar-logo"
+                src="./assets/img/logo-small.png"
+                alt="Alpha Core"
+              />
+            </a>
             <div class="menu-bar-title">
               <p>Database</p>
-              <p>WoW Alpha 0.5.3</p>
+              <p>Alpha 0.5.3</p>
             </div>
           </div>
           <nav class="menu-bar-nav-container">
@@ -78,39 +80,27 @@
               <i class="fas fa-map-pin"></i>
               <span>Zones</span>
             </button>
-            <button class="menu-bar-button">
-              <i class="fas fa-globe"></i>
-              <span>Ports</span>
-            </button>
-            <button class="menu-bar-button">
-              <i class="fas fa-list"></i>
-              <span>Quests</span>
-            </button>
-            <button class="menu-bar-button">
-              <i class="fas fa-graduation-cap"></i>
-              <span>Skills</span>
-            </button>
-            <button class="menu-bar-button">
-              <i class="fas fa-table"></i>
-              <span>Tables</span>
-            </button>
-            <button class="menu-bar-button">
-              <i class="fas fa-map-pin"></i>
-              <span>Zones</span>
-            </button>
           </nav>
           <div class="menu-bar-social-container">
-            <i class="menu-bar-social fab fa-github"></i>
-            <i class="menu-bar-social fab fa-discord"></i>
+            <a href=""><i class="menu-bar-social fab fa-github"></i></a>
+            <a href=""><i class="menu-bar-social fab fa-discord"></i></a>
           </div>
         </div>
         <nav class="header__nav"></nav>
       </header>
-      <!-- END HEADER -->
+      <!-- END MENU NAV -->
 
-      <!-- PAGE WRAPPER-->
-      <section class="page-wrapper"></section>
-      <!-- END PAGE WRAPPER-->
+      <!-- PAGE CONTAINER-->
+      <section class="main-page-container">
+        <!-- PAGE TITLE -->
+        <div class="page-title"></div>
+        <!-- END PAGE TITLE -->
+
+        <!-- PAGE CONTENT -->
+        <div class="creature-details page-content"></div>
+        <!-- END PAGE CONTENT -->
+      </section>
+      <!-- END PAGE CONTAINER-->
     </main>
     <!-- END MAIN -->
 
