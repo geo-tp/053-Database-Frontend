@@ -8,3 +8,19 @@ a {
   text-decoration: none;
   font-weight: bold;
 }
+
+::-webkit-scrollbar {
+  height: 12px;
+  width: 12px;
+  background: $color4;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $color2;
+  -webkit-border-radius: 1ex;
+  -webkit-box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.75);
+}
+
+::-webkit-scrollbar-corner {
+  background: $color4;
+}
