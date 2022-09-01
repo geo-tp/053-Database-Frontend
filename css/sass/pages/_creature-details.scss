@@ -118,6 +118,10 @@
         padding-bottom: 20px;
         margin-bottom: 20px;
         margin-top: 15px;
+
+        & div:last-of-type {
+          border: none;
+        }
       }
     }
   }

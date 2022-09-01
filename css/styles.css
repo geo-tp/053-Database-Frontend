@@ -412,6 +412,9 @@ a {
     margin-bottom: 20px;
     margin-top: 15px;
   }
+  .creature-details__informations__details2 div:last-of-type {
+    border: none;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
