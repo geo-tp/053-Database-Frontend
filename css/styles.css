@@ -154,6 +154,7 @@ a {
 
 .element-information {
   flex-basis: 33%;
+  border-bottom: 1px solid #404040;
 }
 .element-information__title {
   color: #d9d9d9;
