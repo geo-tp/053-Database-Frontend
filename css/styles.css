@@ -379,10 +379,12 @@ a {
   line-height: 25px;
 }
 .card--about {
+  padding-bottom: 20px;
   text-align: justify;
 }
 .card--about p {
   padding: 0px 10px;
+  margin-top: 0px;
 }
 .card--about__top {
   margin-top: 20px;
@@ -409,9 +411,13 @@ a {
 .search-bar__main {
   display: flex;
   margin-bottom: 10px;
+  margin-right: 5px;
 }
 .search-bar__main input {
   width: 420px;
+}
+.search-bar__filters {
+  margin-left: 5px;
 }
 .search-bar__filters input {
   margin-left: 10px;
@@ -432,7 +438,7 @@ a {
   border: 1px solid #535353;
   font-size: 1.3em;
   padding: 5px;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 .custom-input {
@@ -442,9 +448,10 @@ a {
   font-size: 1.3em;
   padding: 5px;
   margin-right: 10px;
+  padding-left: 10px;
 }
-.custom-input:enabled {
-  border: none;
+.custom-input:focus {
+  outline: 1px solid #7daaf1;
 }
 
 .search-button {
@@ -467,7 +474,7 @@ a {
 }
 
 .page-counter {
-  margin-top: 20px;
+  margin-top: 30px;
   font-size: 1.2em;
   display: flex;
   justify-content: space-between;
