@@ -1,0 +1,19 @@
+.search-button {
+  width: 80px;
+  color: $color6;
+  background-color: $color3;
+  border: 1px solid $color4;
+  border-radius: 0px 20px 0px 0px;
+
+  & svg {
+    font-size: 1.5em;
+  }
+
+  @include tablet-design {
+    width: 50px;
+
+    & svg {
+      font-size: 1.2em;
+    }
+  }
+}

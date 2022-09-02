@@ -1,0 +1,38 @@
+.search-bar {
+  display: flex;
+  flex-direction: column;
+  &__main {
+    display: flex;
+    // flex-direction: column;
+    // background-color: yellow;
+    margin-bottom: 10px;
+
+    & input {
+      width: 420px;
+    }
+  }
+
+  &__filters {
+    & input {
+      margin-left: 10px;
+    }
+    // display: flex;
+    // flex-direction: column;
+    // background-color: green;
+  }
+
+  @include tablet-design {
+    &__main {
+      input {
+        width: 200px;
+      }
+    }
+
+    &__filters {
+      & input {
+        display: none;
+        background-color: yellow;
+      }
+    }
+  }
+}

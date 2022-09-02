@@ -19,6 +19,10 @@
   text-overflow: ellipsis;
   cursor: pointer;
 
+  & i {
+    font-size: 1.7em;
+  }
+
   &:hover {
     opacity: 0.8;
     transition: all 300ms;
