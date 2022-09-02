@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="WoW 0.5.3 Database" />
+    <meta name="description" content="Database browser for Alpha core 0.5.3" />
+    <title>WoW 0.5.3 - Database Browser</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" href="./assets/img/favicon.png" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
+      integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <!-- MAIN -->
+    <main class="main-container">
+      <!-- MENU NAV -->
+      <header>
+        <div class="menu-bar-main-container">
+          <div class="menu-bar-header-container">
+            <a href="">
+              <img
+                class="menu-bar-logo"
+                src="./assets/img/logo-small.png"
+                alt="Alpha Core"
+              />
+            </a>
+            <div class="menu-bar-title">
+              <p>Database</p>
+              <p>Alpha 0.5.3</p>
+            </div>
+          </div>
+          <nav class="menu-bar-nav-container">
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-user"></i>
+              <span>Creatures</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-cube"></i>
+              <span>Game Objects</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-gavel"></i>
+              <span>Items</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-book"></i>
+              <span>Spells</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map"></i>
+              <span>Maps</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-file"></i>
+              <span>Pages</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-globe"></i>
+              <span>Ports</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-list"></i>
+              <span>Quests</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Skills</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-table"></i>
+              <span>Tables</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map-pin"></i>
+              <span>Zones</span>
+            </a>
+          </nav>
+          <div class="menu-bar-social-container">
+            <a href=""><i class="menu-bar-social fab fa-github"></i></a>
+            <a href=""><i class="menu-bar-social fab fa-discord"></i></a>
+          </div>
+        </div>
+        <nav class="header__nav"></nav>
+      </header>
+      <!-- END MENU NAV -->
+
+      <!-- PAGE CONTAINER-->
+      <section class="main-page-container">
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+          <div class="big-title">
+            <h1 class="big-title__heading">
+              World of Warcraft Alpha 0.5.3 Database
+            </h1>
+          </div>
+          <div>
+            <i class="page-title__database fas fa-database"></i>
+          </div>
+        </div>
+        <!-- END PAGE TITLE -->
+
+        <!-- PAGE CONTENT -->
+        <div class="creature-details page-content">
+          <div class="cards-container">
+            <!-- CARD UPDATE -->
+            <article class="card">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Updates</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content">
+                <h3>Latest DBC table update</h3>
+                <ul>
+                  <li>21 Aug 2022 - sequence: 1</li>
+                </ul>
+                <h3>Latest World table update</h3>
+                <ul>
+                  <li>31 Aug 2022 - sequence: 1</li>
+                </ul>
+                <h3>Source</h3>
+                <ul>
+                  <li>GitHub: alpha-core/etc/databases/</li>
+                </ul>
+              </div>
+            </article>
+            <!-- END CARD UPDATE -->
+
+            <!-- CARD UTILITIES -->
+            <article class="card">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Utilities</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content">
+                <h3>Spawn point</h3>
+                <ul>
+                  <li><a href="">Proximity search</a></li>
+                </ul>
+              </div>
+            </article>
+            <!-- END CARD UTILITIES -->
+
+            <!-- CARD OTHER TABLES -->
+            <article class="card">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Other tables</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content">
+                <h3>Spell table</h3>
+                <ul>
+                  <li><a href="">Spell visuals</a></li>
+                  <li><a href="">Spell visuals animation names</a></li>
+                  <li><a href="">Spell visuals effect names</a></li>
+                </ul>
+              </div>
+            </article>
+            <!-- END CARD OTHER TABLES -->
+
+            <!-- CARD VALIDATION -->
+            <article class="card card--validation">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Validation</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content card--validation__content">
+                <h3>NPC</h3>
+                <ul>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                </ul>
+                <h3>Game objects</h3>
+                <ul>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                </ul>
+                <h3>Quests</h3>
+                <ul>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                </ul>
+                <h3>Items</h3>
+                <ul>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                  <li><a href="">A link to inject here</a></li>
+                </ul>
+              </div>
+            </article>
+            <!-- END CARD VALIDATION -->
+
+            <!-- CARD ABOUT -->
+            <article class="card card--about">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Backend</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content card--about__top">
+                <img src="./assets/img/logo.png" alt="contributor profil" />
+                <p>
+                  Avatar Designed and coded in August 2022 by X’Genesis Qhulut.
+                  This browser at GitHub: X-Genesis-Qhulut / alpha WoW Alpha
+                  Project at GitHub: The-Alpha-Project / alpha-core Discord
+                  channel: Alpha Project. Thanks to Grender!
+                </p>
+                <p>
+                  Thanks to the original developers of WoW and also John Staats
+                  for writing The WoW Diary: A Journal of Computer Game
+                  Development. Maps courtesy of Entropy and WoW.tools. Creature
+                  screenshots by Daribon.
+                </p>
+              </div>
+            </article>
+            <!-- END CARD ABOUT -->
+
+            <!-- CARD ABOUT -->
+            <article class="card card--about">
+              <div class="medium-title">
+                <h2 class="medium-title__heading">Frontend</h2>
+                <div class="medium-title__bar"></div>
+              </div>
+              <div class="card__content card--about__top">
+                <img src="./assets/img/logo.png" alt="contributor profil" />
+                <p>
+                  Avatar Designed and coded in August 2022 by X’Genesis Qhulut.
+                  This browser at GitHub: X-Genesis-Qhulut / alpha WoW Alpha
+                  Project at GitHub: The-Alpha-Project / alpha-core Discord
+                  channel: Alpha Project. Thanks to Grender!
+                </p>
+                <p>
+                  Thanks to the original developers of WoW and also John Staats
+                  for writing The WoW Diary: A Journal of Computer Game
+                  Development. Maps courtesy of Entropy and WoW.tools. Creature
+                  screenshots by Daribon.
+                </p>
+              </div>
+            </article>
+            <!-- END CARD ABOUT -->
+          </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </section>
+      <!-- END PAGE CONTAINER-->
+    </main>
+    <!-- END MAIN -->
+
+    <!-- FOOTER -->
+    <footer class="footer"></footer>
+    <!-- END FOOTER -->
+  </body>
+</html>

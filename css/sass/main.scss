@@ -19,7 +19,11 @@
 @import "components/model-display";
 @import "components/element-information";
 @import "components/tiny-title";
+@import "components/medium-title";
+@import "components/big-title";
 @import "components/sql-statement";
+@import "components/card";
+
 // Containers
 @import "containers/main-container";
 @import "containers/menu-bar-main-container";
@@ -30,6 +34,7 @@
 @import "containers/page-content";
 @import "containers/table-container";
 @import "containers/details-container";
+@import "containers/cards-containers";
 
 // Pages:
 @import "pages/creature-details";
