@@ -188,7 +188,7 @@ a {
 }
 .table-rows th {
   padding: 5px 10px 5px 10px;
-  text-align: center;
+  text-align: left;
   background-color: #303030;
 }
 .table-rows td {
