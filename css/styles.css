@@ -184,6 +184,7 @@ a {
   max-width: 1200px;
   margin: 0 auto;
   margin-bottom: 20px;
+  margin-top: 20px;
 }
 .table-rows th {
   padding: 5px 10px 5px 10px;
@@ -237,7 +238,6 @@ a {
 }
 
 .tiny-title {
-  display: flex;
   justify-content: center;
 }
 .tiny-title__heading {
@@ -252,6 +252,14 @@ a {
   margin: 0;
   margin-left: 10px;
   padding: 0;
+}
+
+.sql-statement {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 20px 10px 20px 10px;
+  background-color: #242424;
+  color: #d9d9d9;
 }
 
 .main-container {
@@ -345,6 +353,11 @@ a {
   .page-content {
     max-height: 680px;
   }
+}
+
+.table-container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .creature-details__informations {
