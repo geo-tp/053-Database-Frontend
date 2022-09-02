@@ -253,10 +253,7 @@ a {
   margin-right: 10px;
   margin-left: 10px;
 }
-.element-information--independant__title {
-  margin-bottom: 0px;
-}
-.element-information--independant__content {
+.element-information--independant div:last-child {
   max-height: 260px;
 }
 .element-information--independant ul {

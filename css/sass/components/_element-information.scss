@@ -45,13 +45,10 @@
     margin-right: 10px;
     margin-left: 10px;
 
-    &__title {
-      margin-bottom: 0px;
-    }
-
-    &__content {
+    & div:last-child {
       max-height: 260px;
     }
+
     & ul {
       padding-left: 10px;
 
