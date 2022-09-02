@@ -47,7 +47,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 20px;
+  margin-top: 17px;
   padding-left: 20px;
   padding-right: 20px;
   font-size: 0.9em;
@@ -389,7 +389,7 @@ a {
 }
 
 .page-content {
-  max-height: 84vh;
+  max-height: 85vh;
   overflow-y: scroll;
   height: 100%;
 }
