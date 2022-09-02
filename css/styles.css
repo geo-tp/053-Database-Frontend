@@ -205,6 +205,7 @@ a {
   width: 150px;
   margin-bottom: 20px;
   margin-top: 20px;
+  min-height: 150px;
 }
 
 .element-information {
@@ -351,13 +352,12 @@ a {
   padding: 20px;
   padding-top: 30px;
   justify-content: space-between;
-  max-height: 650px;
   flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
 }
 .creature-details__informations__details1 {
-  flex-basis: 25%;
+  flex-basis: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -387,15 +387,18 @@ a {
   justify-content: space-between;
   border-radius: 20px 20px 20px 20px;
 }
+.creature-details__informations aside {
+  position: relative;
+}
 .creature-details__informations aside img {
   border-radius: 20px 0px 0px 20px;
 }
 @media screen and (max-width: 1600px) {
   .creature-details__informations__details1 {
-    flex-basis: 25%;
+    flex-basis: 13%;
   }
   .creature-details__informations__details2 {
-    flex-basis: 30%;
+    flex-basis: 27%;
   }
   .creature-details__items {
     padding-left: 20px;
@@ -409,10 +412,10 @@ a {
     padding: 10px;
   }
   .creature-details__informations__details1 {
-    flex-basis: 17%;
+    flex-basis: 10%;
   }
   .creature-details__informations__details2 {
-    flex-basis: 25%;
+    flex-basis: 20%;
   }
   .creature-details aside img {
     border-radius: 0px 20px 0px 20px;
