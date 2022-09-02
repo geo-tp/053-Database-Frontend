@@ -4,9 +4,24 @@
   background-color: $color3;
   border: 1px solid $color4;
   border-radius: 0px 20px 0px 0px;
+  cursor: pointer;
+  font-size: 1.5em;
 
-  & svg {
-    font-size: 1.5em;
+  & i {
+    color: $color6;
+  }
+
+  &:hover {
+    opacity: 0.8;
+    transition: all 300ms;
+
+    & i {
+      color: $color7;
+    }
+
+    & span {
+      color: $color7;
+    }
   }
 
   @include tablet-design {
