@@ -9,8 +9,12 @@
   padding-bottom: 0px;
   box-sizing: border-box;
 
+  @include laptop-design {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
   @include tiny-laptop-design {
-    width: 90%;
     margin-top: 10px;
   }
 }
