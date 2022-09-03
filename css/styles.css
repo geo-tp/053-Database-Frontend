@@ -227,6 +227,8 @@ a {
 
 .element-information {
   flex-basis: 33%;
+  margin-bottom: 20px;
+  box-sizing: border-box;
 }
 .element-information__title {
   color: #d9d9d9;
@@ -247,7 +249,6 @@ a {
   max-height: 150px;
   padding-top: 0px;
   margin-top: 0px;
-  margin-bottom: 30px;
 }
 .element-information__content ul {
   padding-left: 20px;
