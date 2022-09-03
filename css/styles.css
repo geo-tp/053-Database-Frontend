@@ -661,6 +661,9 @@ a {
 .table-container table {
   max-width: 600px;
 }
+.table-container .tiny-title {
+  margin-left: 40px;
+}
 .table-container--full {
   border-radius: unset;
   padding: unset;
