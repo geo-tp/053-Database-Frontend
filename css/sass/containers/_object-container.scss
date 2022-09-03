@@ -37,7 +37,6 @@
 
     &__details2 {
       margin-left: 2%;
-      margin-right: 2%;
       box-sizing: border-box;
       flex-grow: 1;
       padding: 0px 20px 0px 20px;
@@ -62,6 +61,8 @@
     }
 
     & aside {
+      margin-left: 2%;
+
       position: relative;
       & img {
         border-radius: 20px 0px 0px 20px;
