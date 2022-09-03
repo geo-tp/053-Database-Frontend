@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="WoW 0.5.3 Database" />
+    <meta name="description" content="Database browser for Alpha core 0.5.3" />
+    <title>WoW 0.5.3 - Database Browser</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" href="./assets/img/favicon.png" />
+    <link href="./css/fontawesome/fontawesome.css" rel="stylesheet" />
+    <link href="./css/fontawesome/brands.css" rel="stylesheet" />
+    <link href="./css/fontawesome/solid.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- MAIN -->
+    <main class="main-container">
+      <!-- MENU NAV -->
+      <header>
+        <div class="menu-bar-main-container">
+          <div class="menu-bar-header-container">
+            <a href="">
+              <img
+                class="menu-bar-logo"
+                src="./assets/img/logo-small.png"
+                alt="Alpha Core"
+              />
+            </a>
+            <div class="menu-bar-title">
+              <p>Database</p>
+              <p>Alpha 0.5.3</p>
+            </div>
+          </div>
+          <nav class="menu-bar-nav-container">
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-user"></i>
+              <span>Creatures</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-cube"></i>
+              <span>Game Objects</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-gavel"></i>
+              <span>Items</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-book"></i>
+              <span>Spells</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map"></i>
+              <span>Maps</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-file"></i>
+              <span>Pages</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-globe"></i>
+              <span>Ports</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-list"></i>
+              <span>Quests</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Skills</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-table"></i>
+              <span>Tables</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map-pin"></i>
+              <span>Zones</span>
+            </a>
+          </nav>
+          <div class="menu-bar-social-container">
+            <a href=""><i class="menu-bar-social fab fa-github"></i></a>
+            <a href=""><i class="menu-bar-social fab fa-discord"></i></a>
+          </div>
+        </div>
+        <nav class="header__nav"></nav>
+      </header>
+      <!-- END MENU NAV -->
+
+      <!-- PAGE CONTAINER-->
+      <section class="main-page-container">
+        <!-- PAGE TITLE -->
+        <div class="page-title page-title--search">
+          <div class="big-title">
+            <i class="page-title__database fas fa-database"></i>
+            <i class="page-title__angle fas fa-angle-right"></i>
+            <h1 class="big-title__heading">Creatures</h1>
+          </div>
+          <!-- SEARCH CONTAINER -->
+          <div class="search-container">
+            <!-- SEARCH FORM -->
+            <form method="post" action="/alpha/index.php">
+              <div class="search-bar">
+                <div class="search-bar__main">
+                  <input
+                    class="custom-input"
+                    style="margin-right: 1em"
+                    type="text"
+                    name="filter"
+                    size="40"
+                    value=""
+                    placeholder="ID or regular expression"
+                    autofocus=""
+                    title="Enter a number, text, or a regular expression"
+                  />
+                  <label for="sort_order">Sort by</label>
+                  <select
+                    class="custom-selector"
+                    name="sort_order"
+                    size="1"
+                    title="Which column to sort on"
+                  >
+                    <option value="entry">entry</option>
+                    <option value="name" selected="selected">name</option>
+                    <option value="subname">subname</option>
+                    <option value="name" selected="selected">name</option>
+                    <option value="level_min">level_min</option>
+                  </select>
+                </div>
+                <div class="search-bar__filters">
+                  <label for="filter_column">Also match</label>
+                  <select
+                    class="custom-selector"
+                    name="filter_column"
+                    size="1"
+                    title="Which database column to filter on"
+                  >
+                    <option value="arcane_res">arcane_res</option>
+                    <option value="armor">armor</option>
+                    <option value="attack_power">attack_power</option>
+                  </select>
+                  <select
+                    class="custom-selector"
+                    name="filter_compare"
+                    size="1"
+                    title="What comparison to do"
+                  >
+                    <option value="in set">in set</option>
+                    <option value="not in set">not in set</option>
+                    <option value="in range">in range</option>
+                    <option value="not in range">not in range</option>
+                  </select>
+                  <input
+                    class="custom-input"
+                    type="text"
+                    name="filter_value"
+                    size="15"
+                    value=""
+                    placeholder="Number/hex/bin"
+                    title="Leave empty for no secondary filtering.
+                              Hex numbers: 0x0123ABCD
+                              Binary numbers: 0b01010
+                              Set: 1,7,9,15
+                              Range: 20 to 30"
+                  />
+                </div>
+              </div>
+              <button class="search-button">
+                <i class="fas fa-search"></i>
+              </button>
+            </form>
+            <!-- END SEARCH FORM -->
+          </div>
+          <!-- END SEARCH CONTAINER -->
+        </div>
+        <!-- END PAGE TITLE -->
+
+        <!-- PAGE CONTENT -->
+        <div class="creature-details page-content">
+          <!-- TABLE CONTAINER -->
+          <div class="table-container table-container--full">
+            <!-- PAGE COUNT -->
+            <div class="page-counter">
+              <div>
+                <a href=""
+                  ><i class="page-counter__left fas fa-angle-double-left"></i
+                ></a>
+                <span>Page 1 of 35</span>
+                <a href=""
+                  ><i class="page-counter__right fas fa-angle-double-right"></i
+                ></a>
+              </div>
+              <div>
+                <span class="page-counter__results-count">118 results</span>
+              </div>
+            </div>
+            <!-- END PAGE COUNT -->
+
+            <!-- TABLE -->
+            <table class="table-rows">
+              <thead>
+                <th>Entry</th>
+                <th>Sell</th>
+                <th>Cost</th>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+                <tr>
+                  <td><a href="">1777</a></td>
+                  <td>Item's name</td>
+                  <td>59</td>
+                </tr>
+              </tbody>
+            </table>
+            <!-- END TABLE -->
+          </div>
+          <!-- END TABLE CONTAINER -->
+        </div>
+        <!-- END PAGE CONTENT -->
+      </section>
+      <!-- END PAGE CONTAINER-->
+    </main>
+    <!-- END MAIN -->
+
+    <!-- FOOTER -->
+    <footer class="footer"></footer>
+    <!-- END FOOTER -->
+  </body>
+</html>
