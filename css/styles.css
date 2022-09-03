@@ -447,6 +447,9 @@ a {
   font-size: 0.9em;
 }
 @media screen and (max-width: 1200px) {
+  .search-bar label {
+    font-size: 0.7em;
+  }
   .search-bar__main input {
     width: 170px;
     font-size: 1em;
@@ -458,8 +461,7 @@ a {
     margin-right: 12px;
   }
   .search-bar__filters input {
-    display: none;
-    background-color: yellow;
+    width: 50px;
   }
 }
 
@@ -471,6 +473,11 @@ a {
   padding: 5px;
   margin-left: 5px;
   max-width: 165px;
+}
+@media screen and (max-width: 1250px) {
+  .custom-selector {
+    max-width: 100px;
+  }
 }
 
 .custom-input {

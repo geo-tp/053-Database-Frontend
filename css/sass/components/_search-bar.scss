@@ -40,6 +40,10 @@
   }
 
   @include tablet-design {
+    & label {
+      font-size: 0.7em;
+    }
+
     &__main {
       input {
         width: 170px;
@@ -54,8 +58,7 @@
     &__filters {
       margin-right: 12px;
       & input {
-        display: none;
-        background-color: yellow;
+        width: 50px;
       }
     }
   }
