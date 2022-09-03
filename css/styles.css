@@ -247,6 +247,7 @@ a {
   max-height: 150px;
   padding-top: 0px;
   margin-top: 0px;
+  margin-bottom: 30px;
 }
 .element-information__content ul {
   padding-left: 20px;
@@ -653,6 +654,7 @@ a {
   border: 1px solid #535353;
   box-sizing: border-box;
   padding: 20px;
+  margin-top: 30px;
   border-radius: 0px 0px 20px 20px;
 }
 .table-container table {
@@ -675,7 +677,6 @@ a {
   margin: 0 auto;
   display: flex;
   margin-top: 10px;
-  margin-bottom: 30px;
   flex-wrap: wrap;
   border: 1px solid #535353;
   padding: 20px;
