@@ -425,6 +425,11 @@ a {
 }
 .search-bar__main input {
   width: 420px;
+  margin-right: 0px;
+  font-size: 1.1em;
+}
+.search-bar__main select {
+  font-size: 1.1em;
 }
 .search-bar__filters {
   width: 100%;
@@ -441,7 +446,14 @@ a {
 }
 @media screen and (max-width: 1200px) {
   .search-bar__main input {
-    width: 200px;
+    width: 170px;
+    font-size: 1em;
+  }
+  .search-bar__main select {
+    font-size: 1em;
+  }
+  .search-bar__filters {
+    margin-right: 12px;
   }
   .search-bar__filters input {
     display: none;

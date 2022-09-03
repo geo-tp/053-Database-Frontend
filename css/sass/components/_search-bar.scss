@@ -11,6 +11,12 @@
 
     & input {
       width: 420px;
+      margin-right: 0px;
+      font-size: 1.1em;
+    }
+
+    & select {
+      font-size: 1.1em;
     }
   }
 
@@ -36,11 +42,17 @@
   @include tablet-design {
     &__main {
       input {
-        width: 200px;
+        width: 170px;
+        font-size: 1em;
+      }
+
+      & select {
+        font-size: 1em;
       }
     }
 
     &__filters {
+      margin-right: 12px;
       & input {
         display: none;
         background-color: yellow;
