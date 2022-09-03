@@ -706,6 +706,7 @@ a {
   border: 1px solid #383838;
   padding: 0px 20px 0px 20px;
   border-radius: 0px 20px 20px 0px;
+  min-height: 450px;
   position: relative;
 }
 .object-container__informations__details1 div:first-child {
