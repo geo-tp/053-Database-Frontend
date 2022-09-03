@@ -730,6 +730,7 @@ a {
 .object-container__informations__details2 .simulate_box {
   margin: 0 auto;
   margin-top: 50px;
+  margin-bottom: 20px;
 }
 @media screen and (max-width: 1200px) {
   .object-container__informations__details2 .simulate_box {

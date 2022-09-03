@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="title" content="WoW 0.5.3 Database" />
+    <meta name="description" content="Database browser for Alpha core 0.5.3" />
+    <title>WoW 0.5.3 - Database Browser</title>
+    <link rel="stylesheet" href="./css/normalize.css" />
+    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="icon" href="./assets/img/favicon.png" />
+    <link href="./css/fontawesome/fontawesome.css" rel="stylesheet" />
+    <link href="./css/fontawesome/brands.css" rel="stylesheet" />
+    <link href="./css/fontawesome/solid.css" rel="stylesheet" />
+  </head>
+  <body>
+    <!-- MAIN -->
+    <main class="main-container">
+      <!-- MENU NAV -->
+      <header>
+        <div class="menu-bar-main-container">
+          <div class="menu-bar-header-container">
+            <a href="">
+              <img
+                class="menu-bar-logo"
+                src="./assets/img/logo-small.png"
+                alt="Alpha Core"
+              />
+            </a>
+            <div class="menu-bar-title">
+              <p>Database</p>
+              <p>Alpha 0.5.3</p>
+            </div>
+          </div>
+          <nav class="menu-bar-nav-container">
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-user"></i>
+              <span>Creatures</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-cube"></i>
+              <span>Game Objects</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-gavel"></i>
+              <span>Items</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-book"></i>
+              <span>Spells</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map"></i>
+              <span>Maps</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-file"></i>
+              <span>Pages</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-globe"></i>
+              <span>Ports</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-list"></i>
+              <span>Quests</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-graduation-cap"></i>
+              <span>Skills</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-table"></i>
+              <span>Tables</span>
+            </a>
+            <a href="" class="menu-bar-button">
+              <i class="fas fa-map-pin"></i>
+              <span>Zones</span>
+            </a>
+          </nav>
+          <div class="menu-bar-social-container">
+            <a href=""><i class="menu-bar-social fab fa-github"></i></a>
+            <a href=""><i class="menu-bar-social fab fa-discord"></i></a>
+          </div>
+        </div>
+        <nav class="header__nav"></nav>
+      </header>
+      <!-- END MENU NAV -->
+
+      <!-- PAGE CONTAINER-->
+      <section class="main-page-container">
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+          <div>
+            <a class="page-title__goback">
+              <i class="fas fa-angle-left"></i>
+            </a>
+            <h1>Fireball Rank 1</h1>
+          </div>
+          <div>
+            <i class="page-title__database fas fa-database"></i>
+            <i class="page-title__angle fas fa-angle-right"></i>
+            <p class="page-title__table">Spell</p>
+          </div>
+        </div>
+        <!-- END PAGE TITLE -->
+
+        <!-- PAGE CONTENT -->
+        <div class="object-container page-content">
+          <div class="object-container__informations">
+            <div class="object-container__informations__details1">
+              <div class="tiny-title">
+                <h2 class="tiny-title__heading">General</h2>
+                <div class="tiny-title__bar"></div>
+              </div>
+              <!-- ITEM TABLE -->
+              <table class="table-fields">
+                <thead>
+                  <th>Field</th>
+                  <th>Value</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>display_id1</td>
+                    <td>1777</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                  <tr>
+                    <td>Lorem ipsum</td>
+                    <td>Lorem</td>
+                  </tr>
+                </tbody>
+              </table>
+              <!-- END CREATURE TABLE -->
+            </div>
+
+            <div class="object-container__informations__details2">
+              <!-- SIMULATED ITEM CONTAINER -->
+              <div class="tiny-title">
+                <h2 class="tiny-title__heading">Spell view</h2>
+                <div class="tiny-title__bar"></div>
+              </div>
+              <div class="simulate_box spell">
+                <!-- HERE, v remove item-display placeholder v -->
+                <div class="item-display"></div>
+              </div>
+              <!-- END SIMULATED ITEM CONTAINER -->
+            </div>
+          </div>
+          <!-- DETAILS CONTAINER -->
+          <div class="details-container">
+            <div class="element-information element-information--independant">
+              <h2 class="element-information__title">NPC train this spell</h2>
+              <div class="element-information__bar"></div>
+              <div class="element-information__content">
+                <ul>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                  <li><a href="">344</a> : NPC NAME HERE</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- END DETAILS CONTAINER -->
+          <div class="object-container__items">
+            <!-- TABLE CONTAINER -->
+            <div class="table-container">
+              <div class="tiny-title">
+                <h2 class="tiny-title__heading">A name here</h2>
+                <div class="tiny-title__bar"></div>
+              </div>
+              <div class="sql-statement">UPDATE entry WHERE....</div>
+              <table class="table-rows">
+                <thead>
+                  <th>Field</th>
+                  <th>Value</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>guid</td>
+                    <td>576879</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>59</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                  <tr>
+                    <td>field</td>
+                    <td>value</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <!-- END TABLE CONTAINER -->
+          </div>
+        </div>
+        <!-- END PAGE CONTENT -->
+      </section>
+      <!-- END PAGE CONTAINER-->
+    </main>
+    <!-- END MAIN -->
+
+    <!-- FOOTER -->
+    <footer class="footer"></footer>
+    <!-- END FOOTER -->
+  </body>
+</html>
