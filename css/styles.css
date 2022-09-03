@@ -714,6 +714,11 @@ a {
   border: unset;
   box-shadow: unset;
 }
+@media screen and (max-width: 1200px) {
+  .object-container__informations__details2 .simulate_box {
+    margin-top: 20px;
+  }
+}
 .object-container__informations aside {
   position: relative;
 }

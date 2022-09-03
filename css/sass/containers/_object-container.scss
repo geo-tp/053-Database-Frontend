@@ -54,6 +54,10 @@
         margin-top: 50px;
         border: unset;
         box-shadow: unset;
+
+        @include tablet-design {
+          margin-top: 20px;
+        }
       }
     }
 
