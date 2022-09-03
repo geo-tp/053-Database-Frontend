@@ -671,7 +671,9 @@ a {
   }
 }
 .table-container--full {
+  margin-bottom: 20px;
   border-radius: unset;
+  border: unset;
   padding: unset;
   max-width: unset;
   background-color: unset;
