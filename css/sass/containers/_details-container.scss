@@ -10,11 +10,15 @@
   box-sizing: border-box;
 
   @include laptop-design {
-    margin-left: 20px;
-    margin-right: 20px;
+    // margin-left: 20px;
+    // margin-right: 20px;
   }
 
   @include tiny-laptop-design {
     margin-top: 10px;
+  }
+
+  @include tablet-design {
+    margin-bottom: 30px;
   }
 }

@@ -17,6 +17,8 @@
   }
 
   @include tablet-design {
+    margin: 0px;
+    margin-bottom: 20px;
     & .tiny-title {
       margin-left: 20px;
     }
