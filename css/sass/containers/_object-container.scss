@@ -74,6 +74,16 @@
       & img {
         border-radius: 20px 0px 0px 20px;
       }
+
+      & a:last-child {
+        position: absolute;
+        left: 0px;
+        top: 50%;
+        z-index: 1000;
+        & i {
+          font-size: 3em;
+        }
+      }
     }
 
     &__items {
