@@ -459,12 +459,12 @@ a {
 }
 @media screen and (max-width: 1600px) {
   .card {
-    flex-basis: 43%;
+    flex-basis: 46%;
   }
 }
 @media screen and (max-width: 1200px) {
   .card {
-    flex-basis: 90%;
+    flex-basis: 95%;
   }
 }
 
