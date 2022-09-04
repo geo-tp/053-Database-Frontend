@@ -586,16 +586,21 @@ a {
   position: absolute;
   z-index: 50;
   font-size: 3em;
-  color: #d9d9d9;
+  color: white;
+  font-weight: bold;
   padding: 0px 10px;
   top: 50%;
   left: 278px;
+}
+.caroussel__left-arrow svg {
+  border: 10px solid black;
 }
 .caroussel__right-arrow {
   position: absolute;
   z-index: 50;
   font-size: 3em;
-  color: #d9d9d9;
+  color: white;
+  font-weight: bold;
   padding: 0px 10px;
   top: 50%;
   left: 215px;
