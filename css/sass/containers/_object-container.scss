@@ -65,6 +65,9 @@
     }
 
     & aside {
+      display: flex;
+      max-width: 272px;
+      overflow-x: scroll;
       margin-left: 2%;
 
       position: relative;

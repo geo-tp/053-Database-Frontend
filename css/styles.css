@@ -793,6 +793,9 @@ a {
   }
 }
 .object-container__informations aside {
+  display: flex;
+  max-width: 272px;
+  overflow-x: scroll;
   margin-left: 2%;
   position: relative;
 }
@@ -838,6 +841,10 @@ a {
     margin-bottom: 20px;
     margin-top: 15px;
   }
+}
+
+.map-container {
+  position: relative;
 }
 
 /*# sourceMappingURL=styles.css.map */
