@@ -427,6 +427,23 @@ a {
 .card__content {
   overflow-y: scroll;
 }
+.card__content__cover {
+  width: 97%;
+  max-height: 150px;
+  object-fit: cover;
+  margin-top: 10px;
+  margin-right: 10px;
+}
+.card__content__thumbnail {
+  float: left;
+  width: 50px;
+  margin-top: 20px;
+}
+.card p {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: justify;
+}
 .card h3 {
   font-size: 1em;
   margin-top: 15px;
@@ -439,22 +456,6 @@ a {
 }
 .card ul li {
   line-height: 25px;
-}
-.card--about {
-  padding-bottom: 20px;
-  font-size: 1em;
-  text-align: justify;
-}
-.card--about p {
-  padding: 0px 10px;
-  margin-top: 0px;
-}
-.card--about__top {
-  margin-top: 20px;
-}
-.card--about__top img {
-  float: left;
-  width: 50px;
 }
 @media screen and (max-width: 1600px) {
   .card {
