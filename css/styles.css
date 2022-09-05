@@ -481,6 +481,9 @@ a {
   justify-content: right;
   position: relative;
 }
+.search-bar #proximity-coord {
+  margin-right: 0px;
+}
 .search-bar span {
   color: #e44d4d;
   font-size: 0.8em;
@@ -707,6 +710,7 @@ a {
 
 /* Extra stuff for simulated quests */
 .page_text {
+  padding-top: 20px;
   font-family: serif;
   font-size: larger;
 }
