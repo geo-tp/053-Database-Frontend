@@ -8,6 +8,9 @@
 @import "base/global";
 @import "base/typo";
 
+// Mixins
+@import "utils/mixins";
+
 // Components
 @import "components/menu-bar-logo";
 @import "components/menu-bar-button";

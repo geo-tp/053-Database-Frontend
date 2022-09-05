@@ -1,18 +1,28 @@
 // Reused CSS from old UI
 
 .simulate_box {
-  color: white;
+  color: $color6;
+  margin: 0 auto;
+  font-family: serif;
+  font-size: larger;
+  max-width: 30em;
   background-color: $color2;
   padding: 10px;
   max-width: 40em;
-  border: 1px solid $color5;
+  border: 1px solid $color11;
   border-radius: 10px;
-  //   box-shadow: 3px 3px 5px gray;
   width: fit-content;
-  margin-bottom: 1em;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 3px 3px 60px $color1;
 
   & a {
     color: $color7;
+  }
+
+  @include tablet-design {
+    margin-top: 20px;
+    margin-bottom: 20px;
   }
 }
 
@@ -21,14 +31,7 @@
 .quest {
 }
 
-.quest a {
-  color: $color7;
-}
-
 .page_text {
-  font-family: serif;
-  font-size: larger;
-  max-width: 30em;
 }
 
 .read_page a {

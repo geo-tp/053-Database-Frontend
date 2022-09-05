@@ -44,7 +44,7 @@ a {
 .menu-bar-button {
   color: #d9d9d9;
   background-color: #303030;
-  border: 0;
+  border: 1px solid #242424;
   width: 70%;
   margin: 0 auto;
   height: 55px;
@@ -60,6 +60,7 @@ a {
   overflow-x: hidden;
   text-overflow: ellipsis;
   cursor: pointer;
+  box-shadow: 0px 0px 4px #1e1e1e;
 }
 .menu-bar-button i {
   font-size: 1.7em;
@@ -168,6 +169,7 @@ a {
   background-color: #303030;
   color: #d9d9d9;
   margin-bottom: 20px;
+  box-shadow: 0px 0px 9px #303030;
 }
 .table-fields th {
   padding: 5px 10px 5px 10px;
@@ -192,6 +194,7 @@ a {
   margin: 0 auto;
   margin-bottom: 20px;
   margin-top: 20px;
+  box-shadow: 0px 0px 9px #303030;
 }
 .table-rows th {
   padding: 5px 10px 5px 10px;
@@ -266,6 +269,7 @@ a {
   margin-bottom: 20px;
   margin-right: 10px;
   margin-left: 10px;
+  box-shadow: 0px 0px 7px #303030;
 }
 .element-information--independant div:last-child {
   max-height: 260px;
@@ -413,6 +417,7 @@ a {
   position: relative;
   display: flex;
   flex-direction: column;
+  box-shadow: 0px 0px 6px #1e1e1e;
 }
 .card__icon {
   position: absolute;
@@ -477,11 +482,11 @@ a {
   position: relative;
 }
 .search-bar span {
-  color: #d45555;
+  color: #e44d4d;
   font-size: 0.8em;
   position: absolute;
   bottom: -17px;
-  right: 1%;
+  right: 10px;
   white-space: nowrap;
 }
 .search-bar__main {
@@ -537,6 +542,7 @@ a {
   padding: 5px;
   margin-left: 5px;
   max-width: 165px;
+  box-shadow: 0px 0px 5px #303030;
 }
 @media screen and (max-width: 1250px) {
   .custom-selector {
@@ -552,6 +558,7 @@ a {
   padding: 5px;
   margin-right: 10px;
   padding-left: 10px;
+  box-shadow: 0px 0px 5px #303030;
 }
 .custom-input:focus {
   outline: 1px solid #7daaf1;
@@ -565,6 +572,7 @@ a {
   border-radius: 0px 20px 0px 0px;
   cursor: pointer;
   font-size: 1.5em;
+  box-shadow: 0px 0px 5px #1e1e1e;
 }
 .search-button i {
   color: #d9d9d9;
@@ -638,8 +646,8 @@ a {
   scrollbar-width: none;
   /* for Firefox */
   position: relative;
-}
-.caroussel img {
+  background-color: transparent;
+  box-shadow: 0px 0px 9px #303030;
   border-radius: 20px 0px 0px 20px;
 }
 .caroussel__left-arrow {
@@ -672,30 +680,32 @@ a {
 }
 
 .simulate_box {
-  color: white;
+  color: #d9d9d9;
+  margin: 0 auto;
+  font-family: serif;
+  font-size: larger;
+  max-width: 30em;
   background-color: #242424;
   padding: 10px;
   max-width: 40em;
-  border: 1px solid #919191;
+  border: 1px solid #1e1e1e;
   border-radius: 10px;
   width: fit-content;
-  margin-bottom: 1em;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  box-shadow: 3px 3px 60px #303030;
 }
 .simulate_box a {
   color: #7daaf1;
 }
+@media screen and (max-width: 1200px) {
+  .simulate_box {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
 
 /* Extra stuff for simulated quests */
-.quest a {
-  color: #7daaf1;
-}
-
-.page_text {
-  font-family: serif;
-  font-size: larger;
-  max-width: 30em;
-}
-
 .read_page a {
   color: lightgreen;
 }
@@ -767,6 +777,8 @@ a {
   width: 80%;
   margin: 0 auto;
   margin-top: 20px;
+  border: 1px solid #242424;
+  box-shadow: 0px 0px 4px #1e1e1e;
 }
 
 .menu-bar-nav-container {
@@ -921,6 +933,7 @@ a {
   border-radius: 0px 20px 20px 0px;
   min-height: 450px;
   position: relative;
+  box-shadow: 0px 0px 9px #303030;
 }
 .object-container__informations__details1 div:first-child {
   position: absolute;
@@ -940,16 +953,7 @@ a {
   background-color: #535353;
   flex-direction: column;
   border-radius: 20px;
-}
-.object-container__informations__details2 .simulate_box {
-  margin: 0 auto;
-  margin-top: 50px;
-  margin-bottom: 20px;
-}
-@media screen and (max-width: 1200px) {
-  .object-container__informations__details2 .simulate_box {
-    margin-top: 20px;
-  }
+  box-shadow: 0px 0px 9px #303030;
 }
 @media screen and (max-width: 1600px) {
   .object-container__informations__details1 {
