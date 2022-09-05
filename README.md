@@ -1,12 +1,13 @@
 # Alpha Core Database Browser - Frontend templates
 
 ![](/assets/img/presentation.png)
+![](/assets/img/presentation2.png)
 
 HTML/CSS templates for alpha core database. No dependancies, just open `index.html`
 
 ## Live Demo
 
-[See Alpha core Database template live](https://geo-tp.github.io/053-Database-Frontend/)
+[See Alpha core Database templates live](https://geo-tp.github.io/053-Database-Frontend/)
 
 ## Figma
 
