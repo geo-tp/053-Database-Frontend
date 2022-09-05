@@ -671,6 +671,57 @@ a {
   }
 }
 
+.simulate_box {
+  color: white;
+  background-color: #242424;
+  padding: 10px;
+  max-width: 40em;
+  border: 1px solid #919191;
+  border-radius: 10px;
+  width: fit-content;
+  margin-bottom: 1em;
+}
+.simulate_box a {
+  color: #7daaf1;
+}
+
+/* Extra stuff for simulated quests */
+.quest a {
+  color: #7daaf1;
+}
+
+.page_text {
+  font-family: serif;
+  font-size: larger;
+  max-width: 30em;
+}
+
+.read_page a {
+  color: lightgreen;
+}
+
+/* Extra stuff for simulated items */
+/* Extra stuff for simulated spells */
+.spell {
+  max-width: 30em;
+}
+
+/* Extra stuff for simulated game objects */
+/* For left and right-justifying things inside a simulated box */
+.item_rh {
+  float: right;
+  margin-left: 2em;
+}
+
+.item_lh {
+  float: left;
+}
+
+.links_at_top {
+  font-size: smaller;
+  margin-top: 6px;
+}
+
 .main-container {
   background-color: #404040;
   width: 98%;
