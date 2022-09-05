@@ -3,7 +3,14 @@
 ![](/assets/img/presentation.png)
 ![](/assets/img/presentation2.png)
 
-HTML/CSS templates for alpha core database. No dependancies, just open `index.html`
+This is a database browser frontend for the open source project [Alpha Core](https://github.com/The-Alpha-Project). It allows you to quickly see entries of the database and
+its relation.
+
+This is intended to be use with World of Warcraft 0.5.3 Alpha version.
+
+## Installation
+
+No dependancies, just open `index.html`, this frontend is "No scripts ready", There's not a single line of JS.
 
 ## Live Demo
 
