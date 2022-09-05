@@ -765,6 +765,7 @@ a {
   min-height: 800px;
   min-width: 700px;
   max-width: 1960px;
+  box-shadow: 0px 0px 20px #1e1e1e;
 }
 
 .menu-bar-main-container {
