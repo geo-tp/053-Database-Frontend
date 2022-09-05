@@ -3,10 +3,12 @@
 ![](/assets/img/presentation.png)
 ![](/assets/img/presentation2.png)
 
-This is a database browser frontend for the open source project [Alpha Core](https://github.com/The-Alpha-Project). It allows you to quickly see entries of the database and
+This is a database browser frontend for the open source project [Alpha Core](https://github.com/The-Alpha-Project).
+
+It allows you to quickly see entries of the database and
 its relation.
 
-This is intended to be use with World of Warcraft 0.5.3 Alpha version.
+This is intended to be use with World of Warcraft 0.5.3 Alpha database.
 
 ## Installation
 
