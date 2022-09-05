@@ -682,8 +682,6 @@ a {
 .simulate_box {
   color: #d9d9d9;
   margin: 0 auto;
-  font-family: serif;
-  font-size: larger;
   max-width: 30em;
   background-color: #242424;
   padding: 10px;
@@ -706,6 +704,11 @@ a {
 }
 
 /* Extra stuff for simulated quests */
+.page_text {
+  font-family: serif;
+  font-size: larger;
+}
+
 .read_page a {
   color: lightgreen;
 }

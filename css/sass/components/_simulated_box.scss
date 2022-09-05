@@ -3,8 +3,6 @@
 .simulate_box {
   color: $color6;
   margin: 0 auto;
-  font-family: serif;
-  font-size: larger;
   max-width: 30em;
   background-color: $color2;
   padding: 10px;
@@ -32,6 +30,8 @@
 }
 
 .page_text {
+  font-family: serif;
+  font-size: larger;
 }
 
 .read_page a {
