@@ -120,7 +120,7 @@ a {
   align-items: center;
   justify-content: space-between;
   box-sizing: border-box;
-  height: 116px;
+  height: 119px;
   width: 100%;
   padding-left: 30px;
   padding-right: 50px;
@@ -732,6 +732,10 @@ a {
   margin-top: 6px;
 }
 
+.spawn_point {
+  position: absolute;
+}
+
 .main-container {
   background-color: #404040;
   width: 98%;
@@ -813,7 +817,7 @@ a {
 }
 
 .page-content {
-  max-height: 85vh;
+  max-height: 84vh;
   overflow-y: scroll;
   height: 100%;
 }
