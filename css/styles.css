@@ -820,10 +820,6 @@ a {
 @media screen and (max-width: 1600px) {
   .page-content {
     padding: 20px;
-  }
-}
-@media screen and (max-width: 1200px) {
-  .page-content {
     max-height: 80vh;
   }
 }
