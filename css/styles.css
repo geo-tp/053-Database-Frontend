@@ -250,20 +250,25 @@ a {
     overflow-x: hidden;
   }
   .page-title h1 {
-    font-size: 1.2em;
+    font-size: 1.4em;
+    width: 100%;
   }
   .page-title__goback {
     margin-left: 0px;
     margin-right: 10px;
   }
-  .page-title div:last-child {
+  .page-title div:nth-child(2) {
     display: none;
+  }
+  .page-title div:nth-child(3) {
+    visibility: hidden;
   }
   .page-title--search div {
     display: block;
   }
   .page-title--search i {
-    display: none;
+    font-size: 0.7em;
+    margin-top: 10px;
   }
   .page-title--search div:last-child {
     display: flex;
@@ -546,11 +551,6 @@ a {
   text-align: justify;
 }
 @media screen and (max-width: 1200px) {
-  .big-title {
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    white-space: nowrap;
-  }
   .big-title__heading {
     font-size: 1.8em;
   }
@@ -563,22 +563,15 @@ a {
   }
 }
 @media screen and (max-width: 700px) {
-  .big-title {
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-    white-space: nowrap;
-    width: 100px;
-  }
   .big-title__heading {
-    font-size: 1.2em;
+    font-size: 1.6em;
   }
   .big-title__bar {
     display: none;
-    width: 0px;
   }
   .big-title__subtitle {
-    visibility: hidden;
-    width: 0px;
+    left: 110px;
+    font-size: 0.8em;
   }
 }
 
