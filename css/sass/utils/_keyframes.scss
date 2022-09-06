@@ -1,0 +1,21 @@
+@keyframes slideinout {
+  0% {
+    transform: translateX(20%);
+    opacity: 0;
+  }
+
+  30% {
+    transform: translateX(-15%);
+    opacity: 1;
+  }
+
+  85% {
+    transform: translateX(-15%);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(40%);
+    opacity: 0;
+  }
+}
