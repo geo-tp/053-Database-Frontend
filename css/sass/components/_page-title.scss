@@ -74,9 +74,9 @@
       margin-right: 10px;
     }
 
-    & div:nth-child(2) {
-      display: none;
-    }
+    // & div:nth-child(2) {
+    //   display: none;
+    // }
 
     & div:nth-child(3) {
       visibility: hidden;
@@ -84,14 +84,15 @@
 
     &--search {
       & div {
-        display: block;
-        // justify-content: unset;
+        // display: block;
+        // position: absolute;
+        // right: 5%;
       }
 
       & i {
         // display: none;
         font-size: 0.7em;
-        margin-top: 10px;
+        // margin-top: 10px;
       }
 
       & div:last-child {
