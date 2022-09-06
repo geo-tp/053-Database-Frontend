@@ -8,7 +8,7 @@ This is a database browser frontend for the open source project [Alpha Core](htt
 It allows you to quickly see entries of the database and
 its relation.
 
-This is intended to be use with World of Warcraft 0.5.3 Alpha database.
+This is intended to be use with World of Warcraft 0.5.3 Alpha database. The design is responsive and can be use on laptop/tablet, but it doesnt have a mobile version.
 
 ## Installation
 
