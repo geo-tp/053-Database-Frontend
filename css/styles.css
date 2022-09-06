@@ -971,7 +971,7 @@ a {
 .toaster {
   width: 250px;
   position: absolute;
-  top: 45%;
+  bottom: 5%;
   right: 5%;
   max-height: 500px;
   max-width: 600px;
@@ -982,7 +982,7 @@ a {
   z-index: 1000;
   padding: 20px;
   box-shadow: 0px 0px 9px #303030;
-  animation: slideinout 6s ease-in-out;
+  animation: slideinout 4s ease-in-out;
   animation-fill-mode: forwards;
 }
 .toaster__header {
@@ -1193,6 +1193,14 @@ a {
   margin-left: 20px;
   margin-right: 20px;
 }
+.table-container--full ul {
+  list-style: none;
+  padding-left: 0px;
+}
+.table-container--full ul li {
+  color: #d9d9d9;
+  text-align: left;
+}
 .table-container--full table {
   max-width: unset;
 }
@@ -1383,7 +1391,7 @@ a {
   backdrop-filter: blur(5px);
   z-index: 1000;
   overflow: hidden;
-  animation: blur 6s normal;
+  animation: blur 4s normal;
   animation-fill-mode: forwards;
   border-radius: 30px;
 }

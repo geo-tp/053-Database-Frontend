@@ -37,6 +37,15 @@
     background-color: unset;
     box-shadow: unset;
 
+    & ul {
+      list-style: none;
+      padding-left: 0px;
+      & li {
+        color: $color6;
+        text-align: left;
+      }
+    }
+
     & table {
       max-width: unset;
     }
