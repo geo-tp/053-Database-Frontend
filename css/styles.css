@@ -263,6 +263,12 @@ a {
   .page-title__angle {
     font-size: 0.8em;
   }
+  .page-title .big-title__bar {
+    display: none;
+  }
+  .page-title .big-title__subtitle {
+    visibility: hidden;
+  }
   .page-title--search div:last-child {
     position: absolute;
     width: 0%;

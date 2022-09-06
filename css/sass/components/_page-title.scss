@@ -90,6 +90,14 @@
     //   visibility: hidden;
     // }
 
+    & .big-title__bar {
+      display: none;
+    }
+
+    & .big-title__subtitle {
+      visibility: hidden;
+    }
+
     &--search {
       & div:last-child {
         position: absolute;
