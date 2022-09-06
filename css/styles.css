@@ -297,12 +297,62 @@ a {
 .table-rows td {
   padding: 5px 20px 5px 20px;
   text-align: left;
+  width: 10px;
+  /* some width */
 }
 .table-rows tr:nth-child(odd) {
   background-color: #535353;
 }
 .table-rows tr:nth-child(even) {
   background-color: #404040;
+}
+@media screen and (max-width: 1200px) {
+  .table-rows {
+    table-layout: fixed;
+  }
+  .table-rows td {
+    width: 10px;
+    /* some width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .table-rows td:nth-child(6) {
+    display: none;
+  }
+  .table-rows td:nth-child(5) {
+    display: none;
+  }
+  .table-rows td:nth-child(4) {
+    display: none;
+  }
+  .table-rows thead th:nth-child(6) {
+    display: none;
+  }
+  .table-rows thead th:nth-child(5) {
+    display: none;
+  }
+  .table-rows thead th:nth-child(4) {
+    display: none;
+  }
+}
+@media screen and (max-width: 700px) {
+  .table-rows {
+    table-layout: fixed;
+  }
+  .table-rows td {
+    width: 10px;
+    /* some width */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .table-rows td:nth-child(3) {
+    display: none;
+  }
+  .table-rows thead th:nth-child(3) {
+    display: none;
+  }
 }
 
 .model-display {
@@ -370,6 +420,9 @@ a {
   margin-left: 10px;
   border: 1px solid #303030;
   box-shadow: 0px 0px 7px #303030;
+}
+.element-information--independant .simulate_box {
+  box-shadow: unset;
 }
 .element-information--independant__content {
   max-height: unset;
@@ -1198,7 +1251,8 @@ a {
 }
 .table-container--full ul li {
   color: #d9d9d9;
-  text-align: left;
+  text-align: right;
+  padding-right: 5px;
 }
 .table-container--full table {
   max-width: unset;
