@@ -46,7 +46,6 @@ a {
   100% {
     transform: translateX(25%);
     opacity: 0;
-    display: none;
   }
 }
 @keyframes blur {
@@ -65,7 +64,7 @@ a {
   100% {
     backdrop-filter: blur(0px);
     opacity: 0;
-    display: none;
+    z-index: -50;
   }
 }
 .menu-bar-logo {
