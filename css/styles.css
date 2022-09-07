@@ -926,7 +926,7 @@ a {
   display: flex;
   max-width: 272px;
   max-height: 648px;
-  overflow-x: scroll;
+  overflow: hidden;
   margin-left: 2%;
   scroll-behavior: smooth;
   -ms-overflow-style: none;

@@ -2,8 +2,7 @@
   display: flex;
   max-width: 272px;
   max-height: 648px;
-
-  overflow-x: scroll;
+  overflow: hidden;
   margin-left: 2%;
   scroll-behavior: smooth;
   -ms-overflow-style: none; /* for Internet Explorer, Edge */
@@ -12,6 +11,10 @@
   background-color: transparent;
   @include big-shadow;
   border-radius: 20px 0px 0px 20px;
+
+  // ::-webkit-scrollbar {
+  //   display: none;
+  // }
 
   & img {
   }
