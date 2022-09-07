@@ -209,6 +209,9 @@ a {
   display: flex;
   align-items: center;
 }
+.page-title #proximity-distance {
+  max-width: 100px;
+}
 .page-title__goback {
   background-color: transparent;
   margin-right: 30px;
