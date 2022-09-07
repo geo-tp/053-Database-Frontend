@@ -946,7 +946,7 @@ a {
   font-weight: bold;
   padding: 0px 10px;
   top: 40%;
-  left: 265px;
+  left: 270px;
 }
 .caroussel__right-arrow {
   position: absolute;
@@ -956,7 +956,7 @@ a {
   font-weight: bold;
   padding: 0px 10px;
   top: 40%;
-  left: 215px;
+  left: 218px;
 }
 @media screen and (max-width: 1250px) {
   .caroussel img {
