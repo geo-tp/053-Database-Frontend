@@ -941,24 +941,21 @@ a {
 .caroussel__left-arrow {
   position: absolute;
   z-index: 50;
-  font-size: 3em;
-  color: white;
+  font-size: 4em;
+  color: #f9f9f9;
   font-weight: bold;
   padding: 0px 10px;
-  top: 50%;
-  left: 278px;
-}
-.caroussel__left-arrow svg {
-  border: 10px solid black;
+  top: 40%;
+  left: 265px;
 }
 .caroussel__right-arrow {
   position: absolute;
   z-index: 50;
-  font-size: 3em;
-  color: white;
+  font-size: 4em;
+  color: #f9f9f9;
   font-weight: bold;
   padding: 0px 10px;
-  top: 50%;
+  top: 40%;
   left: 215px;
 }
 @media screen and (max-width: 1250px) {

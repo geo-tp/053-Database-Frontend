@@ -22,26 +22,22 @@
   &__left-arrow {
     position: absolute;
     z-index: 50;
-    font-size: 3em;
-    color: white;
+    font-size: 4em;
+    color: rgb(249, 249, 249);
     font-weight: bold;
     padding: 0px 10px;
-    top: 50%;
-    left: 278px;
-
-    & svg {
-      border: 10px solid black;
-    }
+    top: 40%;
+    left: 265px;
   }
 
   &__right-arrow {
     position: absolute;
     z-index: 50;
-    font-size: 3em;
-    color: white;
+    font-size: 4em;
+    color: rgb(249, 249, 249);
     font-weight: bold;
     padding: 0px 10px;
-    top: 50%;
+    top: 40%;
     left: 215px;
   }
 
