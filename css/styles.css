@@ -32,19 +32,19 @@ a {
 
 @keyframes slideinout {
   0% {
-    transform: translateX(20%);
+    transform: translateX(0px);
     opacity: 0;
   }
   30% {
-    transform: translateX(-15%);
+    transform: translateX(-30px);
     opacity: 1;
   }
   85% {
-    transform: translateX(-15%);
+    transform: translateX(-30px);
     opacity: 1;
   }
   100% {
-    transform: translateX(25%);
+    transform: translateX(100px);
     opacity: 0;
   }
 }
@@ -1093,7 +1093,7 @@ a {
   z-index: 1000;
   padding: 20px;
   box-shadow: 0px 0px 9px #303030;
-  animation: slideinout 4s ease-in-out;
+  animation: slideinout 6s ease-in-out;
   animation-fill-mode: forwards;
 }
 .toaster__header {
@@ -1555,7 +1555,7 @@ a {
   backdrop-filter: blur(5px);
   z-index: 1000;
   overflow: hidden;
-  animation: blur 4s normal;
+  animation: blur 8s normal;
   animation-fill-mode: forwards;
   border-radius: 30px;
 }
