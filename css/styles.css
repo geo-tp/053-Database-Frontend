@@ -1186,14 +1186,14 @@ a {
     width: 320px;
   }
 }
-@media screen and (max-width: 1295px) {
+@media screen and (max-width: 1310px) {
   .row-card {
-    width: 300px;
+    width: 280px;
   }
 }
 @media screen and (max-width: 1268px) {
   .row-card {
-    width: 280px;
+    width: 270px;
   }
 }
 @media screen and (max-width: 1259px) {
