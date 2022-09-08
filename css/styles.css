@@ -303,6 +303,13 @@ a {
   .page-title__goback {
     margin-right: 0px;
   }
+  .page-title__angle {
+    margin-left: 1px;
+    margin-right: 1px;
+  }
+  .page-title__table {
+    font-size: 0.85em;
+  }
 }
 @media screen and (max-width: 350px) {
   .page-title h1 {
