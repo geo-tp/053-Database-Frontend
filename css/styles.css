@@ -1242,6 +1242,7 @@ a {
   background-color: unset;
   border: unset;
   color: #7daaf1;
+  width: 100%;
 }
 @media screen and (max-width: 1600px) {
   .row-card {
