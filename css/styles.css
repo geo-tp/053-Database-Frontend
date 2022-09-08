@@ -1141,10 +1141,6 @@ a {
   box-shadow: 0px 0px 2px #1e1e1e;
   transition: all 300ms;
 }
-.row-card:hover {
-  transform: translateX(-1px);
-  opacity: 0.8;
-}
 .row-card span {
   background-color: #404040;
   white-space: nowrap;
@@ -1250,7 +1246,8 @@ a {
     width: 250px;
   }
   .row-card__head {
-    width: 10px;
+    width: 50px;
+    min-width: 50px;
     overflow-x: hidden;
     text-overflow: unset;
   }
@@ -1263,12 +1260,6 @@ a {
     width: 200px;
   }
 }
-@media screen and (max-width: 365px) {
-  .row-card {
-    width: 200px;
-  }
-}
-
 .main-container {
   background-color: #404040;
   width: 98%;
@@ -1717,6 +1708,10 @@ a {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transition: all 300ms;
+}
+.row-card-container a:hover {
+  opacity: 0.8;
 }
 
 /*# sourceMappingURL=styles.css.map */

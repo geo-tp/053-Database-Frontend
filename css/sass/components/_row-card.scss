@@ -14,11 +14,6 @@
   @include very-tiny-shadow;
   transition: all 300ms;
 
-  &:hover {
-    transform: translateX(-1px);
-    opacity: 0.8;
-  }
-
   & span {
     // display: flex;
     // align-items: center;
@@ -117,9 +112,14 @@
     width: 250px;
 
     &__head {
-      width: 10px;
+      width: 50px;
+      min-width: 50px;
       overflow-x: hidden;
       text-overflow: unset;
+    }
+
+    &__content {
+      // width: 110px;
     }
 
     &__extra {
@@ -132,6 +132,5 @@
   }
 
   @media screen and (max-width: 365px) {
-    width: 200px;
   }
 }
