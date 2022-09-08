@@ -398,6 +398,12 @@ a {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+  .table-rows td:nth-child(8) {
+    display: none;
+  }
+  .table-rows td:nth-child(7) {
+    display: none;
+  }
   .table-rows td:nth-child(6) {
     display: none;
   }
@@ -405,6 +411,12 @@ a {
     display: none;
   }
   .table-rows td:nth-child(4) {
+    display: none;
+  }
+  .table-rows thead:nth-child(8) {
+    display: none;
+  }
+  .table-rows thead:nth-child(7) {
     display: none;
   }
   .table-rows thead th:nth-child(6) {
