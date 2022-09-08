@@ -1519,7 +1519,7 @@ a {
 }
 
 .page-content {
-  max-height: 84.5vh;
+  max-height: 86vh;
   overflow-y: scroll;
   height: 100%;
 }
