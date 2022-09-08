@@ -1135,6 +1135,8 @@ a {
   max-width: 450px;
   border-radius: 20px 0px 0px 20px;
   padding: 3px;
+  padding-left: 4px;
+  padding-right: 4px;
   margin-top: 6.5px;
   font-size: 0.7em;
   border: 1px solid #535353;
