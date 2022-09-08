@@ -58,7 +58,6 @@ a {
     opacity: 1;
   }
   85% {
-    backdrop-filter: blur(5px);
     opacity: 1;
   }
   100% {
