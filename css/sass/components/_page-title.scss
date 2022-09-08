@@ -151,6 +151,9 @@
     & h1 {
       font-size: 1em;
     }
+    &__goback {
+      margin-right: 0px;
+    }
   }
 
   @media screen and (max-width: 350px) {
