@@ -296,6 +296,16 @@ a {
     top: -10px;
   }
 }
+@media screen and (max-width: 425px) {
+  .page-title h1 {
+    font-size: 1em;
+  }
+}
+@media screen and (max-width: 350px) {
+  .page-title h1 {
+    font-size: 0.9em;
+  }
+}
 
 .table-fields {
   border: 1px solid #383838;
