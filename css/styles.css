@@ -1127,7 +1127,7 @@ a {
   transition: all 300ms;
 }
 .row-card:hover {
-  transform: translateX(-6px);
+  transform: translateX(-3px);
   opacity: 0.8;
 }
 .row-card span {
