@@ -1528,20 +1528,20 @@ a {
     max-height: 80vh;
   }
 }
-@media screen and (max-height: 950px) {
+@media screen and (max-height: 900px) {
   .page-content {
-    max-height: 72vh;
+    max-height: 83vh;
+  }
+}
+@media screen and (max-height: 600px) {
+  .page-content {
+    max-height: 77vh;
   }
 }
 @media screen and (max-width: 1200px) {
   .page-content {
     padding: 10px;
     max-height: 82.5vh;
-  }
-}
-@media screen and (max-height: 600px) {
-  .page-content {
-    max-height: 66vh;
   }
 }
 @media screen and (max-width: 700px) {
