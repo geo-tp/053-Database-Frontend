@@ -462,6 +462,9 @@ a {
   border: 1px solid #303030;
   box-shadow: 0px 0px 7px #303030;
 }
+.element-information--independant .row-card:first-child {
+  margin-top: 32px;
+}
 .element-information--independant .simulate_box {
   box-shadow: unset;
 }
@@ -471,6 +474,9 @@ a {
 }
 .element-information--independant div:first-child {
   min-height: unset;
+}
+.element-information--independant div:first-child .row-card-container {
+  margin-top: 20px;
 }
 .element-information--independant div:last-child {
   max-height: 260px;
@@ -1136,7 +1142,7 @@ a {
   transition: all 300ms;
 }
 .row-card:hover {
-  transform: translateX(-3px);
+  transform: translateX(-1px);
   opacity: 0.8;
 }
 .row-card span {
