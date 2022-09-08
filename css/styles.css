@@ -1022,6 +1022,11 @@ a {
     width: 95%;
   }
 }
+@media screen and (max-width: 370px) {
+  .caroussel {
+    max-width: 230px;
+  }
+}
 
 .simulate_box {
   color: #d9d9d9;
@@ -1742,6 +1747,11 @@ a {
   .object-container__informations__details1 {
     flex-direction: column;
     min-width: unset;
+  }
+}
+@media screen and (max-width: 370px) {
+  .object-container .table-fields {
+    width: 180px;
   }
 }
 
