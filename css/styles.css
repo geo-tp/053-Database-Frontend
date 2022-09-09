@@ -1006,6 +1006,9 @@ a {
   box-shadow: 0px 0px 9px #303030;
   border-radius: 20px 0px 0px 20px;
 }
+.caroussel img {
+  animation: appearslowly 400ms ease-in-out;
+}
 .caroussel__left-arrow {
   position: absolute;
   z-index: 50;
@@ -1352,6 +1355,7 @@ a {
   width: 200px;
   height: 250px;
   object-fit: contain;
+  animation: appearslowly 400ms ease-in-out;
 }
 .caroussel-model a {
   position: absolute;
@@ -1859,6 +1863,22 @@ a {
 }
 .row-card-container a:hover {
   opacity: 0.8;
+}
+.dot-container {
+  width: 100px;
+  height: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 2.5%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.dot-container i {
+  color: darkgray;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 /*# sourceMappingURL=styles.css.map */
