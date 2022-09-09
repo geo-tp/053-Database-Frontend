@@ -1602,7 +1602,6 @@ a {
 }
 @media screen and (max-width: 700px) {
   .page-content {
-    padding: 10px;
     max-height: 90vh;
   }
 }
