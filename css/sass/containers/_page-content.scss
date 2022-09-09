@@ -19,6 +19,7 @@
   @include tablet-design {
     padding: 10px;
     max-height: 82.5vh;
+    padding-bottom: 50px;
   }
 
   @include mobile-design {

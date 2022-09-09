@@ -1597,6 +1597,7 @@ a {
   .page-content {
     padding: 10px;
     max-height: 82.5vh;
+    padding-bottom: 50px;
   }
 }
 @media screen and (max-width: 700px) {
@@ -1711,6 +1712,7 @@ a {
   flex-wrap: wrap;
   padding: 20px;
   padding-left: 50px;
+  padding-bottom: 50px;
 }
 @media screen and (max-width: 700px) {
   .cards-container {
