@@ -14,16 +14,6 @@
     animation: appearslowly 400ms ease-in-out;
   }
 
-  & a {
-    position: absolute;
-    bottom: 20%;
-
-    & i {
-      font-size: 2em;
-      color: white;
-    }
-  }
-
   &__right1 {
     left: 180px;
   }
