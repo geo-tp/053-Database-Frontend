@@ -1672,6 +1672,10 @@ a {
 @media screen and (max-width: 700px) {
   .table-container {
     padding: 10px;
+    margin-bottom: 50px;
+  }
+  .table-container--full {
+    margin-bottom: 50px;
   }
   .table-container .tiny-title {
     margin-left: 10px;

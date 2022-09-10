@@ -64,6 +64,11 @@
 
   @include mobile-design {
     padding: 10px;
+    margin-bottom: 50px;
+
+    &--full {
+      margin-bottom: 50px;
+    }
     & .tiny-title {
       margin-left: 10px;
     }
