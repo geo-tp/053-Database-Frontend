@@ -1639,7 +1639,6 @@ a {
   border: 1px solid #242424;
 }
 .table-container--full {
-  margin-bottom: 50px;
   border-radius: unset;
   border: unset;
   padding: unset;
@@ -1664,7 +1663,7 @@ a {
 @media screen and (max-width: 1200px) {
   .table-container {
     margin: 0px;
-    margin-bottom: 50px;
+    margin-bottom: 100px;
   }
   .table-container .tiny-title {
     margin-left: 20px;
