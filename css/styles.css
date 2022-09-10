@@ -1384,6 +1384,28 @@ a {
   left: 600px;
 }
 
+.entry-navigation {
+  position: absolute;
+  font-weight: bold;
+  top: 2.5%;
+  right: 7%;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.entry-navigation__left {
+  font-size: 1.5em;
+}
+.entry-navigation__entry {
+  color: #d9d9d9;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.entry-navigation__right {
+  font-size: 1.5em;
+}
+
 .main-container {
   background-color: #404040;
   width: 98%;
@@ -1607,7 +1629,6 @@ a {
   .page-content {
     padding: 10px;
     max-height: 90vh;
-    margin-bottom: 50px;
   }
 }
 

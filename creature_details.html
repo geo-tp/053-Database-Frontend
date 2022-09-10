@@ -113,6 +113,17 @@
                 <h2 class="tiny-title__heading">General</h2>
                 <div class="tiny-title__bar"></div>
               </div>
+              <!-- ENTRY NAV -->
+              <div class="entry-navigation">
+                <a href="" class="entry-navigation__left">
+                  <i class="fas fa-angle-left"></i>
+                </a>
+                <span class="entry-navigation__entry">1189/1200</span>
+                <a href="" class="entry-navigation__right">
+                  <i class="fas fa-angle-right"></i>
+                </a>
+              </div>
+              <!-- END ENTRY NAV -->
 
               <!-- CAROUSSEL DISPLAY ID -->
               <div class="caroussel-model">
@@ -141,28 +152,34 @@
                   alt="creature's model"
                 />
 
-                <!-- FIST MODEL ARROW -->
-                <a href="#model2" class="caroussel-model__right1">
-                  <i class="fas fa-angle-right"></i>
-                </a>
-                <!-- SECOND MODEL ARROW -->
-                <a href="#model1" class="caroussel-model__left2">
-                  <i class="fas fa-angle-left"></i>
-                </a>
-                <a href="#model3" class="caroussel-model__right2">
-                  <i class="fas fa-angle-right"></i>
-                </a>
-                <!-- THIRD MODEL ARROW -->
-                <a href="#model2" class="caroussel-model__left3">
-                  <i class="fas fa-angle-left"></i>
-                </a>
-                <a href="#model4" class="caroussel-model__right3">
-                  <i class="fas fa-angle-right"></i>
-                </a>
-                <!-- FOURTH MODEL ARROW -->
-                <a href="#model3" class="caroussel-model__left4">
-                  <i class="fas fa-angle-left"></i>
-                </a>
+                <div class="dot-container">
+                  <a
+                    href="#model1"
+                    id="model_navigate1"
+                    class="fas fa-circle"
+                    onclick="modelPage(event)"
+                    data-page="1"
+                  ></a>
+                  <i
+                    href="#model2"
+                    id="model_navigate3"
+                    class="fas fa-circle"
+                    onclick="modelPage(event)"
+                    data-page="3"
+                  ></i>
+                  <i
+                    id="model_navigate2"
+                    class="fas fa-circle"
+                    onclick="modelPage(event)"
+                    data-page="2"
+                  ></i>
+                  <i
+                    id="model_navigate4"
+                    class="fas fa-circle"
+                    onclick="modelPage(event)"
+                    data-page="4"
+                  ></i>
+                </div>
               </div>
               <!-- END CAROUSSEL DISPLAY ID -->
 
