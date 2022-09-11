@@ -360,6 +360,8 @@
                   title="Eastern_Kingdoms map"
                 />
                 <svg
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
                   width="8"
                   height="8"
                   class="spawn_point"
@@ -369,16 +371,15 @@
                     position: absolute;
                     z-index: 1001;
                   "
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
                 >
                   <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                   <title>-9889.68 338.467 36.6486 0</title>
                 </svg>
-                <div class="magnifier"></div>
               </div>
               <div class="map-container">
                 <img
+                  onmouseenter="onMouseEnterImg(event)"
+                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/Kalimdor.jpg"
                   style="
                     display: block;
@@ -391,15 +392,40 @@
                   title="Kalimdor_map"
                 />
                 <svg
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
                   width="8"
                   height="8"
                   class="spawn_point"
-                  style="top: 473px; left: 81px; position: absolute"
+                  style="
+                    top: 473px;
+                    left: 81px;
+                    position: absolute;
+                    z-index: 1001;
+                  "
                 >
                   <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                   <title>-9889.68 338.467 36.6486 0</title>
                 </svg>
+                <svg
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                  width="8"
+                  height="8"
+                  class="spawn_point"
+                  style="bottom: 481px; left: 234px; z-index: 1001"
+                >
+                  <circle
+                    cx="4"
+                    cy="4"
+                    r="4"
+                    fill="yellow"
+                    stroke="black"
+                  ></circle>
+                  <title>-2952.76 -3885.41 34.3089 1</title>
+                </svg>
               </div>
+              <div class="magnifier"></div>
             </aside>
             <!-- END CAROUSSEL -->
           </div>
