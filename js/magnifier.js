@@ -19,13 +19,15 @@ function onMouseEnterImg(e) {
 
 // When mouse move on image, we update magnifier position to be centered around cursor without display it
 function onMouseMoveImg(e) {
+  // Used when both map are in caroussel
+  // we need to add 272px (width of Eastern Kingdom)
   let widthToAdd = 0;
   if (
     kalimdor != null &&
     easternKingdom != null &&
     e.target.isEqualNode(kalimdor)
   ) {
-    widthToAdd = 272;
+    widthToAdd = easternKingdom.width;
   }
 
   const elem = e.currentTarget;
@@ -34,7 +36,7 @@ function onMouseMoveImg(e) {
 
   magnifierX = e.pageX - left - window.pageXOffset + widthToAdd;
   magnifierY = e.pageY - top - window.pageYOffset;
-  console.log("W : ", width, "H : ", height);
+
   magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
   magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
   magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
