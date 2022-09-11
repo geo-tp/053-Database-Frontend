@@ -346,6 +346,8 @@
               ></a>
               <div class="map-container">
                 <img
+                  onmouseenter="onMouseEnterImg(event)"
+                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/map.jpg"
                   style="
                     display: block;
@@ -361,11 +363,19 @@
                   width="8"
                   height="8"
                   class="spawn_point"
-                  style="top: 473px; left: 81px; position: absolute"
+                  style="
+                    top: 473px;
+                    left: 81px;
+                    position: absolute;
+                    z-index: 1001;
+                  "
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
                 >
                   <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                   <title>-9889.68 338.467 36.6486 0</title>
                 </svg>
+                <div class="magnifier"></div>
               </div>
               <div class="map-container">
                 <img
@@ -710,5 +720,6 @@
     <!-- FOOTER -->
     <footer class="footer"></footer>
     <!-- END FOOTER -->
+    <script src="./js/magnifier.js"></script>
   </body>
 </html>
