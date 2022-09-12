@@ -313,6 +313,8 @@
               ></a>
               <div class="map-container">
                 <img
+                  onmouseenter="onMouseEnterImg(event)"
+                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/map.jpg"
                   style="
                     display: block;
@@ -325,10 +327,12 @@
                   title="Eastern_Kingdoms map"
                 />
                 <svg
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
                   width="8"
                   height="8"
                   class="spawn_point"
-                  style="top: 473px; left: 81px; position: absolute"
+                  style="top: 473px; left: 81px"
                 >
                   <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                   <title>-9889.68 338.467 36.6486 0</title>
@@ -336,6 +340,8 @@
               </div>
               <div class="map-container">
                 <img
+                  onmouseenter="onMouseEnterImg(event)"
+                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/map2.jpg"
                   style="
                     display: block;
@@ -348,15 +354,20 @@
                   title="Kalimdor_map"
                 />
                 <svg
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
                   width="8"
                   height="8"
                   class="spawn_point"
-                  style="top: 473px; left: 81px; position: absolute"
+                  style="top: 473px; left: 81px"
                 >
                   <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                   <title>-9889.68 338.467 36.6486 0</title>
                 </svg>
               </div>
+              <!-- MAGNIFIER -->
+              <div class="magnifier"></div>
+              <!-- END MAGNIFIER -->
             </aside>
             <!-- END CAROUSSEL -->
           </div>
@@ -588,5 +599,6 @@
     <!-- FOOTER -->
     <footer class="footer"></footer>
     <!-- END FOOTER -->
+    <script src="./js/magnifier.js"></script>
   </body>
 </html>

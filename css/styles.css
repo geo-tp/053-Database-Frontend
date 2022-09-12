@@ -82,6 +82,16 @@ a {
     opacity: 1;
   }
 }
+@keyframes appearslowlyandscale {
+  0% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 @keyframes shine {
   50% {
     opacity: 0.7;
@@ -109,13 +119,11 @@ a {
   }
 }
 .menu-bar-logo {
-  width: 50px;
-  height: 50px;
-  margin-left: 15%;
+  width: 60px;
+  height: 60px;
   margin-right: 1%;
   transform: scale(1);
   transition: all 500ms;
-  animation: shine 7s ease-in-out infinite;
 }
 .menu-bar-logo:hover {
   transition: all 500ms;
@@ -1141,6 +1149,8 @@ a {
 }
 .spawn_point {
   position: absolute;
+  z-index: 1000;
+  cursor: pointer;
 }
 
 .modal {
@@ -1437,8 +1447,9 @@ a {
   background-repeat: no-repeat;
   display: none;
   border-radius: 100%;
-  animation: appearslowly 400ms ease-out;
-  transition: all 400ms;
+  animation: appearslowlyandscale 200ms ease-out;
+  transform: scale(1);
+  transition: all 200ms;
 }
 
 .main-container {

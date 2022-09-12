@@ -8,6 +8,7 @@
   background-repeat: no-repeat;
   display: none;
   border-radius: 100%;
-  animation: appearslowly 400ms ease-out;
-  transition: all 400ms;
+  animation: appearslowlyandscale 200ms ease-out;
+  transform: scale(1);
+  transition: all 200ms;
 }

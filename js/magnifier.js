@@ -31,8 +31,7 @@ function onMouseMoveImg(e) {
   }
 
   const elem = e.currentTarget;
-  const { top, left } = elem.getBoundingClientRect();
-  const { width, height } = elem.getBoundingClientRect();
+  const { top, left, width, height } = elem.getBoundingClientRect();
 
   magnifierX = e.pageX - left - window.pageXOffset + widthToAdd;
   magnifierY = e.pageY - top - window.pageYOffset;
@@ -55,9 +54,11 @@ function onMouseMoveImg(e) {
 // When mouse hover a point, we display magnifier
 function onMouseEnterPoint(e) {
   magnifier.style.display = "block";
+  e.target.style.zIndex = "1001";
 }
 
 // When mouse leave a point, we hide magnifier
 function onMouseLeavePoint(e) {
   magnifier.style.display = "none";
+  e.target.style.zIndex = "1000";
 }
