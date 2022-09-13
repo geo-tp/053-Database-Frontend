@@ -1276,6 +1276,8 @@ a {
   flex-grow: 1;
   border-radius: 0px;
   font-size: 1.1em;
+  border: 1px solid #535353;
+  color: #7daaf1;
 }
 .row-card__extra {
   width: 18%;
