@@ -1149,8 +1149,9 @@ a {
 }
 .spawn_point {
   position: absolute;
-  z-index: 1000;
+  z-index: 1001;
   cursor: pointer;
+  transition: all 200ms;
 }
 
 .modal {
@@ -1441,7 +1442,6 @@ a {
 
 .magnifier {
   position: absolute;
-  z-index: 1000;
   pointer-events: none;
   opacity: 1;
   border: 1px solid lightblue;
