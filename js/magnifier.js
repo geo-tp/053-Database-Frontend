@@ -2,10 +2,9 @@
 const magnifier = document.querySelector(".magnifier");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
+let actualMapInUse = null;
 const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
-let actualMapInUse = null;
-
 const magnifierHeight = 200;
 const magnifierWidth = 200;
 const magnifierZoomLevel = 3;
@@ -32,8 +31,6 @@ function onMouseEnterPoint(e) {
       _correctMagnifiedPointPosition(e.target, point);
     }
   }
-  console.log("M X", magnifierX);
-  console.log("M Y", magnifierY);
 }
 
 // When mouse leave a point, we hide magnifier
@@ -43,6 +40,7 @@ function onMouseLeavePoint(e) {
   _resetModifiedSpawnPoints();
 }
 
+// Update magnifier top/left and its background img to new coords
 async function _updateMagnifierPosition(width, height, widthToAdd) {
   magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
   magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
@@ -59,6 +57,7 @@ async function _updateMagnifierPosition(width, height, widthToAdd) {
   }px`;
 }
 
+// When user hover a point, magnifier will align its center with it
 function _alignMagnifierWithPoint(e) {
   const { width, height } = actualMapInUse.target;
   const widthToAdd = _calculateWidthToAdd();
@@ -67,9 +66,8 @@ function _alignMagnifierWithPoint(e) {
   _updateMagnifierPosition(width, height, widthToAdd);
 }
 
+// Determine if both map are present in caroussel to add the first map width
 function _calculateWidthToAdd() {
-  // Used when both map are in caroussel
-  // we need to add 272px (width of Eastern Kingdom)
   let widthToAdd = 0;
   if (
     kalimdor != null &&
@@ -82,14 +80,7 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-function _domValueToInt(value) {
-  return parseInt(value.split("px")[0]);
-}
-
-function _calculateDistance(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-}
-
+// Calculate distance between points and return result
 function _calculateDistanceBetweenPoints(point1, point2) {
   const point1Y = _domValueToInt(point1.style.top);
   const point1X = _domValueToInt(point1.style.left);
@@ -99,7 +90,9 @@ function _calculateDistanceBetweenPoints(point1, point2) {
   return _calculateDistance(point1X, point1Y, point2X, point2Y);
 }
 
+// Check if point is in magnifier radius
 function _checkIfPointIsInMagnifier(point) {
+  // We had 5px to be sure that point cant be in between magnifier border
   const radius = magnifierHeight / 2 + 5;
   const pointX = _domValueToInt(point.style.left);
   const pointY = _domValueToInt(point.style.top);
@@ -107,44 +100,61 @@ function _checkIfPointIsInMagnifier(point) {
   return distance < radius;
 }
 
+// Update spawn points to fit zoom if there are in magnifier range
 function _correctMagnifiedPointPosition(referencePoint, point) {
+  // distance difference X between points
   let diffX =
     (_domValueToInt(referencePoint.style.left) -
       _domValueToInt(point.style.left)) *
     magnifierZoomLevel;
 
+  // distance difference Y between points
   let diffY =
     (_domValueToInt(referencePoint.style.top) -
       _domValueToInt(point.style.top)) *
     magnifierZoomLevel;
+
   let updatedPoint = point.cloneNode();
-  // We had width of spawn point
-  diffY = diffY < 0 ? diffY + 9 : diffY - 9;
-  diffX = diffX < 0 ? diffX + 9 : diffX - 9;
+
+  // We had perimeter of spawn point to be more accurate
+  const perimeter = point.width.animVal.value;
+  diffY = diffY < 0 ? diffY + perimeter : diffY - perimeter;
+  diffX = diffX < 0 ? diffX + perimeter : diffX - perimeter;
   updatedPoint.style.top = `${_domValueToInt(point.style.top) - diffY}px`;
   updatedPoint.style.left = `${_domValueToInt(point.style.left) - diffX}px`;
 
+  // We push point into array to be able to reset its location later
   modifiedSpawnPoints.push({
     point,
     originalY: point.style.top,
     originalX: point.style.left,
   });
 
-  // We verify if point is still in magnifier after updating coords
+  // We verify if point is still in magnifier radius after updating coords
   if (_checkIfPointIsInMagnifier(updatedPoint)) {
     point.style.top = updatedPoint.style.top;
     point.style.left = updatedPoint.style.left;
   } else {
+    // He is not in magnifier radius anymore, we hide it to prevent wrong location
     point.style.display = "none";
   }
 }
 
+// We set original point location when user leave point
 function _resetModifiedSpawnPoints() {
   for (let elem of modifiedSpawnPoints) {
     elem.point.style.top = elem.originalY;
     elem.point.style.left = elem.originalX;
     elem.point.style.display = "block";
   }
-
   modifiedSpawnPoints = [];
+}
+
+// Return int value of DOM style property : 450px -> 450
+function _domValueToInt(value) {
+  return parseInt(value.split("px")[0]);
+}
+
+function _calculateDistance(x1, y1, x2, y2) {
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
