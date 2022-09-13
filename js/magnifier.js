@@ -14,10 +14,15 @@ let magnifierY = 0;
 // When mouse hover on image, we initialise magnifier without display it
 function onMouseEnterImg(e) {
   const map = e.target;
+  actualMapInUse = e;
+  const { width, height } = map;
+
   magnifier.style.height = `${magnifierHeight}px`;
   magnifier.style.width = `${magnifierWidth}px`;
   magnifier.style.backgroundImage = `url(${map.src})`;
-  actualMapInUse = e;
+  magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
+    height * magnifierZoomLevel
+  }px`;
 }
 
 // When mouse hover a point, we display magnifier
@@ -40,13 +45,12 @@ function onMouseLeavePoint(e) {
   _resetModifiedSpawnPoints();
 }
 
-// Update magnifier top/left and its background img to new coords
-async function _updateMagnifierPosition(width, height, widthToAdd) {
+// Update magnifier top/left and its background img position to new coords
+async function _updateMagnifierPosition() {
+  const widthToAdd = _calculateWidthToAdd();
   magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
   magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
-  magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
-    height * magnifierZoomLevel
-  }px`;
+
   magnifier.style.backgroundPositionX = `${
     -magnifierX * magnifierZoomLevel +
     magnifierWidth / 2 +
@@ -63,7 +67,7 @@ function _alignMagnifierWithPoint(e) {
   const widthToAdd = _calculateWidthToAdd();
   magnifierX = _domValueToInt(e.target.style.left) + widthToAdd;
   magnifierY = _domValueToInt(e.target.style.top);
-  _updateMagnifierPosition(width, height, widthToAdd);
+  _updateMagnifierPosition();
 }
 
 // Determine if both map are present in caroussel to add the first map width
@@ -80,7 +84,7 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-// Calculate distance between points and return result
+// Calculate distance between 2 points and return result
 function _calculateDistanceBetweenPoints(point1, point2) {
   const point1Y = _domValueToInt(point1.style.top);
   const point1X = _domValueToInt(point1.style.left);
@@ -92,8 +96,8 @@ function _calculateDistanceBetweenPoints(point1, point2) {
 
 // Check if point is in magnifier radius
 function _checkIfPointIsInMagnifier(point) {
-  // We had 5px to be sure that point cant be in between magnifier border
-  const radius = magnifierHeight / 2 + 5;
+  // We had point width/2 to be sure that point cant be in between magnifier border
+  const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
   const pointX = _domValueToInt(point.style.left);
   const pointY = _domValueToInt(point.style.top);
   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
@@ -116,7 +120,7 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
 
   let updatedPoint = point.cloneNode();
 
-  // We had perimeter of spawn point to be more accurate
+  // We add/sub perimeter of spawn point to be more accurate
   const perimeter = point.width.animVal.value;
   diffY = diffY < 0 ? diffY + perimeter : diffY - perimeter;
   diffX = diffX < 0 ? diffX + perimeter : diffX - perimeter;
