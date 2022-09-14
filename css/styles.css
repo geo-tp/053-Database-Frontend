@@ -1151,6 +1151,7 @@ a {
   position: absolute;
   z-index: 1001;
   cursor: pointer;
+  transition: all 300ms;
 }
 
 .modal {
@@ -1450,6 +1451,7 @@ a {
   border-radius: 100%;
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
+  transition: all 200ms;
 }
 
 .main-container {
