@@ -126,7 +126,7 @@ function _calculateDistanceBetweenPoints(point1, point2) {
 // Check if point is in magnifier radius
 function _checkIfPointIsInMagnifier(point) {
   const widthToAdd = _calculateWidthToAdd();
-  // We had point width/2 to be sure that point cant be in between magnifier border
+  // we had point width/2 to be sure that point cant be in between magnifier border
   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
   const pointX = _domValueToInt(point.style.left) + widthToAdd;
   const pointY = _domValueToInt(point.style.top);
@@ -134,7 +134,7 @@ function _checkIfPointIsInMagnifier(point) {
   return distance < radius;
 }
 
-// Update spawn points to fit zoom if there are in magnifier range
+// Update spawn point to fit zoom if it is in magnifier range
 function _correctMagnifiedPointPosition(referencePoint, point) {
   // distance difference X between points
   let diffX =
@@ -150,14 +150,14 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
 
   let updatedPoint = point.cloneNode();
 
-  // We add/sub perimeter of spawn point to be more accurate
+  // we add/sub perimeter of spawn point to be more accurate
   const perimeter = point.width.animVal.value;
   diffY = diffY < 0 ? diffY + perimeter : diffY - perimeter;
   diffX = diffX < 0 ? diffX + perimeter : diffX - perimeter;
   updatedPoint.style.top = `${_domValueToInt(point.style.top) - diffY}px`;
   updatedPoint.style.left = `${_domValueToInt(point.style.left) - diffX}px`;
 
-  // We push point into array to be able to reset its location later
+  // we push point into array to be able to reset its location later
   modifiedSpawnPoints.push({
     point,
     originalY: point.style.top,
@@ -169,7 +169,7 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
     point.style.top = updatedPoint.style.top;
     point.style.left = updatedPoint.style.left;
   } else {
-    // It is not in magnifier radius anymore, we hide it to prevent wrong location
+    // it is not in magnifier radius anymore, we hide it to prevent wrong location
     point.style.display = "none";
   }
 }
