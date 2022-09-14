@@ -25,8 +25,27 @@ function onMouseEnterImg(e) {
   }px`;
 }
 
+// When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
+function onMouseMoveImg(e) {
+  const img = e.currentTarget;
+  const { top, left } = img.getBoundingClientRect();
+  const widthToAdd = _calculateWidthToAdd();
+  // calculate cursor position on the image
+  let cursorX = e.pageX - left - window.pageXOffset + widthToAdd;
+  let cursorY = e.pageY - top - window.pageYOffset;
+
+  const distance = _calculateDistance(cursorX, cursorY, magnifierX, magnifierY);
+  console.log(distance);
+  if (distance > magnifierWidth / 2) {
+    magnifier.style.display = "none";
+    _resetModifiedSpawnPoints();
+  }
+}
+
 // When mouse hover a point, we display magnifier
 function onMouseEnterPoint(e) {
+  _resetModifiedSpawnPoints();
+
   magnifier.style.display = "block";
   e.target.style.zIndex = "1001";
   _alignMagnifierWithPoint(e);
@@ -38,11 +57,9 @@ function onMouseEnterPoint(e) {
   }
 }
 
-// When mouse leave a point, we hide magnifier
+// When mouse leave a point
 function onMouseLeavePoint(e) {
-  magnifier.style.display = "none";
-  e.target.style.zIndex = "1000";
-  _resetModifiedSpawnPoints();
+  return;
 }
 
 // Update magnifier top/left and its background img position to new coords
