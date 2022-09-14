@@ -30,6 +30,7 @@ function onMouseMoveImg(e) {
   const img = e.currentTarget;
   const { top, left } = img.getBoundingClientRect();
   const widthToAdd = _calculateWidthToAdd();
+
   // calculate cursor position on the image
   let cursorX = e.pageX - left - window.pageXOffset + widthToAdd;
   let cursorY = e.pageY - top - window.pageYOffset;
@@ -43,6 +44,12 @@ function onMouseMoveImg(e) {
 
 // When mouse hover a point, we display magnifier
 function onMouseEnterPoint(e) {
+  const distance = _calculateDistanceBetweenPoints(e.target, magnifier);
+
+  if (distance < magnifierWidth / 2 && magnifier.style.display != "none") {
+    return;
+  }
+
   _resetModifiedSpawnPoints();
 
   magnifier.style.display = "block";
@@ -155,12 +162,12 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
     point.style.top = updatedPoint.style.top;
     point.style.left = updatedPoint.style.left;
   } else {
-    // He is not in magnifier radius anymore, we hide it to prevent wrong location
+    // It is not in magnifier radius anymore, we hide it to prevent wrong location
     point.style.display = "none";
   }
 }
 
-// We set original point location when user leave point
+// We set original point location when magnifier is closed
 function _resetModifiedSpawnPoints() {
   for (let elem of modifiedSpawnPoints) {
     elem.point.style.top = elem.originalY;
