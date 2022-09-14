@@ -27,6 +27,11 @@ function onMouseEnterImg(e) {
 
 // When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
 function onMouseMoveImg(e) {
+  // If magnifier is closed, we dont need to do calculation
+  if (magnifier.style.display == "none") {
+    return;
+  }
+
   const img = e.currentTarget;
   const { top, left } = img.getBoundingClientRect();
   const widthToAdd = _calculateWidthToAdd();
