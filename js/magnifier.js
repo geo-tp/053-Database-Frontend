@@ -35,7 +35,6 @@ function onMouseMoveImg(e) {
   let cursorY = e.pageY - top - window.pageYOffset;
 
   const distance = _calculateDistance(cursorX, cursorY, magnifierX, magnifierY);
-  console.log(distance);
   if (distance > magnifierWidth / 2) {
     magnifier.style.display = "none";
     _resetModifiedSpawnPoints();
