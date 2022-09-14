@@ -27,7 +27,7 @@ function onMouseEnterImg(e) {
 
 // When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
 function onMouseMoveImg(e) {
-  // If magnifier is closed, we dont need to do calculation
+  // if magnifier is closed, we dont need to do calculation
   if (magnifier.style.display == "none") {
     return;
   }
@@ -49,10 +49,11 @@ function onMouseMoveImg(e) {
 
 // When mouse hover a point, we display magnifier
 function onMouseEnterPoint(e) {
-  const distance = _calculateDistanceBetweenPoints(e.target, magnifier);
-
-  // If magnifier is already open and point is in magnfier radius, we dont do anything
-  if (distance < magnifierWidth / 2 && magnifier.style.display != "none") {
+  // if magnifier is already open and point is in magnfier radius, we dont do anything
+  if (
+    _checkIfPointIsInMagnifier(e.target) &&
+    magnifier.style.display != "none"
+  ) {
     return;
   }
 
