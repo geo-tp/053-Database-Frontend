@@ -46,12 +46,12 @@ function onMouseMoveImg(e) {
 function onMouseEnterPoint(e) {
   const distance = _calculateDistanceBetweenPoints(e.target, magnifier);
 
+  // If magnifier is already open and point is in magnfier radius, we dont do anything
   if (distance < magnifierWidth / 2 && magnifier.style.display != "none") {
     return;
   }
 
   _resetModifiedSpawnPoints();
-
   magnifier.style.display = "block";
   e.target.style.zIndex = "1001";
   _alignMagnifierWithPoint(e);
@@ -69,7 +69,7 @@ function onMouseLeavePoint(e) {
 }
 
 // Update magnifier top/left and its background img position to new coords
-async function _updateMagnifierPosition() {
+function _updateMagnifierPosition() {
   const widthToAdd = _calculateWidthToAdd();
   magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
   magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
@@ -182,6 +182,7 @@ function _domValueToInt(value) {
   return parseInt(value.split("px")[0]);
 }
 
+// Calculate distance between coords
 function _calculateDistance(x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
