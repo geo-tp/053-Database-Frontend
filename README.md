@@ -16,7 +16,7 @@ The design is responsive and website can be used with most devices
 
 ## Installation
 
-No dependancies, just open `index.html`, this frontend is "No scripts ready", There's not a single line of JS.
+No dependancies, just open `index.html`, this frontend is "No scripts ready", it can work without javascript enabled.
 
 ## Live Demo
 
