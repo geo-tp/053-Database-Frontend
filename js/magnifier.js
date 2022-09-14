@@ -125,9 +125,10 @@ function _calculateDistanceBetweenPoints(point1, point2) {
 
 // Check if point is in magnifier radius
 function _checkIfPointIsInMagnifier(point) {
+  const widthToAdd = _calculateWidthToAdd();
   // We had point width/2 to be sure that point cant be in between magnifier border
   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
-  const pointX = _domValueToInt(point.style.left);
+  const pointX = _domValueToInt(point.style.left) + widthToAdd;
   const pointY = _domValueToInt(point.style.top);
   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
   return distance < radius;
