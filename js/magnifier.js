@@ -52,7 +52,6 @@ function onMouseEnterPoint(e) {
   // if magnifier is already open and point is in magnfier radius, we dont do anything
 
   const svg = e.target.childNodes[1];
-  console.log(svg);
   if (_checkIfPointIsInMagnifier(svg) && magnifier.style.display != "none") {
     return;
   }
