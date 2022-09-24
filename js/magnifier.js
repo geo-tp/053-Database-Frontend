@@ -113,16 +113,6 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-// Calculate distance between 2 points and return result
-function _calculateDistanceBetweenPoints(point1, point2) {
-  const point1Y = _domValueToFloat(point1.style.top);
-  const point1X = _domValueToFloat(point1.style.left);
-  const point2Y = _domValueToFloat(point2.style.top) + magnifierHeight / 2;
-  const point2X = _domValueToFloat(point2.style.left) + magnifierHeight / 2;
-
-  return _calculateDistance(point1X, point1Y, point2X, point2Y);
-}
-
 // Check if point is in magnifier radius
 function _checkIfPointIsInMagnifier(point) {
   const widthToAdd = _calculateWidthToAdd();
@@ -183,7 +173,7 @@ function _resetModifiedSpawnPoints() {
   modifiedSpawnPoints = [];
 }
 
-// Return int value of DOM style property : 450px -> 450
+// Return float value of DOM style property : 450.13px -> 450.13
 function _domValueToFloat(value) {
   return parseFloat(value.split("px")[0]);
 }
@@ -192,3 +182,13 @@ function _domValueToFloat(value) {
 function _calculateDistance(x1, y1, x2, y2) {
   return Math.sqrt(Math.pow(x1 - 8 - x2, 2) + Math.pow(y1 - 8 - y2, 2));
 }
+
+// Calculate distance between 2 points and return result
+// function _calculateDistanceBetweenPoints(point1, point2) {
+//   const point1Y = _domValueToFloat(point1.style.top);
+//   const point1X = _domValueToFloat(point1.style.left);
+//   const point2Y = _domValueToFloat(point2.style.top) + magnifierHeight / 2;
+//   const point2X = _domValueToFloat(point2.style.left) + magnifierHeight / 2;
+
+//   return _calculateDistance(point1X, point1Y, point2X, point2Y);
+// }
