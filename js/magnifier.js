@@ -81,13 +81,17 @@ function _updateMagnifierPosition() {
   magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
   magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
 
+  // border value to correct offcentering
+  const magnifierBorder = 1;
+
   magnifier.style.backgroundPositionX = `${
     -magnifierX * magnifierZoomLevel +
     magnifierWidth / 2 +
-    widthToAdd * magnifierZoomLevel
+    widthToAdd * magnifierZoomLevel -
+    magnifierBorder
   }px`;
   magnifier.style.backgroundPositionY = `${
-    -magnifierY * magnifierZoomLevel + magnifierHeight / 2
+    -magnifierY * magnifierZoomLevel + magnifierHeight / 2 - magnifierBorder
   }px`;
 }
 
