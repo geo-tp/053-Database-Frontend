@@ -94,8 +94,8 @@ function _updateMagnifierPosition() {
 // When user hover a point, magnifier will align its center with it
 function _alignMagnifierWithPoint(point) {
   const widthToAdd = _calculateWidthToAdd();
-  magnifierX = _doValueToFloat(point.style.left) + widthToAdd;
-  magnifierY = _doValueToFloat(point.style.top);
+  magnifierX = _domValueToFloat(point.style.left) + widthToAdd;
+  magnifierY = _domValueToFloat(point.style.top);
   _updateMagnifierPosition();
 }
 
@@ -115,10 +115,10 @@ function _calculateWidthToAdd() {
 
 // Calculate distance between 2 points and return result
 function _calculateDistanceBetweenPoints(point1, point2) {
-  const point1Y = _doValueToFloat(point1.style.top);
-  const point1X = _doValueToFloat(point1.style.left);
-  const point2Y = _doValueToFloat(point2.style.top) + magnifierHeight / 2;
-  const point2X = _doValueToFloat(point2.style.left) + magnifierHeight / 2;
+  const point1Y = _domValueToFloat(point1.style.top);
+  const point1X = _domValueToFloat(point1.style.left);
+  const point2Y = _domValueToFloat(point2.style.top) + magnifierHeight / 2;
+  const point2X = _domValueToFloat(point2.style.left) + magnifierHeight / 2;
 
   return _calculateDistance(point1X, point1Y, point2X, point2Y);
 }
@@ -128,8 +128,8 @@ function _checkIfPointIsInMagnifier(point) {
   const widthToAdd = _calculateWidthToAdd();
   // we had point width/2 to be sure that point cant be in between magnifier border
   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
-  const pointX = _doValueToFloat(point.style.left) + widthToAdd;
-  const pointY = _doValueToFloat(point.style.top);
+  const pointX = _domValueToFloat(point.style.left) + widthToAdd;
+  const pointY = _domValueToFloat(point.style.top);
   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
   return distance < radius;
 }
@@ -138,19 +138,19 @@ function _checkIfPointIsInMagnifier(point) {
 function _correctMagnifiedPointPosition(referencePoint, point) {
   // distance difference X between points
   let diffX =
-    (_doValueToFloat(referencePoint.style.left) -
-      _doValueToFloat(point.style.left)) *
+    (_domValueToFloat(referencePoint.style.left) -
+      _domValueToFloat(point.style.left)) *
     (magnifierZoomLevel - 1);
 
   // distance difference Y between points
   let diffY =
-    (_doValueToFloat(referencePoint.style.top) -
-      _doValueToFloat(point.style.top)) *
+    (_domValueToFloat(referencePoint.style.top) -
+      _domValueToFloat(point.style.top)) *
     (magnifierZoomLevel - 1);
 
   let updatedPoint = point.cloneNode();
-  updatedPoint.style.top = `${_doValueToFloat(point.style.top) - diffY}px`;
-  updatedPoint.style.left = `${_doValueToFloat(point.style.left) - diffX}px`;
+  updatedPoint.style.top = `${_domValueToFloat(point.style.top) - diffY}px`;
+  updatedPoint.style.left = `${_domValueToFloat(point.style.left) - diffX}px`;
 
   // we push point into array to be able to reset its location later
   modifiedSpawnPoints.push({
@@ -180,7 +180,7 @@ function _resetModifiedSpawnPoints() {
 }
 
 // Return int value of DOM style property : 450px -> 450
-function _doValueToFloat(value) {
+function _domValueToFloat(value) {
   return parseFloat(value.split("px")[0]);
 }
 
