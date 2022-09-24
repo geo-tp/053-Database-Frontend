@@ -30,7 +30,7 @@ function onMouseEnterImg(e) {
 // When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
 function onMouseMoveImg(e) {
   // if magnifier is closed, we dont need to do calculation
-  if (magnifier.style.display == "none") {
+  if (magnifier.style.display == "none" || !actualMapInUse) {
     return;
   }
 
@@ -140,17 +140,21 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
   let diffX =
     (_domValueToFloat(referencePoint.style.left) -
       _domValueToFloat(point.style.left)) *
-    (magnifierZoomLevel - 1);
+    magnifierZoomLevel;
 
   // distance difference Y between points
   let diffY =
     (_domValueToFloat(referencePoint.style.top) -
       _domValueToFloat(point.style.top)) *
-    (magnifierZoomLevel - 1);
+    magnifierZoomLevel;
 
   let updatedPoint = point.cloneNode();
-  updatedPoint.style.top = `${_domValueToFloat(point.style.top) - diffY}px`;
-  updatedPoint.style.left = `${_domValueToFloat(point.style.left) - diffX}px`;
+  updatedPoint.style.top = `${
+    _domValueToFloat(referencePoint.style.top) - diffY
+  }px`;
+  updatedPoint.style.left = `${
+    _domValueToFloat(referencePoint.style.left) - diffX
+  }px`;
 
   // we push point into array to be able to reset its location later
   modifiedSpawnPoints.push({
