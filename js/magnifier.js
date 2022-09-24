@@ -7,7 +7,7 @@ const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
 const magnifierHeight = 200;
 const magnifierWidth = 200;
-const magnifierZoomLevel = 3;
+const magnifierZoomLevel = 5;
 let magnifierX = 0;
 let magnifierY = 0;
 
@@ -16,6 +16,8 @@ function onMouseEnterImg(e) {
   const map = e.target;
   actualMapInUse = e;
   const { width, height } = map;
+
+  magnifier.style.display == "block";
 
   magnifier.style.height = `${magnifierHeight}px`;
   magnifier.style.width = `${magnifierWidth}px`;
@@ -91,10 +93,9 @@ function _updateMagnifierPosition() {
 
 // When user hover a point, magnifier will align its center with it
 function _alignMagnifierWithPoint(point) {
-  const { width, height } = actualMapInUse.target;
   const widthToAdd = _calculateWidthToAdd();
-  magnifierX = _domValueToInt(point.style.left) + widthToAdd;
-  magnifierY = _domValueToInt(point.style.top);
+  magnifierX = _doValueToFloat(point.style.left) + widthToAdd;
+  magnifierY = _doValueToFloat(point.style.top);
   _updateMagnifierPosition();
 }
 
@@ -114,10 +115,10 @@ function _calculateWidthToAdd() {
 
 // Calculate distance between 2 points and return result
 function _calculateDistanceBetweenPoints(point1, point2) {
-  const point1Y = _domValueToInt(point1.style.top);
-  const point1X = _domValueToInt(point1.style.left);
-  const point2Y = _domValueToInt(point2.style.top) + magnifierHeight / 2;
-  const point2X = _domValueToInt(point2.style.left) + magnifierHeight / 2;
+  const point1Y = _doValueToFloat(point1.style.top);
+  const point1X = _doValueToFloat(point1.style.left);
+  const point2Y = _doValueToFloat(point2.style.top) + magnifierHeight / 2;
+  const point2X = _doValueToFloat(point2.style.left) + magnifierHeight / 2;
 
   return _calculateDistance(point1X, point1Y, point2X, point2Y);
 }
@@ -127,8 +128,8 @@ function _checkIfPointIsInMagnifier(point) {
   const widthToAdd = _calculateWidthToAdd();
   // we had point width/2 to be sure that point cant be in between magnifier border
   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
-  const pointX = _domValueToInt(point.style.left) + widthToAdd;
-  const pointY = _domValueToInt(point.style.top);
+  const pointX = _doValueToFloat(point.style.left) + widthToAdd;
+  const pointY = _doValueToFloat(point.style.top);
   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
   return distance < radius;
 }
@@ -137,24 +138,19 @@ function _checkIfPointIsInMagnifier(point) {
 function _correctMagnifiedPointPosition(referencePoint, point) {
   // distance difference X between points
   let diffX =
-    (_domValueToInt(referencePoint.style.left) -
-      _domValueToInt(point.style.left)) *
-    magnifierZoomLevel;
+    (_doValueToFloat(referencePoint.style.left) -
+      _doValueToFloat(point.style.left)) *
+    (magnifierZoomLevel - 1);
 
   // distance difference Y between points
   let diffY =
-    (_domValueToInt(referencePoint.style.top) -
-      _domValueToInt(point.style.top)) *
-    magnifierZoomLevel;
+    (_doValueToFloat(referencePoint.style.top) -
+      _doValueToFloat(point.style.top)) *
+    (magnifierZoomLevel - 1);
 
   let updatedPoint = point.cloneNode();
-
-  // we add/sub perimeter of spawn point to be more accurate
-  const perimeter = point.width.animVal.value;
-  diffY = diffY < 0 ? diffY + perimeter : diffY - perimeter;
-  diffX = diffX < 0 ? diffX + perimeter : diffX - perimeter;
-  updatedPoint.style.top = `${_domValueToInt(point.style.top) - diffY}px`;
-  updatedPoint.style.left = `${_domValueToInt(point.style.left) - diffX}px`;
+  updatedPoint.style.top = `${_doValueToFloat(point.style.top) - diffY}px`;
+  updatedPoint.style.left = `${_doValueToFloat(point.style.left) - diffX}px`;
 
   // we push point into array to be able to reset its location later
   modifiedSpawnPoints.push({
@@ -184,11 +180,11 @@ function _resetModifiedSpawnPoints() {
 }
 
 // Return int value of DOM style property : 450px -> 450
-function _domValueToInt(value) {
-  return parseInt(value.split("px")[0]);
+function _doValueToFloat(value) {
+  return parseFloat(value.split("px")[0]);
 }
 
 // Calculate distance between coords
 function _calculateDistance(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
+  return Math.sqrt(Math.pow(x1 - 8 - x2, 2) + Math.pow(y1 - 8 - y2, 2));
 }
