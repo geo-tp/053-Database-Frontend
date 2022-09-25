@@ -1156,7 +1156,7 @@ a {
   position: absolute;
   z-index: 1001;
   cursor: pointer;
-  transition: all 300ms;
+  transition: all 200ms;
 }
 
 .modal {
@@ -1427,6 +1427,7 @@ a {
 
 .magnifier {
   position: absolute;
+  z-index: 999;
   pointer-events: none;
   opacity: 1;
   border: 1px solid lightblue;
@@ -1436,6 +1437,47 @@ a {
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
   transition: all 200ms;
+}
+
+.help-box {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 998;
+  background-color: #242424;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0px;
+  padding-right: 10px;
+  box-shadow: 0px 0px 9px #303030;
+}
+.help-box__info-icon {
+  margin-right: 10px;
+  color: white;
+  font-size: 0.8em;
+  padding: 4px 6px;
+  padding-left: 8px;
+  background-color: #216ee7;
+  border: 1px solid #7daaf1;
+  border-radius: 100%;
+}
+.help-box__point {
+  width: 7px;
+  height: 7px;
+  border: 1px solid black;
+  border-radius: 100%;
+  background-color: yellow;
+  margin: 0px 4px;
+  padding: 0px;
+}
+.help-box__help-icon {
+  color: yellow;
+}
+.help-box__content {
+  color: #d9d9d9;
+  font-size: 0.8em;
 }
 
 .main-container {

@@ -336,7 +336,13 @@
             </div>
 
             <!-- CAROUSSEL -->
-            <aside class="caroussel">
+            <aside class="caroussel" onmouseleave="onMouseLeaveArea(event)">
+              <div class="help-box">
+                <i class="fas fa-arrow-pointer help-box__info-icon"></i>
+                <span class="help-box__content"> hover </span>
+                <span class="help-box__point"></span>
+                <span class="help-box__content"> to magnify </span>
+              </div>
               <a class="caroussel__left-arrow" href="#Eastern_Kingdoms_map"
                 ><i class="fas fa-angle-left"></i
               ></a>
@@ -347,7 +353,6 @@
                 <img
                   onmouseenter="onMouseEnterImg(event)"
                   onmousemove="onMouseMoveImg(event)"
-                  onmouseleave="onMouseLeaveImg(event)"
                   src="./assets/img/map.jpg"
                   style="
                     display: block;
@@ -368,7 +373,7 @@
                     width="8"
                     height="8"
                     class="spawn_point"
-                    style="top: 481px; left: 102px"
+                    style="top: px; left: 102px"
                   >
                     <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                     <title>-9889.68 338.467 36.6486 0</title>
@@ -512,7 +517,7 @@
                   alt="Kalimdor_map"
                   title="Kalimdor_map"
                 />
-                <!-- <div
+                <div
                   onmouseenter="onMouseEnterPoint(event)"
                   onmouseleave="onMouseLeavePoint(event)"
                 >
@@ -587,7 +592,7 @@
                     ></circle>
                     <title>-2952.76 -3885.41 34.3089 1</title>
                   </svg>
-                </div> -->
+                </div>
               </div>
               <!-- MAGNIFIER -->
               <div class="magnifier"></div>

@@ -5,8 +5,8 @@ const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
 let actualMapInUse = null;
 const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
-const magnifierHeight = 1000;
-const magnifierWidth = 1000;
+const magnifierHeight = 1300;
+const magnifierWidth = 1300;
 const magnifierZoomLevel = 5;
 let magnifierHasEnteredPoint = false;
 let magnifierX = 0;
@@ -18,7 +18,10 @@ function onMouseEnterImg(e) {
   actualMapInUse = e;
   const { width, height } = map;
 
-  magnifier.style.display == "block";
+  // Prevent display to be a empty string
+  if (magnifier.style.display == "") {
+    magnifier.style.display = "none";
+  }
 
   magnifier.style.height = `${magnifierHeight}px`;
   magnifier.style.width = `${magnifierWidth}px`;
@@ -28,45 +31,33 @@ function onMouseEnterImg(e) {
   }px`;
 }
 
-// When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
-function onMouseMoveImg(e) {
-  // if magnifier is closed, we dont need to do calculation
-  // if (magnifier.style.display == "none" || !actualMapInUse) {
-  //   return;
-  // }
-  // const img = e.currentTarget;
-  // const { top, left } = img.getBoundingClientRect();
-  // const widthToAdd = _calculateWidthToAdd();
-  // // calculate cursor position on the image
-  // let cursorX = e.pageX - left - window.pageXOffset + widthToAdd;
-  // let cursorY = e.pageY - top - window.pageYOffset;
-  // const distance = _calculateDistance(cursorX, cursorY, magnifierX, magnifierY);
-  // if (distance > magnifierWidth / 2) {
-  //   _closeMagnifier();
-  // }
-}
-
-function onMouseLeaveImg(e) {
+// When mouse leave caroussel, we close it
+function onMouseLeaveArea(e) {
+  e;
   _closeMagnifier();
 }
 
-// When mouse hover a point, we display magnifier
-function onMouseEnterPoint(e) {
-  // if magnifier is already open and point is in magnfier radius, we dont do anything
-  console.log("ON ENTER POINT");
-  const svg = e.target.childNodes[1];
-  console.log(magnifier.style.display);
-  // if (_checkIfPointIsInMagnifier(svg)) {
-  //   return;
-  // }
+// When mouse move on image
+function onMouseMoveImg(e) {
+  e;
+  return;
+}
 
+// When mouse hover a point and magnifier is not open, we display magnifier
+function onMouseEnterPoint(e) {
+  const svg = e.target.childNodes[1];
+
+  // if magnifier is already open, we do nothing
+  if (magnifier.style.display != "none") {
+    return;
+  }
   _resetModifiedSpawnPoints();
   magnifier.style.display = "block";
   e.target.style.zIndex = "1001";
   _alignMagnifierWithPoint(svg);
 
   for (let point of spawnPoints) {
-    if (!point.isEqualNode(svg) && _checkIfPointIsInMagnifier(point)) {
+    if (!point.isEqualNode(svg) && _checkIfPointIsInActualMap(point)) {
       _correctMagnifiedPointPosition(svg, point);
     }
   }
@@ -78,6 +69,7 @@ function onMouseLeavePoint(e) {
   return;
 }
 
+// Set display to none and reset points to their original location
 function _closeMagnifier() {
   magnifier.style.display = "none";
   _resetModifiedSpawnPoints();
@@ -103,11 +95,12 @@ function _updateMagnifierPosition() {
   }px`;
 }
 
-// When user hover a point, magnifier will align its center with it
+// Magnifier will align its center with point
 function _alignMagnifierWithPoint(point) {
   const widthToAdd = _calculateWidthToAdd();
   magnifierX = _domValueToFloat(point.style.left) + widthToAdd;
   magnifierY = _domValueToFloat(point.style.top);
+
   _updateMagnifierPosition();
 }
 
@@ -125,18 +118,25 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-// Check if point is in magnifier radius
-function _checkIfPointIsInMagnifier(point) {
-  const widthToAdd = _calculateWidthToAdd();
-  // we had point width/2 to be sure that point cant be in between magnifier border
-  const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
-  const pointX = _domValueToFloat(point.style.left) + widthToAdd;
-  const pointY = _domValueToFloat(point.style.top);
-  const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
-  return distance < radius;
+// Check if hovered point is in map in use
+function _checkIfPointIsInActualMap(point) {
+  if (!actualMapInUse) {
+    return;
+  }
+
+  const mapContainer = actualMapInUse.target.parentNode;
+  const mapChildren = mapContainer.children;
+  for (let element of mapChildren) {
+    let mapPoint = element.firstElementChild;
+    if (mapPoint && mapPoint.isEqualNode(point)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
-// Update spawn point to fit zoom if it is in magnifier range
+// Update spawn point to fit zoom
 function _correctMagnifiedPointPosition(referencePoint, point) {
   // distance difference X between points
   let diffX =
@@ -165,14 +165,8 @@ function _correctMagnifiedPointPosition(referencePoint, point) {
     originalX: point.style.left,
   });
 
-  // We verify if point is still in magnifier radius after updating coords
-  if (_checkIfPointIsInMagnifier(updatedPoint)) {
-    point.style.top = updatedPoint.style.top;
-    point.style.left = updatedPoint.style.left;
-  } else {
-    // it is not in magnifier radius anymore, we hide it to prevent wrong location
-    point.style.display = "none";
-  }
+  point.style.top = updatedPoint.style.top;
+  point.style.left = updatedPoint.style.left;
 }
 
 // We set original point location when magnifier is closed
@@ -203,4 +197,15 @@ function _calculateDistance(x1, y1, x2, y2) {
 //   const point2X = _domValueToFloat(point2.style.left) + magnifierHeight / 2;
 
 //   return _calculateDistance(point1X, point1Y, point2X, point2Y);
+// }
+
+// Check if point is in magnifier radius
+// function _checkIfPointIsInMagnifier(point) {
+//   const widthToAdd = _calculateWidthToAdd();
+//   // we had point width/2 to be sure that point cant be in between magnifier border
+//   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
+//   const pointX = _domValueToFloat(point.style.left) + widthToAdd;
+//   const pointY = _domValueToFloat(point.style.top);
+//   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
+//   return distance < radius;
 // }
