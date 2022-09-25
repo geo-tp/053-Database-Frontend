@@ -8,7 +8,6 @@ let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
 const magnifierWidth = 1300;
 const magnifierZoomLevel = 5;
-let magnifierHasEnteredPoint = false;
 let magnifierX = 0;
 let magnifierY = 0;
 
@@ -37,7 +36,7 @@ function onMouseLeaveArea(e) {
   _closeMagnifier();
 }
 
-// When mouse move on image
+// When mouse move on image (UNUSED)
 function onMouseMoveImg(e) {
   e;
   return;
@@ -63,7 +62,7 @@ function onMouseEnterPoint(e) {
   }
 }
 
-// When mouse leave a point
+// When mouse leave a point (UNUSED)
 function onMouseLeavePoint(e) {
   e;
   return;
@@ -118,7 +117,7 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-// Check if hovered point is in map in use
+// Check if hovered point is in actual map in use
 function _checkIfPointIsInActualMap(point) {
   if (!actualMapInUse) {
     return;
@@ -136,7 +135,7 @@ function _checkIfPointIsInActualMap(point) {
   return false;
 }
 
-// Update spawn point to fit zoom
+// Update spawn point location to fit zoom
 function _correctMagnifiedPointPosition(referencePoint, point) {
   // distance difference X between points
   let diffX =
