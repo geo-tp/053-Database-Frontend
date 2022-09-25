@@ -1,4 +1,5 @@
-// Global Variables
+// ############### GLOBAL VARIABLES ##################
+
 const magnifier = document.querySelector(".magnifier");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
@@ -10,6 +11,14 @@ const magnifierWidth = 1300;
 const magnifierZoomLevel = 5;
 let magnifierX = 0;
 let magnifierY = 0;
+
+// ############### EVENT FUNCTIONS ##################
+
+// When mouse leave caroussel, we close magnifier
+function onMouseLeaveArea(e) {
+  e;
+  _closeMagnifier();
+}
 
 // When mouse hover on image, we initialise magnifier without display it
 function onMouseEnterImg(e) {
@@ -28,12 +37,6 @@ function onMouseEnterImg(e) {
   magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
     height * magnifierZoomLevel
   }px`;
-}
-
-// When mouse leave caroussel, we close magnifier
-function onMouseLeaveArea(e) {
-  e;
-  _closeMagnifier();
 }
 
 // When mouse move on image (UNUSED)
@@ -67,6 +70,8 @@ function onMouseLeavePoint(e) {
   e;
   return;
 }
+
+// ############### PRIVATE FUNCTIONS ##################
 
 // Set display to none and reset points to their original location
 function _closeMagnifier() {
