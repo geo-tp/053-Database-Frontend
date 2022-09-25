@@ -1384,24 +1384,6 @@ a {
   object-fit: contain;
   animation: appearslowly 400ms ease-in-out;
 }
-.caroussel-model__right1 {
-  left: 180px;
-}
-.caroussel-model__left2 {
-  left: 200px;
-}
-.caroussel-model__right2 {
-  left: 380px;
-}
-.caroussel-model__left3 {
-  left: 400px;
-}
-.caroussel-model__right3 {
-  left: 580px;
-}
-.caroussel-model__left4 {
-  left: 600px;
-}
 
 .entry-navigation {
   position: absolute;
@@ -1970,7 +1952,7 @@ a {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 2.5%;
+  bottom: 1.5%;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
