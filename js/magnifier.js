@@ -186,7 +186,7 @@ function _domValueToFloat(value) {
 
 // Calculate distance between coords
 function _calculateDistance(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x1 - 8 - x2, 2) + Math.pow(y1 - 8 - y2, 2));
+  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
 }
 
 // Calculate distance between 2 points and return result
