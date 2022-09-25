@@ -126,7 +126,7 @@
               <!-- MODEL DISPLAY ID -->
               <img
                 class="model-display"
-                src="./assets/img/missing_creature.png"
+                src="./assets/img/missing_creature.webp"
                 alt="creature's model"
               />
               <!-- END MODEL DISPLAY ID -->
@@ -304,7 +304,13 @@
             </div>
 
             <!-- CAROUSSEL -->
-            <aside class="caroussel">
+            <aside class="caroussel" onmouseleave="onMouseLeaveArea(event)">
+              <div class="help-box">
+                <i class="fas fa-arrow-pointer help-box__info-icon"></i>
+                <span class="help-box__content"> hover </span>
+                <span class="help-box__point"></span>
+                <span class="help-box__content"> to magnify </span>
+              </div>
               <a class="caroussel__left-arrow" href="#Eastern_Kingdoms_map"
                 ><i class="fas fa-angle-left"></i
               ></a>
@@ -315,7 +321,7 @@
                 <img
                   onmouseenter="onMouseEnterImg(event)"
                   onmousemove="onMouseMoveImg(event)"
-                  src="./assets/img/map.jpg"
+                  src="./assets/img/Eastern_Kingdoms.webp"
                   style="
                     display: block;
                     max-width: initial;
@@ -326,23 +332,149 @@
                   alt="Eastern_Kingdoms map"
                   title="Eastern_Kingdoms map"
                 />
-                <svg
+
+                <div
                   onmouseenter="onMouseEnterPoint(event)"
                   onmouseleave="onMouseLeavePoint(event)"
-                  width="8"
-                  height="8"
-                  class="spawn_point"
-                  style="top: 473px; left: 81px"
                 >
-                  <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                  <title>-9889.68 338.467 36.6486 0</title>
-                </svg>
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 400px; left: 102px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 383px; left: 31px"
+                    class="spawn_point"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 481px; left: 102px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 440px; left: 105px"
+                    class="spawn_point"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 460px; left: 110px"
+                    class="spawn_point"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 470px; left: 115px"
+                    class="spawn_point"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 500px; left: 120px"
+                    class="spawn_point"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 470px; left: 117px; position: absolute"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 479px; left: 118px; position: absolute"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
               </div>
               <div class="map-container">
                 <img
                   onmouseenter="onMouseEnterImg(event)"
                   onmousemove="onMouseMoveImg(event)"
-                  src="./assets/img/map2.jpg"
+                  src="./assets/img/Kalimdor.webp"
                   style="
                     display: block;
                     max-width: initial;
@@ -353,17 +485,82 @@
                   alt="Kalimdor_map"
                   title="Kalimdor_map"
                 />
-                <svg
+                <div
                   onmouseenter="onMouseEnterPoint(event)"
                   onmouseleave="onMouseLeavePoint(event)"
-                  width="8"
-                  height="8"
-                  class="spawn_point"
-                  style="top: 473px; left: 81px"
                 >
-                  <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                  <title>-9889.68 338.467 36.6486 0</title>
-                </svg>
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 473px; left: 81px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 383px; left: 81px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 463px; left: 85px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 478px; left: 88px"
+                  >
+                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
+                    <title>-9889.68 338.467 36.6486 0</title>
+                  </svg>
+                </div>
+                <div
+                  onmouseenter="onMouseEnterPoint(event)"
+                  onmouseleave="onMouseLeavePoint(event)"
+                >
+                  <svg
+                    width="8"
+                    height="8"
+                    class="spawn_point"
+                    style="top: 481px; left: 234px"
+                  >
+                    <circle
+                      cx="4"
+                      cy="4"
+                      r="4"
+                      fill="yellow"
+                      stroke="black"
+                    ></circle>
+                    <title>-2952.76 -3885.41 34.3089 1</title>
+                  </svg>
+                </div>
               </div>
               <!-- MAGNIFIER -->
               <div class="magnifier"></div>
