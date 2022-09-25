@@ -30,7 +30,7 @@ function onMouseEnterImg(e) {
   }px`;
 }
 
-// When mouse leave caroussel, we close it
+// When mouse leave caroussel, we close magnifier
 function onMouseLeaveArea(e) {
   e;
   _closeMagnifier();
@@ -117,7 +117,7 @@ function _calculateWidthToAdd() {
   return widthToAdd;
 }
 
-// Check if hovered point is in actual map in use
+// Check if point is in actual map hovered by mouse
 function _checkIfPointIsInActualMap(point) {
   if (!actualMapInUse) {
     return;
