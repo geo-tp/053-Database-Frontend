@@ -112,7 +112,7 @@ function _calculateWidthToAdd() {
     easternKingdom != null &&
     actualMapInUse.target.isEqualNode(easternKingdom)
   ) {
-    widthToAdd = easternKingdom.width;
+    widthToAdd = kalimdor.width;
   }
 
   return widthToAdd;
