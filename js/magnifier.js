@@ -5,9 +5,10 @@ const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
 let actualMapInUse = null;
 const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
-const magnifierHeight = 200;
-const magnifierWidth = 200;
+const magnifierHeight = 1000;
+const magnifierWidth = 1000;
 const magnifierZoomLevel = 5;
+let magnifierHasEnteredPoint = false;
 let magnifierX = 0;
 let magnifierY = 0;
 
@@ -30,33 +31,34 @@ function onMouseEnterImg(e) {
 // When mouse move on image, we verify if cursor is still in magnifier radius to hide it if not
 function onMouseMoveImg(e) {
   // if magnifier is closed, we dont need to do calculation
-  if (magnifier.style.display == "none" || !actualMapInUse) {
-    return;
-  }
+  // if (magnifier.style.display == "none" || !actualMapInUse) {
+  //   return;
+  // }
+  // const img = e.currentTarget;
+  // const { top, left } = img.getBoundingClientRect();
+  // const widthToAdd = _calculateWidthToAdd();
+  // // calculate cursor position on the image
+  // let cursorX = e.pageX - left - window.pageXOffset + widthToAdd;
+  // let cursorY = e.pageY - top - window.pageYOffset;
+  // const distance = _calculateDistance(cursorX, cursorY, magnifierX, magnifierY);
+  // if (distance > magnifierWidth / 2) {
+  //   _closeMagnifier();
+  // }
+}
 
-  const img = e.currentTarget;
-  const { top, left } = img.getBoundingClientRect();
-  const widthToAdd = _calculateWidthToAdd();
-
-  // calculate cursor position on the image
-  let cursorX = e.pageX - left - window.pageXOffset + widthToAdd;
-  let cursorY = e.pageY - top - window.pageYOffset;
-
-  const distance = _calculateDistance(cursorX, cursorY, magnifierX, magnifierY);
-  if (distance > magnifierWidth / 2) {
-    magnifier.style.display = "none";
-    _resetModifiedSpawnPoints();
-  }
+function onMouseLeaveImg(e) {
+  _closeMagnifier();
 }
 
 // When mouse hover a point, we display magnifier
 function onMouseEnterPoint(e) {
   // if magnifier is already open and point is in magnfier radius, we dont do anything
-
+  console.log("ON ENTER POINT");
   const svg = e.target.childNodes[1];
-  if (_checkIfPointIsInMagnifier(svg) && magnifier.style.display != "none") {
-    return;
-  }
+  console.log(magnifier.style.display);
+  // if (_checkIfPointIsInMagnifier(svg)) {
+  //   return;
+  // }
 
   _resetModifiedSpawnPoints();
   magnifier.style.display = "block";
@@ -72,7 +74,13 @@ function onMouseEnterPoint(e) {
 
 // When mouse leave a point
 function onMouseLeavePoint(e) {
+  e;
   return;
+}
+
+function _closeMagnifier() {
+  magnifier.style.display = "none";
+  _resetModifiedSpawnPoints();
 }
 
 // Update magnifier top/left and its background img position to new coords
