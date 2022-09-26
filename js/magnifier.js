@@ -14,11 +14,9 @@ const magnifierWidth = 1300;
 let magnifierZoomLevel = 1;
 let magnifierX = 0;
 let magnifierY = 0;
-let dragOffSetX = null;
-let dragOffSetY = null;
-let dragCoordX = null;
-let dragCoordY = null;
-let dragIsActivated = false;
+
+let scrollPageX = 0;
+let scrollPageY = 0;
 
 // ############### INIT ##################
 
@@ -41,6 +39,15 @@ caroussel.onwheel = onMouseWheelArea;
 // Zoom/Dezoom when mouse wheel is triggered
 function onMouseWheelArea(e) {
   e.preventDefault();
+
+  let container = e.target.parentNode;
+  console.log("EVENT", e);
+  const { top, left } = container.getBoundingClientRect();
+  // container.scrollTop += 10;
+  container.scrollTop =
+    (e.pageY - top - window.pageYOffset) * magnifierZoomLevel;
+  container.scrollLeft =
+    (e.pageX - left - window.pageXOffset) * magnifierZoomLevel;
 
   // Zoom
   if (e.deltaX != 0) {
@@ -70,25 +77,52 @@ function onMouseWheelArea(e) {
 function onMouseDownMapContainer(event) {
   event.preventDefault();
   let container = event.target.parentNode;
+  container.style.cursor = "grabbing";
   container.onmousemove = onMouseMoveMapContainer;
 }
 
 function onMouseMoveMapContainer(event) {
   let container = event.target.parentNode;
-  const { top, left } = container.getBoundingClientRect();
+  let xDirection = null;
+  let yDirection = null;
 
-  container.scrollTop = event.pageY - top - window.pageYOffset;
-  container.scrollLeft = event.pageX - left - window.pageXOffset;
+  //deal with the horizontal case
+  if (scrollPageX < event.pageX) {
+    xDirection = "right";
+  } else {
+    xDirection = "left";
+  }
+
+  //deal with the vertical case
+  if (scrollPageY < event.pageY) {
+    yDirection = "down";
+  } else {
+    yDirection = "up";
+  }
+  console.log("DIFF X", scrollPageX - event.pageX);
+  console.log("DIFF Y", scrollPageY - event.pageY);
+
+  scrollPageX = event.pageX;
+  scrollPageY = event.pageY;
+
+  container.scrollTop += yDirection == "down" ? -10 : 10;
+  container.scrollLeft += xDirection == "right" ? -10 : 10;
 }
 
 function onMouseUpMapContainer(event) {
   let container = event.target.parentNode;
+  container.style.cursor = "unset";
   container.onmousemove = null;
 }
 
-function onMouseLeaveArea(e) {
-  e;
-  _closeMagnifier();
+function onMouseLeaveMapContainer(event) {
+  let container = event.target;
+  console.log(event.target);
+
+  container.onmousemove = () => {};
+  container.style.cursor = "unset";
+
+  // _closeMagnifier();
 }
 
 // When mouse leave a point (UNUSED)
