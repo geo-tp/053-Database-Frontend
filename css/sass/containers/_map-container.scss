@@ -2,6 +2,13 @@
   position: relative;
   // z-index: 999;
   overflow: scroll;
+  min-width: 345px;
+  min-height: 650px;
+
+  & img {
+    width: 690px;
+    height: 1300px;
+  }
 
   & svg {
     :hover {

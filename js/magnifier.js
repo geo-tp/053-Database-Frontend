@@ -3,7 +3,9 @@
 const magnifier = document.querySelector(".magnifier");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
-let actualMapInUse = null;
+let actualMapInUse = kalimdor;
+actualMapInUse.addEventListener("click", onClickLeftMapContainer);
+actualMapInUse.addEventListener("contextmenu", onClickRightMapContainer);
 const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
@@ -11,6 +13,155 @@ const magnifierWidth = 1300;
 const magnifierZoomLevel = 5;
 let magnifierX = 0;
 let magnifierY = 0;
+let dragOffSetX = null;
+let dragOffSetY = null;
+let dragCoordX = null;
+let dragCoordY = null;
+let dragIsActivated = false;
+
+function onClickLeftMapContainer(e) {
+  e.preventDefault();
+  // kalimdor.setAttribute(
+  //   "style",
+  //   `width:${kalimdor.width + 345}px; height:${kalimdor.height + 650}px`
+  // );
+
+  // for (let point of spawnPoints) {
+  //   point.style.top = `${_domValueToFloat(point.style.top) * 2}px`;
+  //   point.style.left = `${_domValueToFloat(point.style.left) * 2}px`;
+  // }
+
+  // kalimdor.width += 345;
+  // kalimdor.height += 650;
+  console.log("ONCLICK", actualMapInUse.width);
+}
+
+function onClickRightMapContainer(e) {
+  e.preventDefault();
+  // kalimdor.setAttribute(
+  //   "style",
+  //   `width:${kalimdor.width - 345}px; height:${kalimdor.height - 650}px`
+  // );
+
+  // kalimdor.width += 345;
+  // kalimdor.height += 650;
+  console.log("ONCLICK", actualMapInUse.width);
+}
+
+function onDragStartMapContainer(e) {
+  console.log("START DRAG");
+  // e.preventDefault();
+
+  // const elem = e.currentTarget;
+  // const { top, left } = elem.getBoundingClientRect();
+
+  dragOffSetX = e.clientX;
+  dragOffSetY = e.clientY;
+  dragOffSetX = parseFloat(e.target.style.left);
+  dragOffSetY = parseFloat(e.target.style.top);
+  dragIsActivated = true;
+  // e.onmousemove = onDragMoveImg;
+  return false;
+  // // calculate cursor position on the image
+  // const x = e.pageX - left - window.pageXOffset;
+  // const y = e.pageY - top - window.pageYOffset;
+  // startY = y;
+}
+
+function onDragMoveImg(e) {
+  // if (!dragIsActivated) {
+  //   return;
+  // }
+  console.log("DRAG MOVE");
+
+  actualMapInUse.style.left = dragCoordX + e.clientX - dragOffSetX;
+  actualMapInUse.style.top = dragCoordY + e.clientY - dragCoordY;
+  return false;
+}
+
+function onDragEndMapContainer(e) {
+  console.log("END DRAG");
+  dragIsActivated = false;
+  e.onmousedown = onDragStartMapContainer;
+  e.onmouseup = onDragEndMapContainer;
+  const elem = e.currentTarget;
+  const { top, left } = elem.getBoundingClientRect();
+
+  // calculate cursor position on the image
+  const x = e.pageX - left - window.pageXOffset;
+  const y = e.pageY - top - window.pageYOffset;
+  endY = y;
+  console.log(e.target.scrollTop);
+  e.target.scrollTop = e.target.scrollTop + 100;
+}
+
+function onMouseDownMapContainer(event) {
+  event.preventDefault();
+  console.log(event.target);
+  let container = event.target.parentNode;
+  console.log(container.scrollTop);
+  container.onmousemove = onMouseMoveMapContainer;
+  return;
+  // event.onmousemove = onMouseMoveImg;
+  // event = event.target;
+  // _startX = event.clientX;
+  // _startY = event.clientY;
+  // _offsetX = event.offsetLeft;
+  // _offsetY = event.offsetTop;
+  // console.log(event);
+  // // actualMapInUse = event.target;
+}
+
+function onMouseMoveMapContainer(event) {
+  console.log("ON MOVE");
+  console.log(event.clientX);
+  // console.log(event.clientY);
+  let container = event.target.parentNode;
+  const { top, left } = container.getBoundingClientRect();
+
+  console.log(
+    "SCROLLTOP  : ",
+    event.pageY - event.clientY - window.pageYOffset
+  );
+  console.log("SCROLLLEFT  : ", container.scrollLeft);
+  container.scrollTop = event.pageY - top - window.pageYOffset;
+  container.scrollLeft = event.pageX - left - window.pageXOffset;
+  // console.log(event);
+  // console.log(event.target.scrollLeft);
+  // actualMapInUse.style.left = _offsetX + event.clientX - _startX + "px";
+  // actualMapInUse.style.top = _offsetY + event.clientY - _startY + "px";
+  return;
+}
+
+function onMouseUpMapContainer(event) {
+  let container = event.target.parentNode;
+  container.onmousemove = null;
+  return;
+  // event.onmousemove = null;
+  // actualMapInUse = null;
+}
+
+// Zoom/Dezoom when mouse wheel is triggered
+function onMouseWheelArea(e) {
+  e.preventDefault();
+  console.log(e.deltaY);
+
+  const { top, left } = e.target.getBoundingClientRect();
+
+  // calculate cursor position on the image
+  let cursorX = e.pageX - left - window.pageXOffset;
+  let cursorY = e.pageY - top - window.pageYOffset;
+
+  // if (actualReferencePoint) {
+  //   const distance = _calculateDistance(
+  //     cursorX,
+  //     cursorY,
+  //     actualReferencePoint.cursorX,
+  //     actualReferencePoint.cursorY
+  //   );
+
+  //   cursorX = cursorX - distance/magnifierZoomLevel;
+}
 
 // ############### EVENT FUNCTIONS ##################
 
@@ -22,12 +173,12 @@ function onMouseLeaveArea(e) {
 
 // When mouse hover on image, we initialise magnifier without display it
 function onMouseEnterImg(e) {
-  const map = e.target;
-  // actualMapInUse = e;
-  const { width, height } = map;
-
-  map.style.width = `${width + 345}px`;
-  map.style.height = `${height + 650}px`;
+  // actualMapInUse = e.target;
+  // const map = e.target;
+  // // actualMapInUse = e;
+  // const { width, height } = map;
+  // map.style.width = `${width + 345}px`;
+  // map.style.height = `${height + 650}px`;
   // // Prevent display to be a empty string
   // if (magnifier.style.display == "") {
   //   magnifier.style.display = "none";
@@ -38,12 +189,6 @@ function onMouseEnterImg(e) {
   // magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
   //   height * magnifierZoomLevel
   // }px`;
-}
-
-// When mouse move on image (UNUSED)
-function onMouseMoveImg(e) {
-  e;
-  return;
 }
 
 // When mouse hover a point and magnifier is not open, we display magnifier
@@ -178,9 +323,9 @@ function _resetModifiedSpawnPoints() {
   modifiedSpawnPoints = [];
 }
 
-// Return float value of DOM style property : 450.13px -> 450.13
+// Return float value of DOM style property : 45.12% -> 45.12
 function _domValueToFloat(value) {
-  return parseFloat(value.split("px")[0]);
+  return parseFloat(value.split("%")[0]);
 }
 
 // Calculate distance between coords

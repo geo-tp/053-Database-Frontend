@@ -1909,6 +1909,12 @@ a {
 .map-container {
   position: relative;
   overflow: scroll;
+  min-width: 345px;
+  min-height: 650px;
+}
+.map-container img {
+  width: 690px;
+  height: 1300px;
 }
 .map-container svg :hover .magnifier {
   display: block;

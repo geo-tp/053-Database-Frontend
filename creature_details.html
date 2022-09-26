@@ -338,16 +338,18 @@
                 <span class="help-box__point"></span>
                 <span class="help-box__content"> to magnify </span>
               </div>
-              <a class="caroussel__left-arrow" href=
+              <a class="caroussel__left-arrow" href=""
                 ><i class="fas fa-angle-left"></i
               ></a>
               <a class="caroussel__right-arrow" href="#Eastern_Kingdoms_map"
                 ><i class="fas fa-angle-right"></i
               ></a>
-              <div class="map-container">
+              <div
+                class="map-container"
+                onmousedown="onMouseDownMapContainer(event)"
+                onmouseup="onMouseUpMapContainer(event)"
+              >
                 <img
-                  onmouseenter="onMouseEnterImg(event)"
-                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/Kalimdor.webp"
                   style="
                     display: block;
@@ -368,7 +370,7 @@
                     width="8"
                     height="8"
                     class="spawn_point"
-                    style="top: 90%; left: 80%"
+                    style="top: 400px; left: 102px"
                   >
                     <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
                     <title>-9889.68 338.467 36.6486 0</title>
@@ -382,7 +384,7 @@
                     width="8"
                     height="8"
                     class="spawn_point"
-                    style="top: 20%; left:20%"
+                    style="top: 383px; left: 31px"
                     class="spawn_point"
                   >
                     <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
@@ -497,10 +499,13 @@
                   </svg>
                 </div>
               </div>
-              <div class="map-container">
+              <div
+                class="map-container"
+                onclick="onClickMapContainer(event)"
+                draggable="true"
+              >
                 <img
                   onmouseenter="onMouseEnterImg(event)"
-                  onmousemove="onMouseMoveImg(event)"
                   src="./assets/img/Eastern_Kingdoms.webp"
                   style="
                     display: block;
@@ -591,7 +596,9 @@
               </div>
               <!-- MAGNIFIER -->
               <div class="magnifier">
-                <button class="magnifier__close"><i class="fas fa-plus"></i></button>
+                <button class="magnifier__close">
+                  <i class="fas fa-plus"></i>
+                </button>
               </div>
               <!-- END MAGNIFIER -->
             </aside>
