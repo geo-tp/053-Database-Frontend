@@ -1913,8 +1913,8 @@ a {
   min-height: 650px;
 }
 .map-container img {
-  width: 690px;
-  height: 1300px;
+  width: 345px;
+  height: 650px;
 }
 .map-container svg :hover .magnifier {
   display: block;

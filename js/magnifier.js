@@ -10,7 +10,7 @@ const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
 const magnifierWidth = 1300;
-const magnifierZoomLevel = 5;
+const magnifierZoomLevel = 1;
 let magnifierX = 0;
 let magnifierY = 0;
 let dragOffSetX = null;
@@ -18,6 +18,13 @@ let dragOffSetY = null;
 let dragCoordX = null;
 let dragCoordY = null;
 let dragIsActivated = false;
+
+// ############### EVENT BINDS ##################
+
+const caroussel = document.querySelector(".caroussel");
+caroussel.onwheel = onMouseWheelArea;
+
+// ############### EVENT FUNCS ##################
 
 // Zoom/Dezoom when mouse wheel is triggered
 function onMouseWheelArea(e) {
@@ -45,6 +52,15 @@ function onMouseWheelArea(e) {
       point.style.top = `${parseFloat(point.style.top) * magnifierZoomLevel}`;
     }
   }
+
+  actualMapInUse.setAttribute(
+    "style",
+    `width:${actualMapInUse.width * magnifierZoomLevel}px; height:${
+      actualMapInUse.height * magnifierZoomLevel
+    }px`
+  );
+
+  console.log(actualMapInUse.style.width);
 }
 
 function onClickLeftMapContainer(e) {
