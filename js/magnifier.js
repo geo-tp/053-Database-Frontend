@@ -23,20 +23,21 @@ function onMouseLeaveArea(e) {
 // When mouse hover on image, we initialise magnifier without display it
 function onMouseEnterImg(e) {
   const map = e.target;
-  actualMapInUse = e;
+  // actualMapInUse = e;
   const { width, height } = map;
 
-  // Prevent display to be a empty string
-  if (magnifier.style.display == "") {
-    magnifier.style.display = "none";
-  }
-
-  magnifier.style.height = `${magnifierHeight}px`;
-  magnifier.style.width = `${magnifierWidth}px`;
-  magnifier.style.backgroundImage = `url(${map.src})`;
-  magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
-    height * magnifierZoomLevel
-  }px`;
+  map.style.width = `${width + 345}px`;
+  map.style.height = `${height + 650}px`;
+  // // Prevent display to be a empty string
+  // if (magnifier.style.display == "") {
+  //   magnifier.style.display = "none";
+  // }
+  // magnifier.style.height = `${magnifierHeight}px`;
+  // magnifier.style.width = `${magnifierWidth}px`;
+  // magnifier.style.backgroundImage = `url(${map.src})`;
+  // magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
+  //   height * magnifierZoomLevel
+  // }px`;
 }
 
 // When mouse move on image (UNUSED)
@@ -47,22 +48,20 @@ function onMouseMoveImg(e) {
 
 // When mouse hover a point and magnifier is not open, we display magnifier
 function onMouseEnterPoint(e) {
-  const svg = e.target.childNodes[1];
-
-  // if magnifier is already open, we do nothing
-  if (magnifier.style.display != "none") {
-    return;
-  }
-  _resetModifiedSpawnPoints();
-  magnifier.style.display = "block";
-  e.target.style.zIndex = "1001";
-  _alignMagnifierWithPoint(svg);
-
-  for (let point of spawnPoints) {
-    if (!point.isEqualNode(svg) && _checkIfPointIsInActualMap(point)) {
-      _correctMagnifiedPointPosition(svg, point);
-    }
-  }
+  // const svg = e.target.childNodes[1];
+  // // if magnifier is already open, we do nothing
+  // if (magnifier.style.display != "none") {
+  //   return;
+  // }
+  // _resetModifiedSpawnPoints();
+  // magnifier.style.display = "block";
+  // e.target.style.zIndex = "1001";
+  // _alignMagnifierWithPoint(svg);
+  // for (let point of spawnPoints) {
+  //   if (!point.isEqualNode(svg) && _checkIfPointIsInActualMap(point)) {
+  //     _correctMagnifiedPointPosition(svg, point);
+  //   }
+  // }
 }
 
 // When mouse leave a point (UNUSED)

@@ -1908,6 +1908,7 @@ a {
 
 .map-container {
   position: relative;
+  overflow: scroll;
 }
 .map-container svg :hover .magnifier {
   display: block;
