@@ -4,8 +4,8 @@ const magnifier = document.querySelector(".magnifier");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
 let actualMapInUse = kalimdor;
-actualMapInUse.addEventListener("click", onClickLeftMapContainer);
-actualMapInUse.addEventListener("contextmenu", onClickRightMapContainer);
+// actualMapInUse.addEventListener("click", onClickLeftMapContainer);
+// actualMapInUse.addEventListener("contextmenu", onClickRightMapContainer);
 const spawnPoints = document.querySelectorAll(".spawn_point");
 let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
@@ -18,6 +18,34 @@ let dragOffSetY = null;
 let dragCoordX = null;
 let dragCoordY = null;
 let dragIsActivated = false;
+
+// Zoom/Dezoom when mouse wheel is triggered
+function onMouseWheelArea(e) {
+  e.preventDefault();
+
+  if (e.deltaY > 0) {
+    if (magnifierZoomLevel > 11) {
+      return;
+    }
+
+    magnifierZoomLevel += 0.5;
+  }
+  // it's a dezoom
+  else {
+    if (magnifierZoomLevel - 0.5 < 1) {
+      magnifierZoomLevel = 1;
+      return;
+    }
+    magnifierZoomLevel -= 0.5;
+  }
+
+  for (let point of spawnPoints) {
+    if (_checkIfPointIsInActualMap(actualMapInUse)) {
+      point.style.left = `${parseFloat(point.style.left) * magnifierZoomLevel}`;
+      point.style.top = `${parseFloat(point.style.top) * magnifierZoomLevel}`;
+    }
+  }
+}
 
 function onClickLeftMapContainer(e) {
   e.preventDefault();
