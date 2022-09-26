@@ -1156,7 +1156,6 @@ a {
   position: absolute;
   z-index: 1001;
   cursor: pointer;
-  transition: all 200ms;
 }
 
 .modal {
@@ -1911,6 +1910,11 @@ a {
   overflow: scroll;
   min-width: 345px;
   min-height: 650px;
+  scrollbar-width: none;
+  /* Firefox 64 */
+}
+.map-container::-webkit-scrollbar {
+  display: none;
 }
 .map-container img {
   width: 345px;
