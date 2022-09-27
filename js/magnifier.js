@@ -54,6 +54,7 @@ function onMouseWheelArea(event) {
   // target is <img> here, so we get parentNode map-container
   const container = event.target.parentNode;
 
+  // prevent wheel X axis
   if (event.deltaX != 0) {
     return;
   }
@@ -113,7 +114,6 @@ function onMouseUpMapContainer(event) {
 
 function onMouseLeaveMapContainer(event) {
   let container = event.target;
-
   container.onmousemove = () => {};
   container.style.cursor = "unset";
 }
@@ -139,7 +139,7 @@ function _hideMapUi() {
   helpBox.style.display = "none";
 }
 
-// Hide map UI elements when Zoom is at 1.0
+// Show map UI elements when Zoom is at minValue
 function _ShowMapUi() {
   for (let arrow of mapArrows) {
     arrow.style.display = "block";
@@ -170,6 +170,7 @@ function _determineDragDirection(event) {
     directionY = "up";
   }
 
+  // we store event to compare it later
   scrollPageX = event.pageX;
   scrollPageY = event.pageY;
 
