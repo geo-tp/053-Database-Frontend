@@ -14,7 +14,7 @@ const spawnPoints = document.querySelectorAll(
 );
 
 const minZoomLevel = 1;
-const maxZoomLevel = 11;
+const maxZoomLevel = 15;
 const defaultMapWidth = 345;
 const defaultMapHeight = 650;
 
@@ -22,10 +22,9 @@ let actualZoomLevel = minZoomLevel;
 let actualMapInUse = kalimdor ? kalimdor : easternKingdom;
 let originalSpawnPoints = [];
 
-let scrollPageX = 0;
-let scrollPageY = 0;
-let zoomPositionX = 0;
-let zoomPositionY = 0;
+// Save scroll pos of map-container for comparing it during drag event
+let mapScrollPageX = 0;
+let mapScrollPageY = 0;
 
 // ############### INIT ##################
 
@@ -45,7 +44,7 @@ caroussel.onwheel = onMouseWheelArea;
 
 // ############### EVENT FUNCS ##################
 
-// Zoom/Dezoom when mouse wheel is triggered
+// Zoom/Dezoom when mouse wheel is triggered on Caroussel
 function onMouseWheelArea(event) {
   event.preventDefault();
   // step for zooming/dezooming
@@ -71,6 +70,7 @@ function onMouseWheelArea(event) {
   // Zoom
   else {
     if (actualZoomLevel > maxZoomLevel) {
+      actualZoomLevel = maxZoomLevel;
       return;
     }
 
@@ -86,19 +86,12 @@ function onMouseWheelArea(event) {
   _updateSpawnPointsPosition();
   _updateMapSize();
 }
-
+// When user hover a map
 function onMouseEnterImg(event) {
   actualMapInUse = event.target;
 }
 
-function onMouseDownMapContainer(event) {
-  event.preventDefault();
-  let container = event.target.parentNode;
-
-  container.style.cursor = "grabbing";
-  container.onmousemove = onMouseMoveMapContainer;
-}
-
+// When user move cursor on MapContainer, only activated when user drag map
 function onMouseMoveMapContainer(event) {
   let container = event.target.parentNode;
 
@@ -106,16 +99,32 @@ function onMouseMoveMapContainer(event) {
   _applyDragMove(container, directionX, directionY);
 }
 
+// When user click down (grab)
+function onMouseDownMapContainer(event) {
+  event.preventDefault();
+  let container = event.target.parentNode;
+
+  container.style.cursor = "grabbing";
+  // we initialise onmousemove when user grabs map
+  container.onmousemove = onMouseMoveMapContainer;
+}
+
+// When user releases click
 function onMouseUpMapContainer(event) {
   let container = event.target.parentNode;
   container.style.cursor = "unset";
+
+  // we unset mousemove
   container.onmousemove = null;
 }
 
+// When user is out of MapContainer area
 function onMouseLeaveMapContainer(event) {
   let container = event.target;
-  container.onmousemove = () => {};
   container.style.cursor = "unset";
+
+  // prevent to remains in grab status when user leave area with mousedown activated
+  container.onmousemove = () => {};
 }
 
 // ############### PRIVATE FUNCS ##################
@@ -139,7 +148,7 @@ function _hideMapUi() {
   helpBox.style.display = "none";
 }
 
-// Show map UI elements when Zoom is at minValue
+// Show map UI elements when Zoom is at min value
 function _ShowMapUi() {
   for (let arrow of mapArrows) {
     arrow.style.display = "block";
@@ -153,26 +162,27 @@ function _determineDragDirection(event) {
   let directionX = null;
   let directionY = null;
 
-  let diffX = event.pageX - scrollPageX;
-  let diffY = event.pageY - scrollPageY;
+  // Delta between saved scroll position and new one
+  let diffX = event.pageX - mapScrollPageX;
+  let diffY = event.pageY - mapScrollPageY;
 
-  //deal with the horizontal case
-  if (scrollPageX < event.pageX) {
+  // deal with the horizontal case
+  if (mapScrollPageX < event.pageX) {
     directionX = "right";
   } else if (diffX) {
     directionX = "left";
   }
 
-  //deal with the vertical case
-  if (scrollPageY < event.pageY) {
+  // deal with the vertical case
+  if (mapScrollPageY < event.pageY) {
     directionY = "down";
   } else if (diffY) {
     directionY = "up";
   }
 
   // we store event to compare it later
-  scrollPageX = event.pageX;
-  scrollPageY = event.pageY;
+  mapScrollPageX = event.pageX;
+  mapScrollPageY = event.pageY;
 
   return [directionX, directionY];
 }
