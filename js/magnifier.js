@@ -14,12 +14,7 @@ const spawnPoints = document.querySelectorAll(
 );
 let actualMapInUse = null;
 let originalSpawnPoints = [];
-let modifiedSpawnPoints = [];
-const magnifierHeight = 1300;
-const magnifierWidth = 1300;
 let magnifierZoomLevel = 1;
-let magnifierX = 0;
-let magnifierY = 0;
 
 let scrollPageX = 0;
 let scrollPageY = 0;
@@ -28,6 +23,7 @@ let zoomPositionY = 0;
 
 // ############### INIT ##################
 
+// Save original points coords to be able to calculate zoomed positions
 function cloneSpawnPoints() {
   for (let point of spawnPoints) {
     originalSpawnPoints.push({
@@ -73,7 +69,6 @@ function onMouseWheelArea(event) {
   }
 
   // Update scroll position with cursor
-  // TODO: Cursor should stay at exact map position while zooming/dezooming
   const [cursorX, cursorY] = _getCursorPosition(container, event);
   container.scrollTop = cursorY * (magnifierZoomLevel - 1);
   container.scrollLeft = cursorX * (magnifierZoomLevel - 1);
@@ -113,17 +108,9 @@ function onMouseLeaveMapContainer(event) {
 
   container.onmousemove = () => {};
   container.style.cursor = "unset";
-
-  // _closeMagnifier();
 }
 
-// When mouse leave a point (UNUSED)
-function onMouseLeavePoint(e) {
-  e;
-  return;
-}
-
-// ############### PRIVATE FUNCTIONS ##################
+// ############### PRIVATE FUNCS ##################
 
 // Calculate cursor position
 function _getCursorPosition(container, event) {
@@ -135,6 +122,7 @@ function _getCursorPosition(container, event) {
   return [cursorX, cursorY];
 }
 
+// Hide map UI elements when Zoom is activated
 function _hideMapUi() {
   for (let arrow of mapArrows) {
     arrow.style.display = "none";
@@ -143,6 +131,7 @@ function _hideMapUi() {
   helpBox.style.display = "none";
 }
 
+// Hide map UI elements when Zoom is at 1.0
 function _ShowMapUi() {
   for (let arrow of mapArrows) {
     arrow.style.display = "block";
@@ -151,13 +140,14 @@ function _ShowMapUi() {
   helpBox.style.display = "block";
 }
 
+// Determine if user drag to left/right and down/up
 function _determineDragDirection(event) {
   let directionX = null;
   let directionY = null;
 
   let diffX = event.pageX - scrollPageX;
   let diffY = event.pageY - scrollPageY;
-  const diffTolerance = 1;
+
   //deal with the horizontal case
   if (scrollPageX < event.pageX) {
     directionX = "right";
@@ -178,6 +168,7 @@ function _determineDragDirection(event) {
   return [directionX, directionY];
 }
 
+// Apply drag move to update map scrolling position
 function _applyDragMove(container, directionX, directionY) {
   const step = 7;
   if (directionX) {
@@ -188,6 +179,7 @@ function _applyDragMove(container, directionX, directionY) {
   }
 }
 
+// Update coords of points when Zoom occurs
 function _updateSpawnPointsPosition() {
   for (let i = 0; i < spawnPoints.length; i++) {
     spawnPoints[i].style.left = `${
@@ -199,77 +191,13 @@ function _updateSpawnPointsPosition() {
   }
 }
 
+// Update map width and height when Zoom occurs
 function _updateMapSize() {
+  if (!actualMapInUse) {
+    return;
+  }
   actualMapInUse.setAttribute(
     "style",
     `width:${345 * magnifierZoomLevel}px; height:${650 * magnifierZoomLevel}px`
   );
-}
-
-// Set display to none and reset points to their original location
-function _closeMagnifier() {
-  magnifier.style.display = "none";
-  _resetModifiedSpawnPoints();
-}
-
-// Update magnifier top/left and its background img position to new coords
-function _updateMagnifierPosition() {
-  const widthToAdd = _calculateWidthToAdd();
-  magnifier.style.top = `${magnifierY - magnifierHeight / 2}px`;
-  magnifier.style.left = `${magnifierX - magnifierHeight / 2}px`;
-
-  magnifier.style.backgroundPositionX = `${
-    -magnifierX * magnifierZoomLevel +
-    magnifierWidth / 2 +
-    widthToAdd * magnifierZoomLevel
-  }px`;
-  magnifier.style.backgroundPositionY = `${
-    -magnifierY * magnifierZoomLevel + magnifierHeight / 2
-  }px`;
-}
-
-// Magnifier will align its center with point
-function _alignMagnifierWithPoint(point) {
-  const widthToAdd = _calculateWidthToAdd();
-  magnifierX = _domValueToFloat(point.style.left) + widthToAdd;
-  magnifierY = _domValueToFloat(point.style.top);
-
-  _updateMagnifierPosition();
-}
-
-// Determine if both map are present in caroussel to add the first map width
-function _calculateWidthToAdd() {
-  let widthToAdd = 0;
-  if (
-    kalimdor != null &&
-    easternKingdom != null &&
-    actualMapInUse.target.isEqualNode(easternKingdom)
-  ) {
-    widthToAdd = kalimdor.width;
-  }
-
-  return widthToAdd;
-}
-
-// Check if point is in actual map hovered by mouse
-function _checkIfPointIsInActualMap(point) {
-  if (!actualMapInUse) {
-    return;
-  }
-
-  const mapContainer = actualMapInUse.parentNode;
-  const mapChildren = mapContainer.children;
-  for (let element of mapChildren) {
-    let mapPoint = element.firstElementChild;
-    if (mapPoint && mapPoint.isEqualNode(point)) {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-// Return float value of DOM style property : 45.12% -> 45.12
-function _domValueToFloat(value) {
-  return parseFloat(value.split("px")[0]);
 }
