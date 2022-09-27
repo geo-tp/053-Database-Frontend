@@ -111,9 +111,10 @@ function onMouseMoveMapContainer(event) {
   // scrollPageY = event.pageY;
 
   const [directionX, directionY] = _determineDragDirection(event);
+  _applyDragMove(container, directionX, directionY);
 
-  container.scrollLeft += directionX == "right" ? -10 : 10;
-  container.scrollTop += directionY == "down" ? -10 : 10;
+  // container.scrollLeft += directionX == "right" ? -10 : 10;
+  // container.scrollTop += directionY == "down" ? -10 : 10;
 }
 
 function onMouseUpMapContainer(event) {
@@ -159,26 +160,35 @@ function _determineDragDirection(event) {
   let directionX = null;
   let directionY = null;
 
+  let diffX = event.pageX - scrollPageX;
+  let diffY = event.pageY - scrollPageY;
+  const diffTolerance = 1;
   //deal with the horizontal case
   if (scrollPageX < event.pageX) {
     directionX = "right";
-  } else {
+  } else if (diffX) {
     directionX = "left";
   }
 
   //deal with the vertical case
   if (scrollPageY < event.pageY) {
     directionY = "down";
-  } else {
+  } else if (diffY) {
     directionY = "up";
   }
-
-  console.log("SCROLLPAGEX : ", scrollPageX, "EVENT PAGEX : ", event.pageX);
 
   scrollPageX = event.pageX;
   scrollPageY = event.pageY;
 
   return [directionX, directionY];
+}
+
+function _applyDragMove(container, directionX, directionY) {
+  if (directionX) {
+    container.scrollLeft += directionX == "right" ? -10 : 10;
+  } else if (directionY) {
+    container.scrollTop += directionY == "down" ? -10 : 10;
+  }
 }
 
 function _updateSpawnPointsPosition() {
