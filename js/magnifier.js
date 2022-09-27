@@ -99,6 +99,11 @@ function onMouseMoveMapContainer(event) {
 // When user click down (grab)
 function onMouseDownMapContainer(event) {
   event.preventDefault();
+
+  // Prevent grabbing when zoom is not activated
+  if (actualZoomLevel == minZoomLevel) {
+    return;
+  }
   let container = event.target.parentNode;
 
   container.style.cursor = "grabbing";
@@ -173,8 +178,8 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
     mapZoomIsActivated = true;
   } else {
     // We correct detla between cursor and map
-    let totalDiffX = diffX - diffX / actualZoomLevel;
-    let totalDiffY = diffY - diffY / actualZoomLevel;
+    let totalDiffX = diffX - diffX / actualZoomLevel - 1;
+    let totalDiffY = diffY - diffY / actualZoomLevel - 1;
 
     // Correction is already applied and mouse dont moved since last correction
     // We just apply diffX diffY, so cursor stay at exact same pos while zooming
@@ -247,7 +252,7 @@ function _determineDragDirection(event) {
 
 // Apply drag move to update map scrolling position
 function _applyDragMove(container, directionX, directionY) {
-  const step = 7;
+  const step = 7 + (1 * actualZoomLevel) / 3;
   if (directionX) {
     const calculatedStepX = directionX == "right" ? step * -1 : step;
     container.scrollLeft += calculatedStepX;
