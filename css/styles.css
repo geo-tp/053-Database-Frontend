@@ -1054,22 +1054,30 @@ a {
 .caroussel__left-arrow {
   position: absolute;
   z-index: 50;
-  font-size: 4em;
-  color: #f9f9f9;
+  font-size: 2.5em;
+  color: #7daaf1;
   font-weight: bold;
-  padding: 0px 10px;
-  top: 40%;
-  left: 350px;
+  padding: 0px 5px;
+  top: 50%;
+  left: 355px;
+  border: 1px solid #535353;
+  background-color: #383838;
+  box-shadow: 0px 0px 9px #303030;
+  animation: appearslowly 500ms ease-in-out;
 }
 .caroussel__right-arrow {
   position: absolute;
   z-index: 50;
-  font-size: 4em;
-  color: #f9f9f9;
+  font-size: 2.5em;
   font-weight: bold;
-  padding: 0px 10px;
-  top: 40%;
-  left: 280px;
+  color: #7daaf1;
+  padding: 0px 5px;
+  top: 50%;
+  left: 300px;
+  border: 1px solid #535353;
+  background-color: #383838;
+  box-shadow: 0px 0px 9px #303030;
+  animation: appearslowly 500ms ease-in-out;
 }
 @media screen and (max-width: 1250px) {
   .caroussel img {
@@ -1424,18 +1432,19 @@ a {
   right: 10px;
   z-index: 998;
   background-color: #242424;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   border-radius: 15px 0px 0px 15px;
   padding: 0px;
   padding-right: 10px;
   box-shadow: 0px 0px 9px #303030;
+  animation: appearslowly 500ms ease-in-out;
 }
 .help-box__info-icon {
   margin-right: 10px;
   color: white;
-  font-size: 0.8em;
+  font-size: 1em;
   padding: 4px 6px;
   padding-left: 8px;
   background-color: #216ee7;

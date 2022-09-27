@@ -1,12 +1,18 @@
 // ############### GLOBAL VARIABLES ##################
 
-const magnifier = document.querySelector(".magnifier");
+const magnifier = document.querySelector("#spawn-map-magnifier");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
+const caroussel = document.querySelector("#spawn-map-caroussel");
+const helpBox = document.querySelector("#spawn-map-help-box");
+const mapArrows = [
+  caroussel.querySelector(".caroussel__left-arrow"),
+  caroussel.querySelector(".caroussel__right-arrow"),
+];
+const spawnPoints = document.querySelectorAll(
+  "#spawn-map-caroussel .spawn_point"
+);
 let actualMapInUse = kalimdor;
-// actualMapInUse.addEventListener("click", onClickLeftMapContainer);
-// actualMapInUse.addEventListener("contextmenu", onClickRightMapContainer);
-const spawnPoints = document.querySelectorAll(".spawn_point");
 let originalSpawnPoints = [];
 let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
@@ -31,7 +37,6 @@ cloneSpawnPoints();
 
 // ############### EVENT BINDS ##################
 
-const caroussel = document.querySelector(".caroussel");
 caroussel.onwheel = onMouseWheelArea;
 
 // ############### EVENT FUNCS ##################
@@ -40,36 +45,39 @@ caroussel.onwheel = onMouseWheelArea;
 function onMouseWheelArea(e) {
   e.preventDefault();
 
+  // target is <img> here, so we get parentNode map-container
   let container = e.target.parentNode;
-  console.log("EVENT", e);
+
+  // Update scroll position with cursor
+  // TODO: Cursor should stay at exact map position while zooming/dezooming
   const { top, left } = container.getBoundingClientRect();
-  // container.scrollTop += 10;
   container.scrollTop =
     (e.pageY - top - window.pageYOffset) * magnifierZoomLevel;
   container.scrollLeft =
     (e.pageX - left - window.pageXOffset) * magnifierZoomLevel;
 
-  // Zoom
   if (e.deltaX != 0) {
     return;
   }
 
+  // Dezoom
   if (e.deltaY > 0) {
+    if (magnifierZoomLevel - 0.1 < 1) {
+      magnifierZoomLevel = 1;
+      _ShowMapUi();
+      return;
+    }
+    magnifierZoomLevel -= 0.1;
+  }
+  // Zoom
+  else {
     if (magnifierZoomLevel > 11) {
       return;
     }
 
     magnifierZoomLevel += 0.1;
   }
-  // Dezoom
-  else {
-    if (magnifierZoomLevel - 0.1 < 1) {
-      magnifierZoomLevel = 1;
-      return;
-    }
-    magnifierZoomLevel -= 0.1;
-  }
-
+  _hideMapUi();
   _updateSpawnPointsPosition();
   _updateMapSize();
 }
@@ -77,36 +85,35 @@ function onMouseWheelArea(e) {
 function onMouseDownMapContainer(event) {
   event.preventDefault();
   let container = event.target.parentNode;
+
   container.style.cursor = "grabbing";
   container.onmousemove = onMouseMoveMapContainer;
 }
 
 function onMouseMoveMapContainer(event) {
   let container = event.target.parentNode;
-  let xDirection = null;
-  let yDirection = null;
 
-  //deal with the horizontal case
-  if (scrollPageX < event.pageX) {
-    xDirection = "right";
-  } else {
-    xDirection = "left";
-  }
+  // //deal with the horizontal case
+  // if (scrollPageX < event.pageX) {
+  //   directionX = "right";
+  // } else {
+  //   directionX = "left";
+  // }
 
-  //deal with the vertical case
-  if (scrollPageY < event.pageY) {
-    yDirection = "down";
-  } else {
-    yDirection = "up";
-  }
-  console.log("DIFF X", scrollPageX - event.pageX);
-  console.log("DIFF Y", scrollPageY - event.pageY);
+  // //deal with the vertical case
+  // if (scrollPageY < event.pageY) {
+  //   directionY = "down";
+  // } else {
+  //   directionY = "up";
+  // }
 
-  scrollPageX = event.pageX;
-  scrollPageY = event.pageY;
+  // scrollPageX = event.pageX;
+  // scrollPageY = event.pageY;
 
-  container.scrollTop += yDirection == "down" ? -10 : 10;
-  container.scrollLeft += xDirection == "right" ? -10 : 10;
+  const [directionX, directionY] = _determineDragDirection(event);
+
+  container.scrollLeft += directionX == "right" ? -10 : 10;
+  container.scrollTop += directionY == "down" ? -10 : 10;
 }
 
 function onMouseUpMapContainer(event) {
@@ -117,7 +124,6 @@ function onMouseUpMapContainer(event) {
 
 function onMouseLeaveMapContainer(event) {
   let container = event.target;
-  console.log(event.target);
 
   container.onmousemove = () => {};
   container.style.cursor = "unset";
@@ -132,6 +138,48 @@ function onMouseLeavePoint(e) {
 }
 
 // ############### PRIVATE FUNCTIONS ##################
+
+function _hideMapUi() {
+  for (let arrow of mapArrows) {
+    arrow.style.display = "none";
+  }
+
+  helpBox.style.display = "none";
+}
+
+function _ShowMapUi() {
+  for (let arrow of mapArrows) {
+    arrow.style.display = "block";
+  }
+
+  helpBox.style.display = "block";
+}
+
+function _determineDragDirection(event) {
+  let directionX = null;
+  let directionY = null;
+
+  //deal with the horizontal case
+  if (scrollPageX < event.pageX) {
+    directionX = "right";
+  } else {
+    directionX = "left";
+  }
+
+  //deal with the vertical case
+  if (scrollPageY < event.pageY) {
+    directionY = "down";
+  } else {
+    directionY = "up";
+  }
+
+  console.log("SCROLLPAGEX : ", scrollPageX, "EVENT PAGEX : ", event.pageX);
+
+  scrollPageX = event.pageX;
+  scrollPageY = event.pageY;
+
+  return [directionX, directionY];
+}
 
 function _updateSpawnPointsPosition() {
   for (let i = 0; i < spawnPoints.length; i++) {

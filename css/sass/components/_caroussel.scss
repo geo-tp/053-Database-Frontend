@@ -25,23 +25,32 @@
   &__left-arrow {
     position: absolute;
     z-index: 50;
-    font-size: 4em;
-    color: rgb(249, 249, 249);
+    font-size: 2.5em;
+    color: $color7;
     font-weight: bold;
-    padding: 0px 10px;
-    top: 40%;
-    left: 350px;
+    padding: 0px 5px;
+    top: 50%;
+    left: 355px;
+    border: 1px solid $color4;
+    background-color: $color3;
+    @include big-shadow;
+    animation: appearslowly 500ms ease-in-out;
   }
 
   &__right-arrow {
     position: absolute;
     z-index: 50;
-    font-size: 4em;
-    color: rgb(249, 249, 249);
+    font-size: 2.5em;
     font-weight: bold;
-    padding: 0px 10px;
-    top: 40%;
-    left: 280px;
+    color: $color7;
+    padding: 0px 5px;
+    top: 50%;
+    left: 300px;
+    border: 1px solid $color4;
+    background-color: $color3;
+
+    @include big-shadow;
+    animation: appearslowly 500ms ease-in-out;
   }
 
   @include tiny-laptop-design {
