@@ -79,7 +79,6 @@ function onMouseWheelArea(event) {
   let [cursorX, cursorY] = _getCursorPosition(container, event);
   _updateScrollBarsPosition(container, cursorX, cursorY);
 
-  _hideMapUi();
   _updateSpawnPointsPosition();
   _updateMapSize();
 }
@@ -146,7 +145,7 @@ function _updateActualZoomLevel(event) {
       actualZoomLevel = maxZoomLevel;
       return;
     }
-
+    _hideMapUi();
     actualZoomLevel += zoomStep;
   }
 }
@@ -250,10 +249,16 @@ function _determineDragDirection(event) {
 function _applyDragMove(container, directionX, directionY) {
   const step = 7;
   if (directionX) {
-    container.scrollLeft += directionX == "right" ? step * -1 : step;
+    const calculatedStepX = directionX == "right" ? step * -1 : step;
+    container.scrollLeft += calculatedStepX;
+    mapZoomPositionX += calculatedStepX / (actualZoomLevel - 1);
+    mapZoomHasbeenCorrected = true;
   }
   if (directionY) {
-    container.scrollTop += directionY == "down" ? step * -1 : step;
+    const calculatedStepY = directionY == "down" ? step * -1 : step;
+    container.scrollTop += calculatedStepY;
+    mapZoomPositionY += calculatedStepY / (actualZoomLevel - 1);
+    mapZoomHasbeenCorrected = true;
   }
 }
 
