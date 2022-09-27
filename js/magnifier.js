@@ -29,6 +29,8 @@ let mapScrollPageY = 0;
 // Save map position to comparing it during zoom event
 let mapZoomPositionX = 0;
 let mapZoomPositionY = 0;
+let mapZoomIsActivated = false;
+let mapZoomHasbeenCorrected = false;
 
 // ############### INIT ##################
 
@@ -48,11 +50,15 @@ caroussel.onwheel = onMouseWheelArea;
 
 // ############### EVENT FUNCS ##################
 
-// Zoom/Dezoom when mouse wheel is triggered on Caroussel
+// When user move on map-container
+function onMouseMoveArea(event) {
+  // When mouse move, we need to apply correction
+  mapZoomHasbeenCorrected = false;
+}
+
+// When user wheel on map-container (zoom/dezoom)
 function onMouseWheelArea(event) {
   event.preventDefault();
-  // step for zooming/dezooming
-  const zoomStep = 0.1;
 
   // target is <img> here, so we get parentNode map-container
   let container = event.target.parentNode;
@@ -67,29 +73,11 @@ function onMouseWheelArea(event) {
     return;
   }
 
-  // Dezoom
-  if (event.deltaY > 0) {
-    if (actualZoomLevel - zoomStep < minZoomLevel) {
-      actualZoomLevel = minZoomLevel;
-      _ShowMapUi();
-      return;
-    }
-    actualZoomLevel -= zoomStep;
-  }
-  // Zoom
-  else {
-    if (actualZoomLevel > maxZoomLevel) {
-      actualZoomLevel = maxZoomLevel;
-      return;
-    }
-
-    actualZoomLevel += zoomStep;
-  }
+  _updateActualZoomLevel(event);
 
   // Update scroll position with cursor
-  const [cursorX, cursorY] = _getCursorPosition(container, event);
-  container.scrollTop = cursorY * (actualZoomLevel - 1);
-  container.scrollLeft = cursorX * (actualZoomLevel - 1);
+  let [cursorX, cursorY] = _getCursorPosition(container, event);
+  _updateScrollBarsPosition(container, cursorX, cursorY);
 
   _hideMapUi();
   _updateSpawnPointsPosition();
@@ -139,6 +127,30 @@ function onMouseLeaveMapContainer(event) {
 
 // ############### PRIVATE FUNCS ##################
 
+function _updateActualZoomLevel(event) {
+  // step for zooming/dezooming
+  const zoomStep = 0.1;
+
+  // dezoom
+  if (event.deltaY > 0) {
+    if (actualZoomLevel - zoomStep < minZoomLevel) {
+      actualZoomLevel = minZoomLevel;
+      _ShowMapUi();
+      return;
+    }
+    actualZoomLevel -= zoomStep;
+  }
+  // zoom
+  else {
+    if (actualZoomLevel > maxZoomLevel) {
+      actualZoomLevel = maxZoomLevel;
+      return;
+    }
+
+    actualZoomLevel += zoomStep;
+  }
+}
+
 // Calculate cursor position
 function _getCursorPosition(container, event) {
   const { top, left } = container.getBoundingClientRect();
@@ -146,6 +158,44 @@ function _getCursorPosition(container, event) {
   const cursorY = event.pageY - top - window.pageYOffset;
 
   return [cursorX, cursorY];
+}
+
+// Correct scroll bars with cursor to prevent offcentering
+function _updateScrollBarsPosition(container, cursorX, cursorY) {
+  let diffX = parseInt(cursorX - mapZoomPositionX);
+  let diffY = parseInt(cursorY - mapZoomPositionY);
+
+  // Init cursor for first zoom event
+  if (!mapZoomIsActivated) {
+    mapZoomPositionY = cursorY;
+    mapZoomPositionX = cursorX;
+    container.scrollTop = cursorY * (actualZoomLevel - 1);
+    container.scrollLeft = cursorX * (actualZoomLevel - 1);
+    mapZoomIsActivated = true;
+  } else {
+    // We correct detla between cursor and map
+    let totalDiffX = diffX - diffX / actualZoomLevel;
+    let totalDiffY = diffY - diffY / actualZoomLevel;
+
+    // Correction is already applied and mouse dont moved since last correction
+    // We just apply diffX diffY, so cursor stay at exact same pos while zooming
+    if (mapZoomHasbeenCorrected) {
+      totalDiffX = diffX;
+      totalDiffY = diffY;
+    }
+
+    cursorX = cursorX - totalDiffX;
+    cursorY = cursorY - totalDiffY;
+    container.scrollLeft = cursorX * (actualZoomLevel - 1);
+    container.scrollTop = cursorY * (actualZoomLevel - 1);
+
+    // Map is now recentered and we dont need scroll correction until mouse move
+    mapZoomHasbeenCorrected = true;
+  }
+
+  // We store actual cursor pos to calculate delta with new pos later
+  mapZoomPositionY = cursorY;
+  mapZoomPositionX = cursorX;
 }
 
 // Hide map UI elements when Zoom is activated
