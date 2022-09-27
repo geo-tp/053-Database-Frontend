@@ -349,6 +349,7 @@
                 onmouseleave="onMouseLeaveMapContainer(event)"
               >
                 <img
+                  onmouseenter="onMouseEnterImg(event)"
                   src="./assets/img/Kalimdor.webp"
                   style="
                     display: block;
@@ -473,8 +474,9 @@
               </div>
               <div
                 class="map-container"
-                onclick="onClickMapContainer(event)"
-                draggable="true"
+                onmousedown="onMouseDownMapContainer(event)"
+                onmouseup="onMouseUpMapContainer(event)"
+                onmouseleave="onMouseLeaveMapContainer(event)"
               >
                 <img
                   onmouseenter="onMouseEnterImg(event)"

@@ -12,7 +12,7 @@ const mapArrows = [
 const spawnPoints = document.querySelectorAll(
   "#spawn-map-caroussel .spawn_point"
 );
-let actualMapInUse = kalimdor;
+let actualMapInUse = null;
 let originalSpawnPoints = [];
 let modifiedSpawnPoints = [];
 const magnifierHeight = 1300;
@@ -23,6 +23,8 @@ let magnifierY = 0;
 
 let scrollPageX = 0;
 let scrollPageY = 0;
+let zoomPositionX = 0;
+let zoomPositionY = 0;
 
 // ############### INIT ##################
 
@@ -42,26 +44,18 @@ caroussel.onwheel = onMouseWheelArea;
 // ############### EVENT FUNCS ##################
 
 // Zoom/Dezoom when mouse wheel is triggered
-function onMouseWheelArea(e) {
-  e.preventDefault();
+function onMouseWheelArea(event) {
+  event.preventDefault();
 
   // target is <img> here, so we get parentNode map-container
-  let container = e.target.parentNode;
+  let container = event.target.parentNode;
 
-  // Update scroll position with cursor
-  // TODO: Cursor should stay at exact map position while zooming/dezooming
-  const { top, left } = container.getBoundingClientRect();
-  container.scrollTop =
-    (e.pageY - top - window.pageYOffset) * magnifierZoomLevel;
-  container.scrollLeft =
-    (e.pageX - left - window.pageXOffset) * magnifierZoomLevel;
-
-  if (e.deltaX != 0) {
+  if (event.deltaX != 0) {
     return;
   }
 
   // Dezoom
-  if (e.deltaY > 0) {
+  if (event.deltaY > 0) {
     if (magnifierZoomLevel - 0.1 < 1) {
       magnifierZoomLevel = 1;
       _ShowMapUi();
@@ -77,9 +71,20 @@ function onMouseWheelArea(e) {
 
     magnifierZoomLevel += 0.1;
   }
+
+  // Update scroll position with cursor
+  // TODO: Cursor should stay at exact map position while zooming/dezooming
+  const [cursorX, cursorY] = _getCursorPosition(container, event);
+  container.scrollTop = cursorY * (magnifierZoomLevel - 1);
+  container.scrollLeft = cursorX * (magnifierZoomLevel - 1);
+
   _hideMapUi();
   _updateSpawnPointsPosition();
   _updateMapSize();
+}
+
+function onMouseEnterImg(event) {
+  actualMapInUse = event.target;
 }
 
 function onMouseDownMapContainer(event) {
@@ -93,28 +98,8 @@ function onMouseDownMapContainer(event) {
 function onMouseMoveMapContainer(event) {
   let container = event.target.parentNode;
 
-  // //deal with the horizontal case
-  // if (scrollPageX < event.pageX) {
-  //   directionX = "right";
-  // } else {
-  //   directionX = "left";
-  // }
-
-  // //deal with the vertical case
-  // if (scrollPageY < event.pageY) {
-  //   directionY = "down";
-  // } else {
-  //   directionY = "up";
-  // }
-
-  // scrollPageX = event.pageX;
-  // scrollPageY = event.pageY;
-
   const [directionX, directionY] = _determineDragDirection(event);
   _applyDragMove(container, directionX, directionY);
-
-  // container.scrollLeft += directionX == "right" ? -10 : 10;
-  // container.scrollTop += directionY == "down" ? -10 : 10;
 }
 
 function onMouseUpMapContainer(event) {
@@ -139,6 +124,16 @@ function onMouseLeavePoint(e) {
 }
 
 // ############### PRIVATE FUNCTIONS ##################
+
+// Calculate cursor position
+function _getCursorPosition(container, event) {
+  const { top, left } = container.getBoundingClientRect();
+
+  const cursorX = event.pageX - left - window.pageXOffset;
+  const cursorY = event.pageY - top - window.pageYOffset;
+
+  return [cursorX, cursorY];
+}
 
 function _hideMapUi() {
   for (let arrow of mapArrows) {
@@ -184,10 +179,12 @@ function _determineDragDirection(event) {
 }
 
 function _applyDragMove(container, directionX, directionY) {
+  const step = 7;
   if (directionX) {
-    container.scrollLeft += directionX == "right" ? -10 : 10;
-  } else if (directionY) {
-    container.scrollTop += directionY == "down" ? -10 : 10;
+    container.scrollLeft += directionX == "right" ? step * -1 : step;
+  }
+  if (directionY) {
+    container.scrollTop += directionY == "down" ? step * -1 : step;
   }
 }
 
@@ -203,7 +200,7 @@ function _updateSpawnPointsPosition() {
 }
 
 function _updateMapSize() {
-  kalimdor.setAttribute(
+  actualMapInUse.setAttribute(
     "style",
     `width:${345 * magnifierZoomLevel}px; height:${650 * magnifierZoomLevel}px`
   );
@@ -276,145 +273,3 @@ function _checkIfPointIsInActualMap(point) {
 function _domValueToFloat(value) {
   return parseFloat(value.split("px")[0]);
 }
-
-// Calculate distance between coords
-function _calculateDistance(x1, y1, x2, y2) {
-  return Math.sqrt(Math.pow(x1 - x2, 2) + Math.pow(y1 - y2, 2));
-}
-
-// Calculate distance between 2 points and return result
-// function _calculateDistanceBetweenPoints(point1, point2) {
-//   const point1Y = _domValueToFloat(point1.style.top);
-//   const point1X = _domValueToFloat(point1.style.left);
-//   const point2Y = _domValueToFloat(point2.style.top) + magnifierHeight / 2;
-//   const point2X = _domValueToFloat(point2.style.left) + magnifierHeight / 2;
-
-//   return _calculateDistance(point1X, point1Y, point2X, point2Y);
-// }
-
-// Check if point is in magnifier radius
-// function _checkIfPointIsInMagnifier(point) {
-//   const widthToAdd = _calculateWidthToAdd();
-//   // we had point width/2 to be sure that point cant be in between magnifier border
-//   const radius = magnifierHeight / 2 + point.width.animVal.value / 2;
-//   const pointX = _domValueToFloat(point.style.left) + widthToAdd;
-//   const pointY = _domValueToFloat(point.style.top);
-//   const distance = _calculateDistance(magnifierX, magnifierY, pointX, pointY);
-//   return distance < radius;
-// }
-
-// function onClickLeftMapContainer(e) {
-//   e.preventDefault();
-//   kalimdor.setAttribute(
-//     "style",
-//     `width:${kalimdor.width + 345}px; height:${kalimdor.height + 650}px`
-//   );
-
-//   for (let point of spawnPoints) {
-//     point.style.top = `${_domValueToFloat(point.style.top) * 2}px`;
-//     point.style.left = `${_domValueToFloat(point.style.left) * 2}px`;
-//   }
-
-//   kalimdor.width += 345;
-//   kalimdor.height += 650;
-//   console.log("ONCLICK", actualMapInUse.width);
-// }
-
-// function onClickRightMapContainer(e) {
-// e.preventDefault();
-// kalimdor.setAttribute(
-//   "style",
-//   `width:${kalimdor.width - 345}px; height:${kalimdor.height - 650}px`
-// );
-
-// kalimdor.width += 345;
-// kalimdor.height += 650;
-// console.log("ONCLICK", actualMapInUse.width);
-// }
-
-// function onDragStartMapContainer(e) {
-//   console.log("START DRAG");
-// e.preventDefault();
-
-// const elem = e.currentTarget;
-// const { top, left } = elem.getBoundingClientRect();
-
-// dragOffSetX = e.clientX;
-// dragOffSetY = e.clientY;
-// dragOffSetX = parseFloat(e.target.style.left);
-// dragOffSetY = parseFloat(e.target.style.top);
-// dragIsActivated = true;
-// e.onmousemove = onDragMoveImg;
-// return false;
-// // calculate cursor position on the image
-// const x = e.pageX - left - window.pageXOffset;
-// const y = e.pageY - top - window.pageYOffset;
-// startY = y;
-// }
-
-// function onDragMoveImg(e) {
-// if (!dragIsActivated) {
-//   return;
-// }
-//   console.log("DRAG MOVE");
-
-//   actualMapInUse.style.left =
-//     (dragCoordX + e.clientX - dragOffSetX) * magnifierZoomLevel * -1;
-//   actualMapInUse.style.top =
-//     (dragCoordY + e.clientY - dragCoordY) * magnifierZoomLevel * -1;
-//   return false;
-// }
-
-// function onDragEndMapContainer(e) {
-//   console.log("END DRAG");
-//   dragIsActivated = false;
-//   e.onmousedown = onDragStartMapContainer;
-//   e.onmouseup = onDragEndMapContainer;
-//   const elem = e.currentTarget;
-//   const { top, left } = elem.getBoundingClientRect();
-
-//   // calculate cursor position on the image
-//   const x = e.pageX - left - window.pageXOffset;
-//   const y = e.pageY - top - window.pageYOffset;
-//   endY = y;
-//   console.log(e.target.scrollTop);
-//   e.target.scrollTop = e.target.scrollTop + 100;
-// }
-
-// When mouse hover on image, we initialise magnifier without display it
-// function onMouseEnterImg(e) {
-// actualMapInUse = e.target;
-// const map = e.target;
-// // actualMapInUse = e;
-// const { width, height } = map;
-// map.style.width = `${width + 345}px`;
-// map.style.height = `${height + 650}px`;
-// // Prevent display to be a empty string
-// if (magnifier.style.display == "") {
-//   magnifier.style.display = "none";
-// }
-// magnifier.style.height = `${magnifierHeight}px`;
-// magnifier.style.width = `${magnifierWidth}px`;
-// magnifier.style.backgroundImage = `url(${map.src})`;
-// magnifier.style.backgroundSize = `${width * magnifierZoomLevel}px ${
-//   height * magnifierZoomLevel
-// }px`;
-// }
-
-// When mouse hover a point and magnifier is not open, we display magnifier
-// function onMouseEnterPoint(e) {
-// const svg = e.target.childNodes[1];
-// // if magnifier is already open, we do nothing
-// if (magnifier.style.display != "none") {
-//   return;
-// }
-// _resetModifiedSpawnPoints();
-// magnifier.style.display = "block";
-// e.target.style.zIndex = "1001";
-// _alignMagnifierWithPoint(svg);
-// for (let point of spawnPoints) {
-//   if (!point.isEqualNode(svg) && _checkIfPointIsInActualMap(point)) {
-//     _correctMagnifiedPointPosition(svg, point);
-//   }
-// }
-// }
