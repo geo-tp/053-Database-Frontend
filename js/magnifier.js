@@ -12,9 +12,15 @@ const mapArrows = [
 const spawnPoints = document.querySelectorAll(
   "#spawn-map-caroussel .spawn_point"
 );
-let actualMapInUse = null;
+
+const minZoomLevel = 1;
+const maxZoomLevel = 11;
+const defaultMapWidth = 345;
+const defaultMapHeight = 650;
+
+let actualZoomLevel = minZoomLevel;
+let actualMapInUse = kalimdor ? kalimdor : easternKingdom;
 let originalSpawnPoints = [];
-let magnifierZoomLevel = 1;
 
 let scrollPageX = 0;
 let scrollPageY = 0;
@@ -42,9 +48,11 @@ caroussel.onwheel = onMouseWheelArea;
 // Zoom/Dezoom when mouse wheel is triggered
 function onMouseWheelArea(event) {
   event.preventDefault();
+  // step for zooming/dezooming
+  const zoomStep = 0.1;
 
   // target is <img> here, so we get parentNode map-container
-  let container = event.target.parentNode;
+  const container = event.target.parentNode;
 
   if (event.deltaX != 0) {
     return;
@@ -52,26 +60,26 @@ function onMouseWheelArea(event) {
 
   // Dezoom
   if (event.deltaY > 0) {
-    if (magnifierZoomLevel - 0.1 < 1) {
-      magnifierZoomLevel = 1;
+    if (actualZoomLevel - zoomStep < minZoomLevel) {
+      actualZoomLevel = minZoomLevel;
       _ShowMapUi();
       return;
     }
-    magnifierZoomLevel -= 0.1;
+    actualZoomLevel -= zoomStep;
   }
   // Zoom
   else {
-    if (magnifierZoomLevel > 11) {
+    if (actualZoomLevel > maxZoomLevel) {
       return;
     }
 
-    magnifierZoomLevel += 0.1;
+    actualZoomLevel += zoomStep;
   }
 
   // Update scroll position with cursor
   const [cursorX, cursorY] = _getCursorPosition(container, event);
-  container.scrollTop = cursorY * (magnifierZoomLevel - 1);
-  container.scrollLeft = cursorX * (magnifierZoomLevel - 1);
+  container.scrollTop = cursorY * (actualZoomLevel - 1);
+  container.scrollLeft = cursorX * (actualZoomLevel - 1);
 
   _hideMapUi();
   _updateSpawnPointsPosition();
@@ -183,10 +191,10 @@ function _applyDragMove(container, directionX, directionY) {
 function _updateSpawnPointsPosition() {
   for (let i = 0; i < spawnPoints.length; i++) {
     spawnPoints[i].style.left = `${
-      parseFloat(originalSpawnPoints[i].style.left) * magnifierZoomLevel
+      parseFloat(originalSpawnPoints[i].style.left) * actualZoomLevel
     }px`;
     spawnPoints[i].style.top = `${
-      parseFloat(originalSpawnPoints[i].style.top) * magnifierZoomLevel
+      parseFloat(originalSpawnPoints[i].style.top) * actualZoomLevel
     }px`;
   }
 }
@@ -198,6 +206,8 @@ function _updateMapSize() {
   }
   actualMapInUse.setAttribute(
     "style",
-    `width:${345 * magnifierZoomLevel}px; height:${650 * magnifierZoomLevel}px`
+    `width:${defaultMapWidth * actualZoomLevel}px; height:${
+      defaultMapHeight * actualZoomLevel
+    }px`
   );
 }
