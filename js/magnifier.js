@@ -26,6 +26,10 @@ let originalSpawnPoints = [];
 let mapScrollPageX = 0;
 let mapScrollPageY = 0;
 
+// Save map position to comparing it during zoom event
+let mapZoomPositionX = 0;
+let mapZoomPositionY = 0;
+
 // ############### INIT ##################
 
 // Save original points coords to be able to calculate zoomed positions
@@ -51,7 +55,12 @@ function onMouseWheelArea(event) {
   const zoomStep = 0.1;
 
   // target is <img> here, so we get parentNode map-container
-  const container = event.target.parentNode;
+  let container = event.target.parentNode;
+
+  // at this point, target can be a SVG (user hovering a point)
+  while (container.classList[0] != "map-container") {
+    container = container.parentNode;
+  }
 
   // prevent wheel X axis
   if (event.deltaX != 0) {
@@ -86,6 +95,7 @@ function onMouseWheelArea(event) {
   _updateSpawnPointsPosition();
   _updateMapSize();
 }
+
 // When user hover a map
 function onMouseEnterImg(event) {
   actualMapInUse = event.target;
@@ -132,7 +142,6 @@ function onMouseLeaveMapContainer(event) {
 // Calculate cursor position
 function _getCursorPosition(container, event) {
   const { top, left } = container.getBoundingClientRect();
-
   const cursorX = event.pageX - left - window.pageXOffset;
   const cursorY = event.pageY - top - window.pageYOffset;
 
