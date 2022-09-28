@@ -157,7 +157,7 @@ function onMouseLeaveMapContainer(event) {
 
 function _updateActualZoomLevel(event) {
   // step for zooming/dezooming
-  const zoomStep = 0.1;
+  const zoomStep = 0.1 * actualZoomLevel;
 
   // dezoom
   if (event.deltaY > 0) {
