@@ -1097,12 +1097,27 @@ a {
 }
 @media screen and (max-width: 450px) {
   .caroussel {
-    max-width: 300px;
+    max-width: 340px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .caroussel {
+    max-width: 320px;
+  }
+}
+@media screen and (max-width: 430px) {
+  .caroussel {
+    max-width: 290px;
   }
 }
 @media screen and (max-width: 380px) {
   .caroussel {
-    max-width: 230px;
+    max-width: 260px;
+  }
+}
+@media screen and (max-width: 330px) {
+  .caroussel {
+    max-width: 240px;
   }
 }
 
