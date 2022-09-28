@@ -1269,7 +1269,7 @@ a {
 }
 
 .row-card {
-  background-color: #383838;
+  background-color: #434343;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -1281,7 +1281,7 @@ a {
   padding-right: 4px;
   margin-top: 6.5px;
   font-size: 0.7em;
-  border: 1px solid #535353;
+  border: 1px solid #303030;
   box-shadow: 0px 0px 2px #1e1e1e;
   transition: all 300ms;
 }
@@ -1296,8 +1296,10 @@ a {
   padding-left: 5px;
   box-sizing: border-box;
   padding: 3px;
+  box-shadow: 0px 0px 6px #1e1e1e;
 }
 .row-card__head {
+  height: 21px;
   width: 18%;
   min-width: 18%;
   border-radius: 15px 0px 0px 15px;
@@ -1306,7 +1308,7 @@ a {
   justify-content: center;
 }
 .row-card__head i {
-  padding-right: 2px;
+  padding-left: 2px;
   color: #7daaf1;
 }
 .row-card__content {
@@ -1989,7 +1991,13 @@ a {
 }
 .row-card-container a:hover {
   opacity: 0.8;
+  transition: all 300ms;
 }
+.row-card-container a:hover span {
+  transition: all 300ms;
+  color: #7daaf1;
+}
+
 .dot-container {
   width: 100px;
   height: 20px;

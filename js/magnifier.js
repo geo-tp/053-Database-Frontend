@@ -29,6 +29,8 @@ let mapScrollPageY = 0;
 // Save map position to comparing it during zoom event
 let mapZoomPositionX = 0;
 let mapZoomPositionY = 0;
+
+// Save magnifier state
 let mapZoomIsActivated = false;
 let mapZoomHasbeenCorrected = false;
 let mapIscurrentlyDragged = false;
@@ -59,7 +61,7 @@ caroussel.onwheel = onMouseWheelArea;
 
 // When user move on map-container
 function onMouseMoveArea(event) {
-  // When mouse move, we need to apply correction
+  // when mouse move, we need to apply correction
   mapZoomHasbeenCorrected = false;
 }
 
@@ -73,6 +75,11 @@ function onMouseWheelArea(event) {
   }
   mapLastZoomTime = Date.now();
 
+  // prevent wheel X axis
+  if (event.deltaX != 0) {
+    return;
+  }
+
   // target is <img> here, so we get parentNode map-container
   let container = event.target.parentNode;
 
@@ -81,12 +88,7 @@ function onMouseWheelArea(event) {
     container = container.parentNode;
   }
 
-  // prevent wheel X axis
-  if (event.deltaX != 0) {
-    return;
-  }
-
-  const zoomResult = _updateActualZoomLevel(event);
+  _updateActualZoomLevel(event);
 
   // Update scroll position with cursor
   let [cursorX, cursorY] = _getCursorPosition(container, event);
