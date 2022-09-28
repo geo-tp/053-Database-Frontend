@@ -31,6 +31,12 @@ let mapZoomPositionX = 0;
 let mapZoomPositionY = 0;
 let mapZoomIsActivated = false;
 let mapZoomHasbeenCorrected = false;
+let mapIscurrentlyDragged = false;
+
+// Limit event function calls
+const mapEventDelay = 10; //ms
+let mapLastDragTime = Date.now();
+let mapLastZoomTime = Date.now();
 
 // ############### INIT ##################
 
@@ -59,6 +65,12 @@ function onMouseMoveArea(event) {
 // When user wheel on map-container (zoom/dezoom)
 function onMouseWheelArea(event) {
   event.preventDefault();
+
+  // prevent too much call
+  if (mapLastZoomTime >= Date.now() - mapEventDelay) {
+    return;
+  }
+  mapLastZoomTime = Date.now();
 
   // target is <img> here, so we get parentNode map-container
   let container = event.target.parentNode;
@@ -90,6 +102,12 @@ function onMouseEnterImg(event) {
 
 // When user move cursor on MapContainer, only activated when user drag map
 function onMouseMoveMapContainer(event) {
+  // prevent too much call
+  if (mapLastDragTime >= Date.now() - mapEventDelay) {
+    return;
+  }
+  mapLastDragTime = Date.now();
+
   let container = event.target.parentNode;
 
   const [directionX, directionY] = _determineDragDirection(event);
@@ -252,7 +270,7 @@ function _determineDragDirection(event) {
 
 // Apply drag move to update map scrolling position
 function _applyDragMove(container, directionX, directionY) {
-  const step = 7 + (1 * actualZoomLevel) / 3;
+  const step = 7 + actualZoomLevel / 3;
   if (directionX) {
     const calculatedStepX = directionX == "right" ? step * -1 : step;
     container.scrollLeft += calculatedStepX;
