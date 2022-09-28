@@ -31,9 +31,9 @@ let mapZoomPositionX = 0;
 let mapZoomPositionY = 0;
 
 // Save magnifier state
-let mapZoomIsActivated = false;
-let mapZoomHasbeenCorrected = false;
-let mapIscurrentlyDragged = false;
+let mapZoomHasBeenCorrected = false;
+let mapZoomIsInitialised = false;
+let mapHasBeenDragged = false;
 
 // Limit event function calls
 const mapEventZoomDelay = 15; //ms
@@ -62,7 +62,9 @@ caroussel.onwheel = onMouseWheelArea;
 // When user move on map-container
 function onMouseMoveArea(event) {
   // when mouse move, we need to apply correction
-  mapZoomHasbeenCorrected = false;
+  if (!mapHasBeenDragged) {
+    mapZoomHasBeenCorrected = false;
+  }
 }
 
 // When user wheel on map-container (zoom/dezoom)
@@ -103,7 +105,8 @@ function onMouseEnterImg(event) {
   actualMapInUse = event.target;
 }
 
-// When user move cursor on MapContainer, only activated when user drag map
+// When user move cursor on MapContainer
+// This event is only activated when user drag map
 function onMouseMoveMapContainer(event) {
   // prevent too much call
   if (mapLastDragTime >= Date.now() - mapEventDragDelay) {
@@ -160,6 +163,9 @@ function _updateActualZoomLevel(event) {
   if (event.deltaY > 0) {
     if (actualZoomLevel - zoomStep < minZoomLevel) {
       actualZoomLevel = minZoomLevel;
+      mapHasBeenDragged = false;
+      mapZoomIsInitialised = false;
+      mapZoomHasBeenCorrected = false;
       _ShowMapUi();
       return;
     }
@@ -190,15 +196,16 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
   let diffX = parseInt(cursorX - mapZoomPositionX);
   let diffY = parseInt(cursorY - mapZoomPositionY);
 
-  // We calculate detla XY between cursor and map
+  // We calculate detla XY between cursor pos and map scroll pos
   let totalDiffX = diffX - diffX / actualZoomLevel;
   let totalDiffY = diffY - diffY / actualZoomLevel;
 
   // Correction is already applied and mouse dont moved since last correction
   // We just apply diffX diffY, so cursor stay at exact same pos while zooming
-  if (mapZoomHasbeenCorrected) {
+  if (mapZoomHasBeenCorrected || mapZoomIsInitialised) {
     totalDiffX = diffX;
     totalDiffY = diffY;
+    mapZoomIsInitialised = true;
   }
 
   cursorX = cursorX - totalDiffX;
@@ -207,8 +214,7 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
   container.scrollTop = cursorY * (actualZoomLevel - 1);
 
   // Map is now recentered and we dont need scroll correction until mouse move
-  mapZoomHasbeenCorrected = true;
-  // }
+  mapZoomHasBeenCorrected = true;
 
   // We store actual cursor pos to calculate delta with new pos later
   mapZoomPositionY = cursorY;
@@ -256,7 +262,7 @@ function _determineDragDirection(event) {
     directionY = "up";
   }
 
-  // we store event to compare it later
+  // we store event XY to compare it later
   mapScrollPageX = event.pageX;
   mapScrollPageY = event.pageY;
 
@@ -266,17 +272,18 @@ function _determineDragDirection(event) {
 // Apply drag move to update map scrolling position
 function _applyDragMove(container, directionX, directionY) {
   const step = 10;
+  mapHasBeenDragged = true;
   if (directionX) {
     const calculatedStepX = directionX == "right" ? step * -1 : step;
     container.scrollLeft += calculatedStepX;
     mapZoomPositionX += calculatedStepX / (actualZoomLevel - 1);
-    mapZoomHasbeenCorrected = true;
+    mapZoomHasBeenCorrected = true;
   }
   if (directionY) {
     const calculatedStepY = directionY == "down" ? step * -1 : step;
     container.scrollTop += calculatedStepY;
     mapZoomPositionY += calculatedStepY / (actualZoomLevel - 1);
-    mapZoomHasbeenCorrected = true;
+    mapZoomHasBeenCorrected = true;
   }
 }
 
