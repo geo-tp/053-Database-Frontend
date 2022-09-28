@@ -224,6 +224,9 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
 // Hide map UI elements when Zoom is activated
 function _hideMapUi() {
   for (let arrow of mapArrows) {
+    if (!arrow) {
+      continue;
+    }
     arrow.style.display = "none";
   }
 
@@ -233,6 +236,9 @@ function _hideMapUi() {
 // Show map UI elements when Zoom is at min value
 function _ShowMapUi() {
   for (let arrow of mapArrows) {
+    if (!arrow) {
+      continue;
+    }
     arrow.style.display = "block";
   }
 
