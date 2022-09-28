@@ -82,6 +82,11 @@ function onMouseWheelArea(event) {
     return;
   }
 
+  // prevent zooming if actual zoom is already at max lvl
+  if (actualZoomLevel == maxZoomLevel) {
+    return;
+  }
+
   // target is <img> here, so we get parentNode map-container
   let container = event.target.parentNode;
 
