@@ -1084,13 +1084,23 @@ a {
     border-radius: 0px 20px 0px 20px;
   }
 }
+@media screen and (max-width: 1337px) {
+  .caroussel {
+    border-radius: 20px;
+  }
+}
 @media screen and (max-width: 700px) {
   .caroussel {
     margin: 0px;
     width: 95%;
   }
 }
-@media screen and (max-width: 370px) {
+@media screen and (max-width: 450px) {
+  .caroussel {
+    max-width: 300px;
+  }
+}
+@media screen and (max-width: 380px) {
   .caroussel {
     max-width: 230px;
   }

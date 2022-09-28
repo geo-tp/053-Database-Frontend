@@ -58,14 +58,24 @@
       border-radius: 0px 20px 0px 20px;
     }
   }
+
+  @include tablet-design {
+    border-radius: 20px;
+  }
+
   @include mobile-design {
     // margin-left: 0px;
     // margin-right: 0px;
+    // max-width: 290px;
     margin: 0px;
     width: 95%;
   }
 
-  @media screen and (max-width: 370px) {
+  @media screen and (max-width: 450px) {
+    max-width: 300px;
+  }
+
+  @media screen and (max-width: 380px) {
     max-width: 230px;
   }
 }
