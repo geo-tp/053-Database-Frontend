@@ -1453,15 +1453,18 @@ a {
   transform: scale(1);
 }
 .magnifier i {
-  color: red;
   font-size: 30px;
-  border: 2px solid red;
+  border: 2px dashed yellow;
   padding: 20px;
   border-radius: 100%;
   opacity: 0.5;
+  color: red;
+  box-shadow: 0px 0px 20px 20px black;
 }
 .magnifier i::before {
-  opacity: 0.9;
+  animation: 1s appearslowly ease-in-out;
+  animation-iteration-count: 3;
+  opacity: 0;
 }
 
 .help-box {
