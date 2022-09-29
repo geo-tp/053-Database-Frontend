@@ -6,8 +6,12 @@ const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
 const spawnMapCaroussel = document.querySelector("#spawn-map-caroussel");
 const spawnMapHelpBox = document.querySelector("#spawn-map-help-box");
 const spawnMapArrows = [
-  spawnMapCaroussel.querySelector(".caroussel__left-arrow"),
-  spawnMapCaroussel.querySelector(".caroussel__right-arrow"),
+  spawnMapCaroussel.querySelector(
+    "#spawn-map-caroussel .caroussel__left-arrow"
+  ),
+  spawnMapCaroussel.querySelector(
+    "#spawn-map-caroussel .caroussel__right-arrow"
+  ),
 ];
 const spawnPoints = document.querySelectorAll(
   "#spawn-map-caroussel .spawn_point"
