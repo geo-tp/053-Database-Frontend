@@ -96,16 +96,6 @@
   }
 }
 
-@keyframes scalePoint {
-  50% {
-    transform: scale(3);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
 @keyframes float {
   50% {
     transform: translateY(-7px);

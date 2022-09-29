@@ -3,10 +3,19 @@
   z-index: 999;
   pointer-events: none;
   opacity: 1;
-  background-color: white;
+  // background-color: white;
   background-repeat: no-repeat;
   display: none;
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
+  // width: 100px;
+  // height: 100px;
+  // border: 2px solid red;
   // transition: all 200ms;
+
+  & i {
+    color: red;
+    font-size: 30px;
+    opacity: 0.7;
+  }
 }

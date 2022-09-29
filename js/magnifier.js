@@ -37,7 +37,7 @@ let mapHasBeenDragged = false;
 
 // Limit event function calls
 const mapEventZoomDelay = 15; //ms
-const mapEventDragDelay = 5; //ms
+const mapEventDragDelay = 15; //ms
 let mapLastDragTime = Date.now();
 let mapLastZoomTime = Date.now();
 
@@ -52,6 +52,24 @@ function cloneSpawnPoints() {
   }
 }
 cloneSpawnPoints();
+
+// Apply highlight if there is only one point on maps
+function applyHighLightOnFirstPoint() {
+  if (!spawnPoints.length && spawnPoints.length > 1) {
+    return;
+  }
+
+  const arrowHeight = 11;
+  const arrowWidth = 14.5;
+  magnifier.style.display = "block";
+  magnifier.style.top = `${
+    parseFloat(spawnPoints[0].style.top) - arrowHeight
+  }px`;
+  magnifier.style.left = `${
+    parseFloat(spawnPoints[0].style.left) - arrowWidth
+  }px`;
+}
+applyHighLightOnFirstPoint();
 
 // ############### EVENT BINDS ##################
 
@@ -129,11 +147,8 @@ function onMouseDownMapContainer(event) {
     return;
   }
   let container = event.target.parentNode;
-  container.scrollIntoView({
-    behavior: "smooth",
-  });
   container.style.cursor = "grabbing";
-  container.style.scrollB;
+  mapHasBeenDragged = true;
   // we initialise onmousemove when user grabs map
   container.onmousemove = onMouseMoveMapContainer;
 }
@@ -151,9 +166,6 @@ function onMouseUpMapContainer(event) {
 function onMouseLeaveMapContainer(event) {
   let container = event.target;
   container.style.cursor = "unset";
-  // container.scrollIntoView({
-  //   behavior: "unset",
-  // });
 
   // prevent to remains in grab status when user leave area with mousedown activated
   container.onmousemove = () => {};
@@ -184,6 +196,7 @@ function _updateActualZoomLevel(event) {
       return;
     }
     _hideMapUi();
+    _hideHighlight();
     actualZoomLevel += zoomStep;
   }
 }
@@ -199,8 +212,8 @@ function _getCursorPosition(container, event) {
 
 // Correct scroll bars with cursor to prevent offcentering
 function _updateScrollBarsPosition(container, cursorX, cursorY) {
-  let diffX = parseInt(cursorX - mapZoomPositionX);
-  let diffY = parseInt(cursorY - mapZoomPositionY);
+  let diffX = cursorX - mapZoomPositionX;
+  let diffY = cursorY - mapZoomPositionY;
 
   // We calculate detla XY between cursor pos and map scroll pos
   let totalDiffX = diffX - diffX / actualZoomLevel;
@@ -283,19 +296,19 @@ function _determineDragDirection(event) {
 
 // Apply drag move to update map scrolling position
 function _applyDragMove(container, directionX, directionY) {
-  const step = 8 + (1 * actualZoomLevel) / 2;
-  mapHasBeenDragged = true;
+  const step = 6 + (1 * actualZoomLevel) / 2;
   if (directionX) {
     let calculatedStepX = directionX == "right" ? step * -1 : step;
-    calculatedStepX = directionX ? calculatedStepX / 2 : calculatedStepX;
+    // if both direction are triggered, we divide step by 2
+    calculatedStepX = directionY ? calculatedStepX / 2 : calculatedStepX;
     container.scrollLeft += calculatedStepX;
     mapZoomPositionX += calculatedStepX / (actualZoomLevel - 1);
     mapZoomHasBeenCorrected = true;
   }
   if (directionY) {
     let calculatedStepY = directionY == "down" ? step * -1 : step;
+    // if both direction are triggered, we divide step by 2
     calculatedStepY = directionX ? calculatedStepY / 2 : calculatedStepY;
-
     container.scrollTop += calculatedStepY;
     mapZoomPositionY += calculatedStepY / (actualZoomLevel - 1);
     mapZoomHasBeenCorrected = true;
@@ -325,4 +338,8 @@ function _updateMapSize() {
       defaultMapHeight * actualZoomLevel
     }px`
   );
+}
+
+function _hideHighlight() {
+  magnifier.style.display = "none";
 }

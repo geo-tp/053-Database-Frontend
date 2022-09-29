@@ -110,14 +110,6 @@ a {
     transform: scale(0.99);
   }
 }
-@keyframes scalePoint {
-  50% {
-    transform: scale(3);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 @keyframes float {
   50% {
     transform: translateY(-7px);
@@ -1198,9 +1190,6 @@ a {
   z-index: 1001;
   cursor: pointer;
   border-radius: 100%;
-  transform: scale(3);
-  animation: 3s scalePoint ease-in-out;
-  animation-fill-mode: forwards;
 }
 
 .modal {
@@ -1458,11 +1447,15 @@ a {
   z-index: 999;
   pointer-events: none;
   opacity: 1;
-  background-color: white;
   background-repeat: no-repeat;
   display: none;
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
+}
+.magnifier i {
+  color: red;
+  font-size: 30px;
+  opacity: 0.7;
 }
 
 .help-box {
