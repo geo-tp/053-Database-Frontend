@@ -32,7 +32,6 @@ let mapZoomPositionY = 0;
 
 // Save magnifier state
 let mapZoomHasBeenCorrected = false;
-let mapZoomIsInitialised = false;
 let mapHasBeenDragged = false;
 
 // Limit event function calls
@@ -79,8 +78,8 @@ caroussel.onwheel = onMouseWheelArea;
 
 // When user move on map-container
 function onMouseMoveArea(event) {
-  // when mouse move, we need to apply correction
-  if (!mapHasBeenDragged) {
+  // correct zoom position if map was not dragged and zoom lvl is small
+  if (!mapHasBeenDragged && actualZoomLevel < maxZoomLevel / 5) {
     mapZoomHasBeenCorrected = false;
   }
 }
@@ -182,7 +181,6 @@ function _updateActualZoomLevel(event) {
     if (actualZoomLevel - zoomStep < minZoomLevel) {
       actualZoomLevel = minZoomLevel;
       mapHasBeenDragged = false;
-      mapZoomIsInitialised = false;
       mapZoomHasBeenCorrected = false;
       _ShowMapUi();
       return;
@@ -219,7 +217,7 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
   let totalDiffX = diffX - diffX / actualZoomLevel;
   let totalDiffY = diffY - diffY / actualZoomLevel;
 
-  // Correction is already applied and mouse dont moved since last correction
+  // Correction is already applied
   // We just apply diffX diffY, so cursor stay at exact same pos while zooming
   if (mapZoomHasBeenCorrected) {
     totalDiffX = diffX;
