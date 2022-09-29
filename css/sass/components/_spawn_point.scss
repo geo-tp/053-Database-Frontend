@@ -3,4 +3,9 @@
   z-index: 1001;
   cursor: pointer;
   // transition: all 200ms;
+  border-radius: 100%;
+  // border: 10px solid red;
+  transform: scale(3);
+  animation: 3s scalePoint ease-in-out;
+  animation-fill-mode: forwards;
 }
