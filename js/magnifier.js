@@ -109,13 +109,13 @@ function onMouseWheelArea(event) {
   }
 
   _updateActualZoomLevel(event);
+  _updateMapSize();
 
   // Update scroll position with cursor
   let [cursorX, cursorY] = _getCursorPosition(container, event);
   _updateScrollBarsPosition(container, cursorX, cursorY);
 
   _updateSpawnPointsPosition();
-  _updateMapSize();
 }
 
 // When user hover a map
@@ -221,10 +221,9 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
 
   // Correction is already applied and mouse dont moved since last correction
   // We just apply diffX diffY, so cursor stay at exact same pos while zooming
-  if (mapZoomHasBeenCorrected || mapZoomIsInitialised) {
+  if (mapZoomHasBeenCorrected) {
     totalDiffX = diffX;
     totalDiffY = diffY;
-    mapZoomIsInitialised = true;
   }
 
   cursorX = cursorX - totalDiffX;
