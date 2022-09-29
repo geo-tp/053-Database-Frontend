@@ -1,4 +1,4 @@
-.magnifier {
+.map-highlighter {
   position: absolute;
   z-index: 999;
   pointer-events: none;
@@ -24,6 +24,7 @@
 
     &::before {
       animation: 1s appearslowly ease-in-out;
+      animation-delay: 1s;
       animation-iteration-count: 3;
       opacity: 0;
     }

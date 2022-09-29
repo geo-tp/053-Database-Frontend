@@ -1,6 +1,6 @@
 // ############### GLOBAL VARIABLES ##################
 
-const magnifier = document.querySelector("#spawn-map-magnifier");
+const magnifier = document.querySelector("#spawn-map-highlighter");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
 const caroussel = document.querySelector("#spawn-map-caroussel");

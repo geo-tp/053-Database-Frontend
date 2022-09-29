@@ -1442,7 +1442,7 @@ a {
   font-size: 1.5em;
 }
 
-.magnifier {
+.map-highlighter {
   position: absolute;
   z-index: 999;
   pointer-events: none;
@@ -1452,7 +1452,7 @@ a {
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
 }
-.magnifier i {
+.map-highlighter i {
   font-size: 30px;
   border: 1px dashed yellow;
   padding: 20px;
@@ -1461,8 +1461,9 @@ a {
   color: red;
   box-shadow: 0px 0px 20px 20px black;
 }
-.magnifier i::before {
+.map-highlighter i::before {
   animation: 1s appearslowly ease-in-out;
+  animation-delay: 1s;
   animation-iteration-count: 3;
   opacity: 0;
 }
