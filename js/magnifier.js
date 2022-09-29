@@ -1,13 +1,13 @@
 // ############### GLOBAL VARIABLES ##################
 
-const magnifier = document.querySelector("#spawn-map-highlighter");
+const spawnMapHighlighter = document.querySelector("#spawn-map-highlighter");
 const kalimdor = document.querySelector("#Kalimdor_map");
 const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
-const caroussel = document.querySelector("#spawn-map-caroussel");
-const helpBox = document.querySelector("#spawn-map-help-box");
-const mapArrows = [
-  caroussel.querySelector(".caroussel__left-arrow"),
-  caroussel.querySelector(".caroussel__right-arrow"),
+const spawnMapCaroussel = document.querySelector("#spawn-map-caroussel");
+const spawnMapHelpBox = document.querySelector("#spawn-map-help-box");
+const spawnMapArrows = [
+  spawnMapCaroussel.querySelector(".caroussel__left-arrow"),
+  spawnMapCaroussel.querySelector(".caroussel__right-arrow"),
 ];
 const spawnPoints = document.querySelectorAll(
   "#spawn-map-caroussel .spawn_point"
@@ -60,11 +60,11 @@ function applyHighLightOnFirstPoint() {
 
   const arrowHeight = 32;
   const arrowWidth = 36;
-  magnifier.style.display = "block";
-  magnifier.style.top = `${
+  spawnMapHighlighter.style.display = "block";
+  spawnMapHighlighter.style.top = `${
     parseFloat(spawnPoints[0].style.top) - arrowHeight
   }px`;
-  magnifier.style.left = `${
+  spawnMapHighlighter.style.left = `${
     parseFloat(spawnPoints[0].style.left) - arrowWidth
   }px`;
 }
@@ -72,7 +72,7 @@ applyHighLightOnFirstPoint();
 
 // ############### EVENT BINDS ##################
 
-caroussel.onwheel = onMouseWheelArea;
+spawnMapCaroussel.onwheel = onMouseWheelArea;
 
 // ############### EVENT FUNCS ##################
 
@@ -109,12 +109,11 @@ function onMouseWheelArea(event) {
 
   _updateActualZoomLevel(event);
   _updateMapSize();
+  _updateSpawnPointsPosition();
 
   // Update scroll position with cursor
   let [cursorX, cursorY] = _getCursorPosition(container, event);
   _updateScrollBarsPosition(container, cursorX, cursorY);
-
-  _updateSpawnPointsPosition();
 }
 
 // When user hover a map
@@ -239,26 +238,26 @@ function _updateScrollBarsPosition(container, cursorX, cursorY) {
 
 // Hide map UI elements when Zoom is activated
 function _hideMapUi() {
-  for (let arrow of mapArrows) {
+  for (let arrow of spawnMapArrows) {
     if (!arrow) {
       continue;
     }
     arrow.style.display = "none";
   }
 
-  helpBox.style.display = "none";
+  spawnMapHelpBox.style.display = "none";
 }
 
 // Show map UI elements when Zoom is at min value
 function _ShowMapUi() {
-  for (let arrow of mapArrows) {
+  for (let arrow of spawnMapArrows) {
     if (!arrow) {
       continue;
     }
     arrow.style.display = "block";
   }
 
-  helpBox.style.display = "block";
+  spawnMapHelpBox.style.display = "block";
 }
 
 // Determine if user drag to left/right and down/up
@@ -338,5 +337,5 @@ function _updateMapSize() {
 }
 // Hide element to help spot arrow if there is only one
 function _hideHighlight() {
-  magnifier.style.display = "none";
+  spawnMapHighlighter.style.display = "none";
 }
