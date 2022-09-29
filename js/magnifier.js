@@ -59,8 +59,8 @@ function applyHighLightOnFirstPoint() {
     return;
   }
 
-  const arrowHeight = 11;
-  const arrowWidth = 14.5;
+  const arrowHeight = 32;
+  const arrowWidth = 36;
   magnifier.style.display = "block";
   magnifier.style.top = `${
     parseFloat(spawnPoints[0].style.top) - arrowHeight
@@ -339,7 +339,7 @@ function _updateMapSize() {
     }px`
   );
 }
-
+// Hide element to help spot arrow if there is only one
 function _hideHighlight() {
   magnifier.style.display = "none";
 }

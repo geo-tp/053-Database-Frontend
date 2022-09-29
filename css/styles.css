@@ -1455,7 +1455,13 @@ a {
 .magnifier i {
   color: red;
   font-size: 30px;
-  opacity: 0.7;
+  border: 2px solid red;
+  padding: 20px;
+  border-radius: 100%;
+  opacity: 0.5;
+}
+.magnifier i::before {
+  opacity: 0.9;
 }
 
 .help-box {
