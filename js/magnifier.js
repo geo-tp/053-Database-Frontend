@@ -141,7 +141,7 @@ function onMouseWheelMapContainer(event) {
   magnification = Math.min(magnification, 60);
   magnification = Math.max(magnification, 0.5);
 
-  // load a high def map
+  // load a high def map if needed
   let mapUseHighDef = currentImage.src.includes("big");
   if (!mapUseHighDef && magnification > 15) {
     let mapSplittedSrc = currentImage.src.split(".");
