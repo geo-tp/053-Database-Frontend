@@ -13,6 +13,7 @@
   @include big-shadow;
   border-radius: 20px 0px 0px 20px;
   transition: all 300ms;
+  background-color: #172e46;
 
   // ::-webkit-scrollbar {
   //   display: none;
@@ -77,8 +78,7 @@
 
   @include tablet-design {
     border-radius: 20px;
-    flex-grow: 1;
-    margin-left: unset;
+    flex-basis: 60%;
 
     &__enlarge {
       display: none;
