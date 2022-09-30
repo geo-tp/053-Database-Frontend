@@ -1,345 +1,129 @@
-// ############### GLOBAL VARIABLES ##################
+// MAGNIFIER
 
-const spawnMapHighlighter = document.querySelector("#spawn-map-highlighter");
-const kalimdor = document.querySelector("#Kalimdor_map");
-const easternKingdom = document.querySelector("#Eastern_Kingdoms_map");
-const spawnMapCaroussel = document.querySelector("#spawn-map-caroussel");
-const spawnMapHelpBox = document.querySelector("#spawn-map-help-box");
-const spawnMapArrows = [
-  spawnMapCaroussel.querySelector(
-    "#spawn-map-caroussel .caroussel__left-arrow"
-  ),
-  spawnMapCaroussel.querySelector(
-    "#spawn-map-caroussel .caroussel__right-arrow"
-  ),
-];
-const spawnPoints = document.querySelectorAll(
-  "#spawn-map-caroussel .spawn_point"
-);
+// global variables
 
-const minZoomLevel = 1;
-const maxZoomLevel = 15;
-const defaultMapWidth = 345;
-const defaultMapHeight = 650;
+var startDragX = 0; // mouse-down location (start of drag)
+var startDragY = 0; //   "
+var dragging = false; // are we dragging?
+var magnification = 1; // initial magnification
+const zoomFactor = 1.1; // amount to change when you zoom
 
-let actualZoomLevel = minZoomLevel;
-let actualMapInUse = kalimdor ? kalimdor : easternKingdom;
-let originalSpawnPoints = [];
-
-// Save scroll pos of map-container for comparing it during drag event
-let mapScrollPageX = 0;
-let mapScrollPageY = 0;
-
-// Save map position to comparing it during zoom event
-let mapZoomPositionX = 0;
-let mapZoomPositionY = 0;
-
-// Save magnifier state
-let mapZoomHasBeenCorrected = false;
-let mapHasBeenDragged = false;
-
-// Limit event function calls
-const mapEventZoomDelay = 15; //ms
-const mapEventDragDelay = 15; //ms
-let mapLastDragTime = Date.now();
-let mapLastZoomTime = Date.now();
-
-// ############### INIT ##################
-
-// Save original points coords to be able to calculate zoomed positions
-function cloneSpawnPoints() {
-  for (let point of spawnPoints) {
-    originalSpawnPoints.push({
-      style: { top: point.style.top, left: point.style.left },
-    });
-  }
-}
-cloneSpawnPoints();
-
-// Apply highlight if there is only one point on maps
-function applyHighLightOnFirstPoint() {
-  if (!spawnPoints.length && spawnPoints.length > 1) {
-    return;
-  }
-
-  const arrowHeight = 32;
-  const arrowWidth = 36;
-  spawnMapHighlighter.style.display = "block";
-  spawnMapHighlighter.style.top = `${
-    parseFloat(spawnPoints[0].style.top) - arrowHeight
-  }px`;
-  spawnMapHighlighter.style.left = `${
-    parseFloat(spawnPoints[0].style.left) - arrowWidth
-  }px`;
-}
-applyHighLightOnFirstPoint();
-
-// ############### EVENT BINDS ##################
-
-spawnMapCaroussel.onwheel = onMouseWheelArea;
-
-// ############### EVENT FUNCS ##################
-
-// When user move on map-container
-function onMouseMoveArea(event) {
-  // correct zoom position if map was not dragged and zoom lvl is small
-  if (!mapHasBeenDragged && actualZoomLevel < maxZoomLevel / 5) {
-    mapZoomHasBeenCorrected = false;
-  }
-}
-
-// When user wheel on map-container (zoom/dezoom)
-function onMouseWheelArea(event) {
-  event.preventDefault();
-
-  // prevent too much call
-  if (mapLastZoomTime >= Date.now() - mapEventZoomDelay) {
-    return;
-  }
-  mapLastZoomTime = Date.now();
-
-  // prevent wheel X axis
-  if (event.deltaX != 0) {
-    return;
-  }
-
-  // target is <img> here, so we get parentNode map-container
-  let container = event.target.parentNode;
-
-  // at this point, target can be a SVG (user hovering a point)
-  while (container.classList[0] != "map-container") {
-    container = container.parentNode;
-  }
-
-  _updateActualZoomLevel(event);
-  _updateMapSize();
-  _updateSpawnPointsPosition();
-
-  // Update scroll position with cursor
-  let [cursorX, cursorY] = _getCursorPosition(container, event);
-  _updateScrollBarsPosition(container, cursorX, cursorY);
-}
-
-// When user hover a map
-function onMouseEnterImg(event) {
-  actualMapInUse = event.target;
-}
-
-// When user move cursor on MapContainer
-// This event is only activated when user drag map
-function onMouseMoveMapContainer(event) {
-  // prevent too much call
-  if (mapLastDragTime >= Date.now() - mapEventDragDelay) {
-    return;
-  }
-  mapLastDragTime = Date.now();
-
-  let container = event.target.parentNode;
-
-  const [directionX, directionY] = _determineDragDirection(event);
-  _applyDragMove(container, directionX, directionY);
-}
-
-// When user click down (grab)
+// mouse down (start of drag) - remember starting point
 function onMouseDownMapContainer(event) {
+  startDragX = event.offsetX;
+  startDragY = event.offsetY;
+  dragging = true;
+  event.target.cursor = "grabbing";
+  event.preventDefault();
+} // end of onMouseDownMapContainer
+
+// mouse up (end of drag)
+function onMouseUpMapContainer(event) {
+  dragging = false;
+  event.target.cursor = "unset";
+} // end of onMouseUpMapContainer
+
+function onMouseLeaveMapContainer(event) {} // end of onMouseLeaveMapContainer
+
+// redraw spawn points based on their original position multiplied by the magnification factor
+function redrawSpawnPoints() {
+  var spawnPoints = document.getElementsByClassName("spawn_point");
+  var offsetX = getPosition(currentImage.style.left);
+  var offsetY = getPosition(currentImage.style.top);
+
+  for (var i = 0; i < spawnPoints.length; i++) {
+    spawnPoints[i].style.left =
+      spawnPoints[i].dataset.left * magnification + offsetX + "px";
+    spawnPoints[i].style.top =
+      spawnPoints[i].dataset.top * magnification + offsetY + "px";
+  } // end of for
+} // end of redrawSpawnPoints
+
+function onMouseMoveMapContainer(event) {
   event.preventDefault();
 
-  // Prevent grabbing when zoom is not activated
-  if (actualZoomLevel == minZoomLevel) {
+  if (!dragging) return;
+
+  // if button is now up they must have released it outside the container
+  if (event.buttons == 0) {
+    onMouseUpMapContainer(event);
     return;
   }
-  let container = event.target.parentNode;
-  container.style.cursor = "grabbing";
-  mapHasBeenDragged = true;
-  // we initialise onmousemove when user grabs map
-  container.onmousemove = onMouseMoveMapContainer;
-}
 
-// When user releases click
-function onMouseUpMapContainer(event) {
-  let container = event.target.parentNode;
-  container.style.cursor = "unset";
+  var offsetX = event.offsetX;
+  var offsetY = event.offsetY;
 
-  // we unset mousemove
-  container.onmousemove = null;
-}
+  // difference between where we started and where we are now
+  var diffX = startDragX - offsetX;
+  var diffY = startDragY - offsetY;
 
-// When user is out of MapContainer area
-function onMouseLeaveMapContainer(event) {
-  let container = event.target;
-  container.style.cursor = "unset";
+  // find the appropriate image
+  currentImage = event.target.closest("img");
 
-  // prevent to remains in grab status when user leave area with mousedown activated
-  container.onmousemove = () => {};
-}
+  // move it by the difference between where we started and where we are now
+  currentImage.style.left = getPosition(currentImage.style.left) - diffX + "px";
+  currentImage.style.top = getPosition(currentImage.style.top) - diffY + "px";
 
-// ############### PRIVATE FUNCS ##################
+  redrawSpawnPoints();
+} // end of onMouseMoveMapContainer
 
-function _updateActualZoomLevel(event) {
-  // step for zooming/dezooming
-  const zoomStep = 0.1 * actualZoomLevel;
+function onMouseWheelMapContainer(event) {
+  event.preventDefault();
+  var offsetX = null;
+  var offsetY = null;
 
-  // dezoom
-  if (event.deltaY > 0) {
-    if (actualZoomLevel - zoomStep < minZoomLevel) {
-      actualZoomLevel = minZoomLevel;
-      mapHasBeenDragged = false;
-      mapZoomHasBeenCorrected = false;
-      _ShowMapUi();
-      return;
+  if (event.target.nodeName == "circle") {
+    let element = event.target.parentNode;
+    while (element.classList[0] != "map-container") {
+      element = element.parentNode;
     }
-    actualZoomLevel -= zoomStep;
-  }
-  // zoom
-  else {
-    if (actualZoomLevel >= maxZoomLevel) {
-      actualZoomLevel = maxZoomLevel;
-      return;
-    }
-    _hideMapUi();
-    _hideHighlight();
-    actualZoomLevel += zoomStep;
-  }
-}
 
-// Calculate cursor position
-function _getCursorPosition(container, event) {
-  const { top, left } = container.getBoundingClientRect();
-  const cursorX = event.pageX - left - window.pageXOffset;
-  const cursorY = event.pageY - top - window.pageYOffset;
-
-  return [cursorX, cursorY];
-}
-
-// Correct scroll bars with cursor to prevent offcentering
-function _updateScrollBarsPosition(container, cursorX, cursorY) {
-  let diffX = cursorX - mapZoomPositionX;
-  let diffY = cursorY - mapZoomPositionY;
-
-  // We calculate detla XY between cursor pos and map scroll pos
-  let totalDiffX = diffX - diffX / actualZoomLevel;
-  let totalDiffY = diffY - diffY / actualZoomLevel;
-
-  // Correction is already applied
-  // We just apply diffX diffY, so cursor stay at exact same pos while zooming
-  if (mapZoomHasBeenCorrected) {
-    totalDiffX = diffX;
-    totalDiffY = diffY;
+    offsetX += parseFloat(event.target.parentNode.style.left);
+    offsetY += parseFloat(event.target.parentNode.style.top);
+    currentImage = element.querySelector("img");
+  } else {
+    // where is mouse over? - relative to the IMAGE not the container
+    offsetX = event.offsetX;
+    offsetY = event.offsetY;
+    currentImage = event.target.closest("img");
   }
 
-  cursorX = cursorX - totalDiffX;
-  cursorY = cursorY - totalDiffY;
-  container.scrollLeft = cursorX * (actualZoomLevel - 1);
-  container.scrollTop = cursorY * (actualZoomLevel - 1);
+  // where does the image start? (it may be offscreen)
+  var imageLeft = getPosition(currentImage.style.left);
+  var imageTop = getPosition(currentImage.style.top);
 
-  // Map is now recentered and we dont need scroll correction until mouse move
-  mapZoomHasBeenCorrected = true;
+  // how far through image is mouse assuming no magnification
+  // (image may start offscreen)
+  var mouseX = event.offsetX / magnification;
+  var mouseY = event.offsetY / magnification;
 
-  // We store actual cursor pos to calculate delta with new pos later
-  mapZoomPositionY = cursorY;
-  mapZoomPositionX = cursorX;
-}
+  // how far cursor is through container
+  var cursorX = event.offsetX + imageLeft;
+  var cursorY = event.offsetY + imageTop;
 
-// Hide map UI elements when Zoom is activated
-function _hideMapUi() {
-  for (let arrow of spawnMapArrows) {
-    if (!arrow) {
-      continue;
-    }
-    arrow.style.display = "none";
-  }
+  magnification *= event.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
 
-  spawnMapHelpBox.style.display = "none";
-}
+  // constrain to 0.5 to 30 magnification
+  magnification = Math.min(magnification, 30);
+  magnification = Math.max(magnification, 0.5);
 
-// Show map UI elements when Zoom is at min value
-function _ShowMapUi() {
-  for (let arrow of spawnMapArrows) {
-    if (!arrow) {
-      continue;
-    }
-    arrow.style.display = "block";
-  }
+  // adjust image size
+  currentImage.style.width = currentImage.dataset.width * magnification + "px";
+  currentImage.style.height =
+    currentImage.dataset.height * magnification + "px";
 
-  spawnMapHelpBox.style.display = "block";
-}
+  // move image so that the place under the cursor is still under it
+  currentImage.style.left = -mouseX * magnification + cursorX + "px";
+  currentImage.style.top = -mouseY * magnification + cursorY + "px";
 
-// Determine if user drag to left/right and down/up
-function _determineDragDirection(event) {
-  let directionX = null;
-  let directionY = null;
+  redrawSpawnPoints();
+} // end of onMouseWheelMapContainer
 
-  // Delta between saved scroll position and new one
-  let diffX = event.pageX - mapScrollPageX;
-  let diffY = event.pageY - mapScrollPageY;
+// caroussel ??
+function onMouseMoveArea(event) {} // end of onMouseMoveArea
 
-  // deal with the horizontal case
-  if (mapScrollPageX < event.pageX) {
-    directionX = "right";
-  } else if (diffX) {
-    directionX = "left";
-  }
+function onMouseEnterImg(event) {} // end of onMouseEnterImg
 
-  // deal with the vertical case
-  if (mapScrollPageY < event.pageY) {
-    directionY = "down";
-  } else if (diffY) {
-    directionY = "up";
-  }
-
-  // we store event XY to compare it later
-  mapScrollPageX = event.pageX;
-  mapScrollPageY = event.pageY;
-
-  return [directionX, directionY];
-}
-
-// Apply drag move to update map scrolling position
-function _applyDragMove(container, directionX, directionY) {
-  const step = 6 + (1 * actualZoomLevel) / 2;
-  if (directionX) {
-    let calculatedStepX = directionX == "right" ? step * -1 : step;
-    // if both direction are triggered, we divide step by 2
-    calculatedStepX = directionY ? calculatedStepX / 2 : calculatedStepX;
-    container.scrollLeft += calculatedStepX;
-    mapZoomPositionX += calculatedStepX / (actualZoomLevel - 1);
-    mapZoomHasBeenCorrected = true;
-  }
-  if (directionY) {
-    let calculatedStepY = directionY == "down" ? step * -1 : step;
-    // if both direction are triggered, we divide step by 2
-    calculatedStepY = directionX ? calculatedStepY / 2 : calculatedStepY;
-    container.scrollTop += calculatedStepY;
-    mapZoomPositionY += calculatedStepY / (actualZoomLevel - 1);
-    mapZoomHasBeenCorrected = true;
-  }
-}
-
-// Update coords of points when Zoom occurs
-function _updateSpawnPointsPosition() {
-  for (let i = 0; i < spawnPoints.length; i++) {
-    spawnPoints[i].style.left = `${
-      parseFloat(originalSpawnPoints[i].style.left) * actualZoomLevel
-    }px`;
-    spawnPoints[i].style.top = `${
-      parseFloat(originalSpawnPoints[i].style.top) * actualZoomLevel
-    }px`;
-  }
-}
-
-// Update map width and height when Zoom occurs
-function _updateMapSize() {
-  if (!actualMapInUse) {
-    return;
-  }
-  actualMapInUse.setAttribute(
-    "style",
-    `width:${defaultMapWidth * actualZoomLevel}px; height:${
-      defaultMapHeight * actualZoomLevel
-    }px`
-  );
-}
-// Hide element to help spot arrow if there is only one
-function _hideHighlight() {
-  spawnMapHighlighter.style.display = "none";
-}
+function getPosition(which) {
+  return parseFloat(which.split("px")[0]);
+} // end of getPosition

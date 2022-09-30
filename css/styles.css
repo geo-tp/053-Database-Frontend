@@ -1451,15 +1451,23 @@ a {
   display: none;
   animation: appearslowlyandscale 200ms ease-out;
   transform: scale(1);
+  width: 80px;
+  height: 80px;
+  border: 1px dashed yellow;
+  box-shadow: 0px 0px 20px 20px rgba(0, 0, 0, 0.549);
+  border-radius: 100%;
 }
 .map-highlighter i {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 30px;
-  border: 1px dashed yellow;
-  padding: 20px;
-  border-radius: 100%;
   opacity: 0.5;
   color: red;
-  box-shadow: 0px 0px 20px 20px black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .map-highlighter i::before {
   animation: 1s appearslowly ease-in-out;
