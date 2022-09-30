@@ -145,9 +145,10 @@ function onMouseWheelMapContainer(event) {
   let mapUseHighDef = currentImage.src.includes("big");
   if (!mapUseHighDef && magnification > 15) {
     let mapSplittedSrc = currentImage.src.split(".");
-    let imageName = mapSplittedSrc[0];
-    let imageExt = mapSplittedSrc[1];
-    currentImage.src = `${imageName}_big.${imageExt}`;
+    // last element of array is img ext
+    let imageExt = mapSplittedSrc.pop();
+    let imagePath = mapSplittedSrc.join(".");
+    currentImage.src = `${imagePath}_big.${imageExt}`;
   }
 
   // adjust image size
