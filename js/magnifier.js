@@ -29,14 +29,14 @@ function onMouseDownMapContainer(event) {
   startDragX = offsetX;
   startDragY = offsetY;
   dragging = true;
-  event.target.cursor = "grabbing";
+  event.target.style.cursor = "grabbing";
   hideHelp();
 } // end of onMouseDownMapContainer
 
 // mouse up (end of drag)
 function onMouseUpMapContainer(event) {
   dragging = false;
-  event.target.cursor = "unset";
+  event.target.style.cursor = "unset";
 } // end of onMouseUpMapContainer
 
 // redraw spawn points based on their original position multiplied by the magnification factor
