@@ -331,11 +331,13 @@
             </div>
 
             <!-- CAROUSSEL -->
-            <aside
-              class="caroussel"
-              onmousemove="onMouseMoveArea(event)"
-              id="spawn-map-caroussel"
-            >
+            <aside class="caroussel" id="spawn-map-caroussel">
+              <button
+                onclick="resizeCaroussel(event)"
+                class="caroussel__enlarge"
+              >
+                <i class="fas fa-angles-left"></i>
+              </button>
               <div class="help-box" id="spawn-map-help-box">
                 <i class="fas fa-computer-mouse help-box__info-icon"></i>
                 <span class="help-box__content"> drag and zoom </span>
@@ -354,7 +356,6 @@
                 class="map-container"
                 onmousedown="onMouseDownMapContainer(event)"
                 onmouseup="onMouseUpMapContainer(event)"
-                onmouseleave="onMouseLeaveMapContainer(event)"
                 onmousemove="onMouseMoveMapContainer(event)"
                 onwheel="onMouseWheelMapContainer(event)"
                 draggable="false"
@@ -380,7 +381,6 @@
                   data-mapheight="19980.94603272"
                   data-width="345"
                   data-height="650"
-                  onmouseenter="onMouseEnterImg(event)"
                   draggable="false"
                   alt="Eastern_Kingdoms map"
                   title="Eastern_Kingdoms map"
@@ -416,9 +416,7 @@
               <!-- END MAP SPAWN POINTS -->
 
               <!-- MAP HIGHLIGHTER -->
-              <div class="map-highlighter" id="spawn-map-highlighter">
-                <i class="fas fa-arrows-to-circle"></i>
-              </div>
+              <div class="map-highlighter" id="spawn-map-highlighter"></div>
               <!-- END MAP HIGHLIGHTER -->
             </aside>
             <!-- END CAROUSSEL -->
