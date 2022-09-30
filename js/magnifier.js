@@ -8,7 +8,6 @@ var dragging = false; // are we dragging?
 var magnification = 1; // initial magnification
 const zoomFactor = 1.1; // amount to change when you zoom
 const spawnHighlightMaxDistance = 38; // if spawns fall within this number of pixels, show the highlighter
-
 function hideHelp() {
   // hide all these things
   ["spawn-map-help-box", "caroussel_arrows", "spawn-map-highlighter"].forEach(
@@ -138,9 +137,18 @@ function onMouseWheelMapContainer(event) {
 
   magnification *= event.deltaY > 0 ? 1 / zoomFactor : zoomFactor;
 
-  // constrain to 0.5 to 30 magnification
-  magnification = Math.min(magnification, 30);
+  // constrain to 0.5 to 60 magnification
+  magnification = Math.min(magnification, 60);
   magnification = Math.max(magnification, 0.5);
+
+  // load a high def map
+  let mapUseHighDef = currentImage.src.includes("big");
+  if (!mapUseHighDef && magnification > 15) {
+    let mapSplittedSrc = currentImage.src.split(".");
+    let imageName = mapSplittedSrc[0];
+    let imageExt = mapSplittedSrc[1];
+    currentImage.src = `${imageName}_big.${imageExt}`;
+  }
 
   // adjust image size
   currentImage.style.width = currentImage.dataset.width * magnification + "px";
