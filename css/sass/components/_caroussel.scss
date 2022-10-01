@@ -15,6 +15,15 @@
     height: 650px;
   }
 
+  &--independant {
+    margin: 2% auto;
+    max-width: 1200px;
+
+    & button:first-child {
+      display: none;
+    }
+  }
+
   &__button-enlarge {
     position: absolute;
     top: 10px;

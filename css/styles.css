@@ -1044,6 +1044,13 @@ a {
   width: 345px;
   height: 650px;
 }
+.caroussel--independant {
+  margin: 2% auto;
+  max-width: 1200px;
+}
+.caroussel--independant button:first-child {
+  display: none;
+}
 .caroussel__button-enlarge {
   position: absolute;
   top: 10px;
