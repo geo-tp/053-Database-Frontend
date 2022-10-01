@@ -4,7 +4,7 @@
   right: 10px;
   z-index: 999;
   background-color: $color2;
-  opacity: 0.95;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   border-radius: 15px 0px 0px 15px;
@@ -12,6 +12,7 @@
   padding-right: 10px;
   @include big-shadow;
   animation: appearslowly 500ms ease-in-out;
+  border: 1px solid $color3;
 
   &__info-icon {
     margin-right: 10px;

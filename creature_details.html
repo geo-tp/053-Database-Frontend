@@ -338,41 +338,36 @@
               >
                 <i class="fas fa-angles-left"></i>
               </button>
-              <div class="shortcut-box">
-                <i class="fas fa-keyboard"></i>
-                <div class="shortcut-box__content">
-                  <p class="shortcut-box__content__key">
-                    CTRL+CLICK on a point
-                  </p>
-                  <p class="shortcut-box__content__description">
-                    Here a description Here a description
-                  </p>
-                  <p class="shortcut-box__content__key">CTRL+ALT+CLICK</p>
-                  <p class="shortcut-box__content__description">
-                    Here a description
-                  </p>
-                  <p class="shortcut-box__content__key">ALT+CLICK</p>
-                  <p class="shortcut-box__content__description">
-                    Here a description
-                  </p>
-                  <p class="shortcut-box__content__key">CTRL+CLICK</p>
-                  <p class="shortcut-box__content__description">
-                    Here a description
-                  </p>
-                  <p class="shortcut-box__content__key">CTRL+ALT+CLICK</p>
-                  <p class="shortcut-box__content__description">
-                    Here a description
-                  </p>
-                  <p class="shortcut-box__content__key">ALT+CLICK</p>
-                  <p class="shortcut-box__content__description">
-                    Here a description
-                  </p>
+              <!-- MAP UI -->
+              <div id="caroussel-user-interface">
+                <!-- HIGHLIGTHER -->
+                <div class="map-highlighter" id="spawn-map-highlighter"></div>
+                <!-- END HIGHLIGHTER -->
+
+                <!-- HELP-BOX -->
+                <div class="help-box" id="spawn-map-help-box">
+                  <i class="fas fa-computer-mouse help-box__info-icon"></i>
+                  <span class="help-box__content"> drag and zoom </span>
                 </div>
+                <!-- END HELP BOX -->
+
+                <!-- SHORTCUTBOX -->
+                <div class="shortcut-box">
+                  <i class="fas fa-keyboard"></i>
+                  <div class="shortcut-box__content">
+                    <p class="shortcut-box__content__key">CTRL+CLICK</p>
+                    <p class="shortcut-box__content__description">
+                      Here a description
+                    </p>
+                    <p class="shortcut-box__content__key">CTRL+ALT+CLICK</p>
+                    <p class="shortcut-box__content__description">
+                      Here a description
+                    </p>
+                  </div>
+                </div>
+                <!-- END SHORTCUT BOX -->
               </div>
-              <div class="help-box" id="spawn-map-help-box">
-                <i class="fas fa-computer-mouse help-box__info-icon"></i>
-                <span class="help-box__content"> drag and zoom </span>
-              </div>
+              <!-- END MAP UI -->
               <div class="caroussel__maps">
                 <!-- MAP CONTAINER -->
                 <div
@@ -512,10 +507,6 @@
                 </div>
                 <!-- END MAP CONTAINER -->
               </div>
-
-              <!-- MAP HIGHLIGHTER -->
-              <div class="map-highlighter" id="spawn-map-highlighter"></div>
-              <!-- END MAP HIGHLIGHTER -->
             </aside>
             <!-- END CAROUSSEL -->
           </div>
