@@ -2,7 +2,7 @@
 function applyHighLightOnFirstPoint() {
   const spawnPoints = document.querySelectorAll(".spawn_point");
   const highlighter = document.querySelector("#spawn-map-highlighter");
-  if (!spawnPoints.length || spawnPoints.length > 1) {
+  if (spawnPoints.length > 1) {
     return;
   }
 
