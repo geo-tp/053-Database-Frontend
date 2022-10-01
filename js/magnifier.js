@@ -219,12 +219,16 @@ function applyHighLightOnFirstPoint() {
 
 applyHighLightOnFirstPoint();
 
+// Reduce/Increase map area size
 function resizeCaroussel(event) {
   const caroussel = document.querySelector("#spawn-map-caroussel");
   const detailsContainer = document.querySelector(
     ".object-container__informations__details2"
   );
-  const expandButton = caroussel.querySelector("button");
+  const expandButton = event.target;
+  while (expandButton.tagName != "BUTTON") {
+    expandButton = expandButton.parentNode;
+  }
 
   if (detailsContainer.style.display == "none") {
     detailsContainer.style.display = "flex";
@@ -234,5 +238,6 @@ function resizeCaroussel(event) {
     detailsContainer.style.display = "none";
     caroussel.style.flexGrow = "1";
     expandButton.style.transform = "rotate(180deg)";
+    hideHelp();
   }
 }
