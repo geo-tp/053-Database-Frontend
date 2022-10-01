@@ -1047,9 +1047,16 @@ a {
 .caroussel--independant {
   margin: 2% auto;
   max-width: 1200px;
+  width: 80%;
 }
 .caroussel--independant button:first-child {
   display: none;
+}
+@media screen and (max-width: 700px) {
+  .caroussel--independant {
+    margin: 10px;
+    width: 95%;
+  }
 }
 .caroussel__button-enlarge {
   position: absolute;
@@ -1080,6 +1087,9 @@ a {
   transition: all 300ms;
   background-color: #172e46;
 }
+.caroussel__maps::-webkit-scrollbar {
+  display: none;
+}
 @media screen and (max-width: 1250px) {
   .caroussel img {
     border-radius: 0px 20px 0px 20px;
@@ -1096,33 +1106,12 @@ a {
 }
 @media screen and (max-width: 700px) {
   .caroussel {
-    margin: 0px;
-    width: 95%;
+    flex-basis: 95%;
   }
 }
-@media screen and (max-width: 450px) {
-  .caroussel {
-    max-width: 380px;
-  }
-}
-@media screen and (max-width: 430px) {
-  .caroussel {
-    max-width: 370px;
-  }
-}
-@media screen and (max-width: 430px) {
-  .caroussel {
-    max-width: 290px;
-  }
-}
-@media screen and (max-width: 380px) {
-  .caroussel {
-    max-width: 260px;
-  }
-}
-@media screen and (max-width: 330px) {
-  .caroussel {
-    max-width: 240px;
+@media screen and (max-width: 1335px) {
+  .caroussel__button-enlarge {
+    display: none;
   }
 }
 

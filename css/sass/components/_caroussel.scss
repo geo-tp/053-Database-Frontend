@@ -18,9 +18,14 @@
   &--independant {
     margin: 2% auto;
     max-width: 1200px;
+    width: 80%;
 
     & button:first-child {
       display: none;
+    }
+    @include mobile-design {
+      margin: 10px;
+      width: 95%;
     }
   }
 
@@ -51,6 +56,10 @@
     border-radius: 20px 0px 0px 20px;
     transition: all 300ms;
     background-color: #172e46;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   @include laptop-design {
@@ -71,27 +80,13 @@
   }
 
   @include mobile-design {
-    margin: 0px;
-    width: 95%;
+    // margin: 0px;
+    flex-basis: 95%;
   }
 
-  @media screen and (max-width: 450px) {
-    max-width: 380px;
-  }
-
-  @media screen and (max-width: 430px) {
-    max-width: 370px;
-  }
-
-  @media screen and (max-width: 430px) {
-    max-width: 290px;
-  }
-
-  @media screen and (max-width: 380px) {
-    max-width: 260px;
-  }
-
-  @media screen and (max-width: 330px) {
-    max-width: 240px;
+  @media screen and (max-width: 1335px) {
+    &__button-enlarge {
+      display: none;
+    }
   }
 }
