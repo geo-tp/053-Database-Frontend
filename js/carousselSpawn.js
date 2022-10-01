@@ -38,6 +38,7 @@ function changeMapInCaroussel(event) {
   }
 }
 
+// Show arrow if both map-container are present
 function determinateArrowToDisplay() {
   const kalimdorContainer = document.querySelector("#map-container-Kalimdor");
   const easterKingdomsContainer = document.querySelector(
