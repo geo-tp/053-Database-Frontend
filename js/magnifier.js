@@ -225,7 +225,8 @@ function resizeCaroussel(event) {
   const detailsContainer = document.querySelector(
     ".object-container__informations__details2"
   );
-  const expandButton = event.target;
+
+  let expandButton = event.target;
   while (expandButton.tagName != "BUTTON") {
     expandButton = expandButton.parentNode;
   }
