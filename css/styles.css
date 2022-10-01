@@ -1049,7 +1049,7 @@ a {
   top: 10px;
   left: 10px;
   color: #7daaf1;
-  z-index: 999;
+  z-index: 1002;
   border-radius: 100%;
   padding: 5px 7px;
   border: 1px solid #919191;
@@ -1460,7 +1460,7 @@ a {
   position: absolute;
   bottom: 10px;
   right: 10px;
-  z-index: 999;
+  z-index: 1002;
   background-color: #242424;
   opacity: 0.9;
   display: flex;
@@ -1502,7 +1502,7 @@ a {
   position: absolute;
   left: 0px;
   bottom: 0px;
-  z-index: 999;
+  z-index: 1002;
 }
 .shortcut-box:hover > div {
   display: block;
@@ -2010,7 +2010,7 @@ a {
 .map-container__arrow {
   display: none;
   position: absolute;
-  z-index: 50;
+  z-index: 1002;
   font-size: 2.5em;
   color: #7daaf1;
   font-weight: bold;
