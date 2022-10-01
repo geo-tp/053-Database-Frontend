@@ -303,271 +303,183 @@
               <!-- END SPAWN POINTS 2-->
             </div>
 
-            
             <!-- CAROUSSEL -->
-            <aside class="caroussel" onmouseleave="onMouseLeaveArea(event)">
-              <div class="help-box">
-                <i class="fas fa-arrow-pointer help-box__info-icon"></i>
-                <span class="help-box__content"> hover </span>
-                <span class="help-box__point"></span>
-                <span class="help-box__content"> to magnify </span>
+            <aside class="caroussel" id="spawn-map-caroussel">
+              <button
+                onclick="resizeCaroussel(event)"
+                class="caroussel__button-enlarge"
+              >
+                <i class="fas fa-angles-left"></i>
+              </button>
+              <!-- MAP UI -->
+              <div id="caroussel-user-interface">
+                <!-- HIGHLIGTHER -->
+                <div class="map-highlighter" id="spawn-map-highlighter"></div>
+                <!-- END HIGHLIGHTER -->
+
+                <!-- HELP-BOX -->
+                <div class="help-box" id="spawn-map-help-box">
+                  <i class="fas fa-computer-mouse help-box__info-icon"></i>
+                  <span class="help-box__content"> drag and zoom </span>
+                </div>
+                <!-- END HELP BOX -->
+
+                <!-- SHORTCUTBOX -->
+                <div class="shortcut-box">
+                  <i class="fas fa-keyboard"></i>
+                  <div class="shortcut-box__content">
+                    <p class="shortcut-box__content__key">CTRL+CLICK</p>
+                    <p class="shortcut-box__content__description">
+                      Here a description
+                    </p>
+                    <p class="shortcut-box__content__key">CTRL+ALT+CLICK</p>
+                    <p class="shortcut-box__content__description">
+                      Here a description
+                    </p>
+                  </div>
+                </div>
+                <!-- END SHORTCUT BOX -->
               </div>
-              <a class="caroussel__left-arrow" href=
-                ><i class="fas fa-angle-left"></i
-              ></a>
-              <a class="caroussel__right-arrow" href="#Eastern_Kingdoms_map"
-                ><i class="fas fa-angle-right"></i
-              ></a>
-              <div class="map-container">
-                <img
-                  onmouseenter="onMouseEnterImg(event)"
-                  onmousemove="onMouseMoveImg(event)"
-                  src="./assets/img/Kalimdor.webp"
-                  style="
-                    display: block;
-                    max-width: initial;
-                    max-height: initial;
-                    margin: 0;
-                  "
-                  id="Kalimdor_map"
-                  alt="Kalimdor map"
-                  title="Kalimdor map"
-                />
+              <!-- END MAP UI -->
+              <div class="caroussel__maps">
+                <!-- MAP CONTAINER -->
+                <div
+                  class="map-container"
+                  id="map-container-Kalimdor"
+                  onmousedown="onMouseDownMapContainer(event)"
+                  onmouseup="onMouseUpMapContainer(event)"
+                  onmousemove="onMouseMoveMapContainer(event)"
+                  onwheel="onMouseWheelMapContainer(event)"
+                  draggable="false"
+                  style="position: relative; background-color: #172e46"
+                >
+                  <a
+                    id="map-arrow-right"
+                    class="map-container__arrow map-container__arrow--right"
+                    onclick="changeMapInCaroussel(event)"
+                    ><i class="fas fa-angle-right"></i
+                  ></a>
 
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 400px; left: 102px"
+                  <img
+                    src="./assets/img/Kalimdor.webp"
+                    style="
+                      display: block;
+                      width: 345px;
+                      height: 650px;
+                      max-width: initial;
+                      max-height: initial;
+                      position: absolute;
+                      left: 0;
+                      top: 0;
+                      margin: 0;
+                    "
+                    id="Kalimdor_map"
+                    data-mapleft="5042.4865925889"
+                    data-maptop="11763.324337648"
+                    data-mapwidth="13100.059130778"
+                    data-mapheight="24611.604572322"
+                    data-width="345"
+                    data-height="650"
+                    draggable="false"
+                    alt="Kalimdor map"
+                    title="Kalimdor map"
+                  />
+                  <div
+                    onclick='clickOnSpawnPoint (event, "1913.21 -4030.39 42.9191 1")'
                   >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
+                    <svg
+                      width="8px"
+                      height="8px"
+                      class="spawn_point"
+                      style="top: 260.171px; left: 238.967px"
+                      data-left="238.967"
+                      data-top="260.171"
+                      data-spawnid="4770"
+                    >
+                      <circle
+                        cx="4"
+                        cy="4"
+                        r="4"
+                        fill="yellow"
+                        stroke="black"
+                      ></circle>
+                      <title>
+                        1913.21 -4030.39 42.9191 1 (click to copy) ID: 4770.
+                        [Idle]
+                      </title>
+                    </svg>
+                  </div>
                 </div>
+                <!-- END MAP CONTAINER -->
+                <!-- MAP CONTAINER -->
                 <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
+                  class="map-container"
+                  id="map-container-Eastern_Kingdoms"
+                  onmousedown="onMouseDownMapContainer(event)"
+                  onmouseup="onMouseUpMapContainer(event)"
+                  onmousemove="onMouseMoveMapContainer(event)"
+                  onwheel="onMouseWheelMapContainer(event)"
+                  draggable="false"
+                  style="position: relative; background-color: #172e46"
                 >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 383px; left: 31px"
-                    class="spawn_point"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
+                  <a
+                    id="map-arrow-left"
+                    class="map-container__arrow map-container__arrow--left"
+                    onclick="changeMapInCaroussel(event)"
+                    ><i class="fas fa-angle-left"></i
+                  ></a>
+                  <img
+                    src="./assets/img/Eastern_Kingdoms.webp"
+                    style="
+                      display: block;
+                      width: 345px;
+                      height: 650px;
+                      max-width: initial;
+                      max-height: initial;
+                      position: absolute;
+                      left: 0;
+                      top: 0;
+                      margin: 0;
+                    "
+                    id="Eastern_Kingdoms_map"
+                    data-mapleft="4267.7658363136"
+                    data-maptop="4657.9751308793"
+                    data-mapwidth="10568.022008253"
+                    data-mapheight="19980.94603272"
+                    data-width="345"
+                    data-height="650"
+                    draggable="false"
+                    alt="Eastern_Kingdoms map"
+                    title="Eastern_Kingdoms map"
+                  />
+                  <!-- <div
+        onclick='clickOnSpawnPoint (event, "-5586.76 -542.163 403.624 0")'
+      >
+        <svg
+          width="8px"
+          height="8px"
+          class="spawn_point"
+          style="top: 333.304px; left: 157.056px"
+          data-left="157.056"
+          data-top="333.304"
+          data-spawnid="194"
+        >
+          <circle
+            cx="4"
+            cy="4"
+            r="4"
+            fill="yellow"
+            stroke="black"
+          ></circle>
+          <title>
+            -5586.76 -542.163 403.624 0 (click to copy) ID: 194.
+            [Idle]
+          </title>
+        </svg>
+      </div> -->
                 </div>
-
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 481px; left: 102px"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 440px; left: 105px"
-                    class="spawn_point"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 460px; left: 110px"
-                    class="spawn_point"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 470px; left: 115px"
-                    class="spawn_point"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 500px; left: 120px"
-                    class="spawn_point"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 470px; left: 117px; position: absolute"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 479px; left: 118px; position: absolute"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
+                <!-- END MAP CONTAINER -->
               </div>
-              <div class="map-container">
-                <img
-                  onmouseenter="onMouseEnterImg(event)"
-                  onmousemove="onMouseMoveImg(event)"
-                  src="./assets/img/Eastern_Kingdoms.webp"
-                  style="
-                    display: block;
-                    max-width: initial;
-                    max-height: initial;
-                    margin: 0;
-                  "
-                  id="Eastern_Kingdoms_map"
-                  alt="Eastern_Kingdoms"
-                  title="Eastern_Kingdoms"
-                />
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 473px; left: 81px"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 383px; left: 81px"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 463px; left: 85px"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 478px; left: 88px"
-                  >
-                    <circle cx="4" cy="4" r="4" fill="yellow" stroke="black" />
-                    <title>-9889.68 338.467 36.6486 0</title>
-                  </svg>
-                </div>
-                <div
-                  onmouseenter="onMouseEnterPoint(event)"
-                  onmouseleave="onMouseLeavePoint(event)"
-                >
-                  <svg
-                    width="8"
-                    height="8"
-                    class="spawn_point"
-                    style="top: 481px; left: 234px"
-                  >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      fill="yellow"
-                      stroke="black"
-                    ></circle>
-                    <title>-2952.76 -3885.41 34.3089 1</title>
-                  </svg>
-                </div>
-              </div>
-              <!-- MAGNIFIER -->
-              <div class="magnifier">
-                <button class="magnifier__close"><i class="fas fa-plus"></i></button>
-              </div>
-              <!-- END MAGNIFIER -->
             </aside>
             <!-- END CAROUSSEL -->
           </div>
