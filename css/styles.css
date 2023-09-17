@@ -1831,6 +1831,9 @@ a {
   border: 1px solid #303030;
   box-shadow: 0px 0px 9px #303030;
 }
+.object-container__informations__details1 #item_model {
+  max-height: 150px;
+}
 .object-container__informations__details1 div:first-child {
   position: absolute;
   top: 0;
