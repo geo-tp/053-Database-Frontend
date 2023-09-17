@@ -26,6 +26,10 @@
       position: relative;
       border: 1px solid $color1;
 
+      & #item_model {
+        max-height: 150px;
+      }
+
       @include big-shadow;
 
       & div:first-child {
